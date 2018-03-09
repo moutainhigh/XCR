@@ -1,0 +1,71 @@
+@CHARSET "UTF-8";
+
+.allPage {
+	width: 80%;
+	min-width: 1000px;
+	max-width: 1200px;
+	width: expression_r( Math.max(1000, Math.min(1200, document.body.offsetWidth*0.99))+"px");
+}
+
+.table01 {
+	width: 100%;
+	font-size: 14px;
+	margin-left:50px;
+}
+
+.table01 .tr01 {
+	font: normal 14px/20px arial, sans-serif;
+}
+
+.table01 tr {
+	height: 30px;
+}
+.table01 tr td{
+	width: 16.5%;
+}
+
+.titleStyle {
+	height: 50px;
+	background-color: #f2f2f2;
+}
+
+.img_style {
+	height: 35px;
+	padding: 8px;
+	float: left;
+}
+
+.label_style {
+	margin: 16px 10px;
+	float: left;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.chooseCondition {
+	float: right;
+	margin-right: 90px;
+	padding: 10px;
+}
+
+.tabChange{
+	margin: 5px 10px;
+    padding: 4px 12px;
+	background-color: #FFFFFF;
+	border-radius:3px;
+	border: 1px solid #099fb8;
+	width: 80px;
+}
+.ulStyle{
+	list-style:none; 
+	margin-left: 280px;
+	margin-top: -35px;
+}
+.ulStyle li{
+	float: left;
+	width: 100px;
+}
+
+#content{
+	margin-left:-10px;
+}

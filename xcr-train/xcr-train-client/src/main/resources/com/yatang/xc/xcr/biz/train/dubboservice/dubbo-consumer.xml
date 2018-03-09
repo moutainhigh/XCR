@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<!-- 定义模块可被调用的服务,调用方,在Spring加载过程中引用此配置-->
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.train.dubboservice.TrainDubboService" id="trainDubboService" timeout="30000" version="${interface.version}" group="${dubbo.group}" />
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.train.dubboservice.TrainQueryDubboService" id="trainQueryDubboService" timeout="30000" version="${interface.version}" group="${dubbo.group}"/>
+</beans>

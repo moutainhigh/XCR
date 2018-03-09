@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yatang.xc.xcr.biz.core.dao.ActivityDao">
+	
+	<sql id="activity_table_name"> XCR_ACTIVITY_INFO </sql>
+	<sql id="activity_table_column"> PROVINCE,CITY,USERID,STORENO,USERNAME,PHONE,BRANCH_COMPANY,USERPHOTO,STOREPHOTO,TYPE,CREATE_TIME,UPDATE_TIME </sql>
+	
+	<insert id="insert" parameterType="ActivityPO" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO <include refid="activity_table_name"/> (<include refid="activity_table_column"/>)
+		VALUES(#{province},#{city},#{userId},#{storeNo},#{username},#{phone},#{branch_company},#{userPhoto},#{storePhoto},#{type},#{createTime},#{updateTime})
+	</insert>
+	
+	<select id="getBy" parameterType="java.util.Map" resultType="ActivityPO">
+		select * from <include refid="activity_table_name"/> t where t.USERID=#{userId} and t.TYPE=#{type}
+	</select>
+	
+	<select id="getEnrollCount" parameterType="String" resultType="Integer">
+		select count(*) from <include refid="activity_table_name"/> t where t.TYPE=#{_parameter}
+	</select>
+</mapper>
+

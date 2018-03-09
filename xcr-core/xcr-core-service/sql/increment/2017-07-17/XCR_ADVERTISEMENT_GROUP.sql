@@ -1,0 +1,17 @@
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for XCR_ADVERTISEMENT_GROUP
+-- ----------------------------
+DROP TABLE IF EXISTS `XCR_ADVERTISEMENT_GROUP`;
+CREATE TABLE `XCR_ADVERTISEMENT_GROUP` (
+  `ID` bigint(255) NOT NULL AUTO_INCREMENT,
+  `GROUP_NAME` varchar(255) DEFAULT NULL COMMENT '广告组名',
+  `DESCRIPTION` varchar(255) DEFAULT NULL COMMENT '描述',
+  `POSITION_CODE` int(40) DEFAULT NULL COMMENT '广告存放位置   目前主页广告：100',
+  `IS_ENABLE` int(5) DEFAULT NULL COMMENT '是否启用1：启用\r\n            0：未启用\r\n            2：删除',
+  `CREATE_TIME` varchar(50) DEFAULT NULL COMMENT '创建时间',
+  `LAST_MODIFY_TIME` varchar(50) DEFAULT NULL COMMENT '最后修改时间',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4;

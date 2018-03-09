@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yatang.xc.xcr.biz.train.dao.TrainInfoDao">
+
+	<sql id="train_info"> YT_XCR_TRAIN_INFO </sql>
+	
+	<resultMap id="baseMap" type="com.yatang.xc.xcr.biz.train.domain.TrainInfoPO">
+		<id column="id" property="id" />
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="content" property="content" jdbcType="VARCHAR"/>
+		<result column="train_length" property="trainLength" jdbcType="INTEGER"/>
+		<result column="icon" property="icon" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="viedio_url" property="viedioUrl" jdbcType="VARCHAR"/>
+		<result column="images_url" property="imagesUrl" jdbcType="VARCHAR"/>
+		<result column="file_url" property="fileUrl" jdbcType="VARCHAR"/>
+		<result column="create_uid" property="createUid" jdbcType="INTEGER"/>
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+		<result column="modify_uid" property="modifyUid" jdbcType="INTEGER"/>
+		<result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP"/>
+		<result column="releases_time" property="releasesTime" jdbcType="TIMESTAMP"/>
+		<result column="remark" property="remark" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="query_base_column">
+	     name,content,train_length,icon,status,viedio_url,images_url,file_url,remark,create_uid,create_time,modify_uid,modify_time,releases_time
+	</sql>
+	
+	<insert id="insert" parameterType="com.yatang.xc.xcr.biz.train.domain.TrainInfoPO" useGeneratedKeys="true" keyProperty="id">
+		insert into <include refid="train_info"/> (
+		<include refid="query_base_column" />
+		) 
+		values (#{name},#{content},#{trainLength},#{icon},#{status},#{viedioUrl},#{imagesUrl},#{fileUrl},#{remark},#{createUid},#{createTime},#{modifyUid},#{modifyTime},#{releasesTime})
+	</insert>
+	
+	<delete id="deleteById" parameterType="com.yatang.xc.xcr.biz.train.domain.TrainInfoPO" >
+		delete from <include refid="train_info"/> where id = #{id}
+	</delete>
+	
+	<update id="update" parameterType="com.yatang.xc.xcr.biz.train.domain.TrainInfoPO" >
+		update <include refid="train_info"/> set modify_time = #{modifyTime}
+		<if test="name != null and name != '' ">,name = #{name}</if>
+		<if test="content != null and content != '' ">,content = #{content}</if>
+		<if test="icon != null and icon != '' ">,icon = #{icon}</if>
+		<if test="viedioUrl != null and viedioUrl != '' ">,viedio_url = #{viedioUrl}</if>
+		<if test="imagesUrl != null and imagesUrl != '' ">,images_url = #{imagesUrl}</if>
+		<if test="fileUrl != null and fileUrl != '' ">,file_url = #{fileUrl}</if>
+		<if test="trainLength != null and trainLength != 0 ">,train_length = #{trainLength}</if>
+		<if test="status != null ">,status = #{status} </if>
+		<if test="modifyUid != null ">,modify_uid = #{modifyUid} </if>
+		<if test="releasesTime != null">,releases_time = #{releasesTime} </if>
+		where id = #{id} 
+	</update>
+	
+	<update id="downShelfOrReleases" parameterType="java.util.Map">
+		update <include refid="train_info"/> set modify_time = now(),releases_time = now()
+		<if test="status != null ">,status = #{status} </if>
+		where id = #{id} 
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="baseMap">
+		select id,<include refid="query_base_column" /> from <include refid="train_info"/> where id = #{id} 
+	</select>
+	
+	<select id="listPageCount" parameterType="java.util.Map" resultType="java.lang.Long">
+		select count(1) from <include refid="train_info"/> 
+		<where>
+		    1=1 
+		    <if test="map.status != null "> and status = #{map.status} </if>
+		</where>
+	</select>
+	
+	<select id="listBy" parameterType="java.util.Map" resultMap="baseMap">
+		select id,<include refid="query_base_column" />  from <include refid="train_info"/> 
+		<where>
+		    1=1 
+		    <if test="status != null "> and status = #{status} </if>
+		</where>
+		order by create_time desc,releases_time desc 
+	</select>
+	
+	<select id="getReleaseCount" parameterType="java.util.Map" resultType="java.lang.Long">
+		select count(ID) from <include refid="train_info"/> where status = 1
+	</select>
+	
+	<select id="checkNameExist" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(ID) from <include refid="train_info"/> where name = #{name}
+	</select>
+	<select id="queryMaxClassReleaseTime" resultType="java.lang.Long">
+		SELECT UNIX_TIMESTAMP(MAX(RELEASES_TIME)) * 1000 FROM <include refid="train_info"/> WHERE STATUS='1'
+		<!-- SELECT ID FROM <include refid="train_info"/> WHERE STATUS='1'
+		ORDER BY ID DESC LIMIT 1 -->
+	</select>
+</mapper>
+

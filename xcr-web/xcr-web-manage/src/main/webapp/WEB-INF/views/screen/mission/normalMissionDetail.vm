@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <script type="text/javascript">
+        //获取普通任务列表
+        function missionList() {
+            $("#menu1").empty();
+            $.ajax({
+                url: "/xcr/normalMissionList.htm",
+                type: "get",
+                success: function (data) {
+                    console.log(data)
+                    $("#menu1").html(data);
+                }
+            });
+        }
+
+        //获取关联任务列表
+        function missionRelList() {
+            $("#menu1").empty();
+            $.ajax({
+                url: "/xcr/relationMissionList.htm",
+                type: "GET",
+                success: function (data) {
+                    $("#menu1").html(data);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="container" style="width: 100%;height: 1300px;">
+    <div style="margin-top: 10px;width: 100%;height:100%;background-color: white">
+        <ul class="nav nav-tabs nav-mt" style="text-align:center">
+            <li id="missionList" class="active" style="width: 50%;">
+                <a data-toggle="tab" href="#" onclick="missionList();">
+                    <h4><i class="fa fa-briefcase"></i> 普通任务</h4>
+                </a>
+            </li>
+
+            <li id="missionRelList" href="#" class="" style="width: 50%">
+                <a data-toggle="tab" onclick="missionRelList();">
+                    <h4><i class=" fa fa-briefcase"></i> 关联任务</h4>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content" style="margin-top: 10px;width: 95%;margin: 0 auto">
+            <div id="menu1">
+                <div id="loginLogTab" class="tab-pane">
+                    <div>
+                        <div id="dateSearch" style="background-color: gainsboro;height: 50px;">
+        <span style="height: 50px;line-height: 50px;"><h4 style="line-height: 50px;margin-left: 10px;"><i
+                class="fa fa-pencil"></i> <strong>任务详情</strong></h4></span>
+                        </div>
+                        <div style="width: 100%;height: 1000px;background-color: whitesmoke">
+                            <div style="width: 50%;background-color: whitesmoke;float: left">
+                                <table class="table" style="margin-top: 20px;height: 800px;" border="0">
+                                    <tbody>
+                                    <tr>
+                                        <td style="width: 20%">
+                                            <div style="text-align:right;"><strong>任务分类:</strong><span
+                                                    style="color:#f00;"></span></div>
+                                        </td>
+                                        <td style="width: 80%">
+                                            #if($missionDetail.type == "DAILY") 日常任务
+                                            #elseif($missionDetail.type == "RECOMMEND") 推荐任务
+                                            #else 学习任务 #end
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div style="text-align:right;"><strong>任务类型:</strong><span
+                                                    style="color:#f00;"></span></div>
+                                        </td>
+                                        <td>
+                                            #if($missionDetail.related == false) 普通任务
+                                            #else 关联任务 #end
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div style="text-align:right;"><strong>任务/课堂:</strong><span
+                                                    style="color:#f00;"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            $missionDetail.templateName
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div style="text-align:right;"><strong>任务名称:</strong><span
+                                                    style="color:#f00;"></span></div>
+                                        </td>
+                                        <td>
+                                            $missionDetail.name
+                                        </td>
+                                    </tr>
+                                        #if(${missionDetail.templateCode.toString()} == "T007")
+                                        <tr class="continuouSignClass" style="display: none">
+                                            <td>
+                                                <div style="text-align:right;">
+                                                    <strong>连续签到天数:</strong><span
+                                                        style="color:#f00;"></span></div>
+                                            </td>
+                                            <td>
+                                                $missionDetail.continueDate
+                                            </td>
+                                        </tr>
+                                        #elseif(${missionDetail.templateCode.toString()} == "T008")
+                                        <tr class="facePayAmountClass">
+                                            <td>
+                                                <div style="text-align:right;">
+                                                    <strong>当面付金额:</strong><span
+                                                        style="color:#f00;"></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                $missionDetail.facePayAmount
+                                            </td>
+                                        </tr>
+                                        #elseif(${missionDetail.templateCode.toString()} == "T009")
+                                        <tr class="facePayNumberClass">
+                                            <td>
+                                                <div style="text-align:right;">
+                                                    <strong>当面付笔数:</strong><span
+                                                        style="color:#f00;"></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                $missionDetail.facePayNumber
+                                            </td>
+                                        </tr>
+                                        #elseif(${missionDetail.templateCode.toString()} == "T010")
+                                        <tr class="buyAmountClass">
+                                            <td>
+                                                <div style="text-align:right;">
+                                                    <strong>采购金额:</strong><span
+                                                        style="color:#f00;"></span></div>
+                                            </td>
+                                            <td>
+                                                $missionDetail.buyAmount
+                                            </td>
+                                        </tr>
+                                        #else #end
+
+                                        #if(${missionDetail.templateCode.toString()} != "T009")
+                                        <tr class="statisticsTime">
+                                            <td>
+                                                <div style="width:160px;text-align:right;">
+                                                    <strong>有效期:</strong><span
+                                                        style="color:#f00;"></span></div>
+                                            </td>
+                                            <td>
+                                                $!date.format('yyyy-MM-dd ',$!missionDetail.durationTimeStart)
+                                                ~ $!date.format('yyyy-MM-dd ',$!missionDetail.durationTimeEnd)
+                                            </td>
+                                        </tr>
+
+                                        <tr class="validTimeClass">
+                                            <td>
+                                                <div style="width:160px;text-align:right;">
+                                                    <strong>统计区间:</strong><span
+                                                        style="color:#f00;"></span></div>
+                                            </td>
+                                            <td>
+                                                $!date.format('yyyy-MM-dd ',$!missionDetail.validTimeStart)
+                                                ~ $!date.format('yyyy-MM-dd ',$!missionDetail.validTimeEnd)
+                                            </td>
+                                        </tr>
+                                        #end
+
+                                    <tr>
+                                        <td>
+                                            <div style="width:160px;text-align:right;">
+                                                <strong>任务图标:</strong><span
+                                                    style="color:#f00;"></span></div>
+                                        </td>
+                                        <td>
+                                            <img src="$missionDetail.iconUrl" style="width: 300px;height: 200px;">
+                                        </td>
+                                    </tr>
+
+                                    <tr class="discontClass" style="display: none">
+                                        <td>
+                                            <div style="width:160px;text-align:right;"><strong>奖励类型:</strong><span
+                                                    style="color:#f00;"></span></div>
+                                        </td>
+                                        <td style="font-family:serif;">
+                                            积分
+                                        </td>
+                                    </tr>
+
+                                    <tr id="awardScore">
+                                        <td>
+                                            <div style="width:160px;text-align:right;">
+                                                <strong>积分数量:</strong>
+                                                <span style="color:#f00;"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            #if($grantNum) $grantNum #end
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div style="width:160px;text-align:right;">
+                                                <strong>任务说明:</strong><span
+                                                    style="color:#f00;"></span>
+                                            </div>
+                                        </td>
+                                        <td class="form-group">
+                                            $missionDetail.description
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height: 400px;"></div>
+
+

@@ -1,0 +1,54 @@
+2017-11-08 18:21:05,765 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2017-11-08 18:21:05,809 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@189fab56, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1aa9a7bb, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@7842f3a9, org.springframework.test.context.support.DirtiesContextTestExecutionListener@738b19ed, org.springframework.test.context.transaction.TransactionalTestExecutionListener@315351de, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@5523df1e]
+2017-11-08 18:21:05,875 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from class path resource [test/applicationContext-test.xml]
+2017-11-08 18:21:05,970 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-pay/xcr-pay-service/target/classes/spring/applicationContext.xml]
+2017-11-08 18:21:06,086 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [jar:file:/D:/maven/self_repository/com/busi/mongo/busi-mongo/dev-SNAPSHOT/busi-mongo-dev-20171101.025036-40.jar!/spring/applicationContext.xml]
+2017-11-08 18:21:06,119 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-pay/xcr-pay-service/target/classes/spring/applicationContext-redis.xml]
+2017-11-08 18:21:06,154 INFO [org.springframework.context.support.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@48e18517: startup date [Wed Nov 08 18:21:06 CST 2017]; root of context hierarchy
+2017-11-08 18:21:06,300 DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Identified candidate component class: file [D:\workspace\backend\trunk\xcr-pay\xcr-pay-service\target\classes\com\yatang\xc\xcr\biz\pay\dao\DepositPayRecordDao.class]
+2017-11-08 18:21:06,300 DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Creating MapperFactoryBean with name 'depositPayRecordDao' and 'com.yatang.xc.xcr.biz.pay.dao.DepositPayRecordDao' mapperInterface
+2017-11-08 18:21:06,593 ERROR [com.alibaba.druid.filter.FilterManager] - load filter error, filter not found : logback
+2017-11-08 18:21:06,844 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2017-11-08 18:21:06,864 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-11-08 18:21:06,952 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VFS
+2017-11-08 18:21:06,952 DEBUG [org.apache.ibatis.io.JBoss6VFS] - JBoss 6 VFS API is not available in this environment.
+2017-11-08 18:21:06,952 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VirtualFile
+2017-11-08 18:21:06,953 DEBUG [org.apache.ibatis.io.VFS] - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2017-11-08 18:21:06,953 DEBUG [org.apache.ibatis.io.VFS] - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2017-11-08 18:21:06,956 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2017-11-08 18:21:06,959 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed configuration file: 'class path resource [mybatis/sqlMapConfig.xml]'
+2017-11-08 18:21:07,013 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed mapper file: 'file [D:\workspace\backend\trunk\xcr-pay\xcr-pay-service\target\classes\com\yatang\xc\xcr\biz\pay\domain\DepositPayRecord_Mapper.xml]'
+2017-11-08 18:21:07,051 INFO [com.busi.mongo.MongoTools] - MongoDB Client initialize...
+2017-11-08 18:21:07,052 INFO [com.busi.mongo.MongoTools] - server address : sit.mongodb1.com:27019;sit.mongodb2.com:27019;sit.mongodb3.com:27019
+2017-11-08 18:21:07,264 INFO [org.mongodb.driver.cluster] - Cluster created with settings {hosts=[sit.mongodb1.com:27019, sit.mongodb2.com:27019, sit.mongodb3.com:27019], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2017-11-08 18:21:07,264 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb1.com:27019 to client view of cluster
+2017-11-08 18:21:07,289 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb2.com:27019 to client view of cluster
+2017-11-08 18:21:07,290 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb3.com:27019 to client view of cluster
+2017-11-08 18:21:07,291 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=UNKNOWN, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-11-08 18:21:07,311 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:3}] to sit.mongodb2.com:27019
+2017-11-08 18:21:07,311 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:2}] to sit.mongodb3.com:27019
+2017-11-08 18:21:07,311 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:1}] to sit.mongodb1.com:27019
+2017-11-08 18:21:07,311 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb3.com:27019
+2017-11-08 18:21:07,311 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb2.com:27019
+2017-11-08 18:21:07,311 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb1.com:27019
+2017-11-08 18:21:07,313 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1105680}
+2017-11-08 18:21:07,313 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb2.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1098769}
+2017-11-08 18:21:07,313 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb1.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1089154}
+2017-11-08 18:21:07,314 INFO [org.mongodb.driver.cluster] - Discovered cluster type of SHARDED
+2017-11-08 18:21:07,315 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-11-08 18:21:07,315 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-11-08 18:21:07,316 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}]
+2017-11-08 18:21:07,454 DEBUG [org.mybatis.spring.SqlSessionUtils] - Creating a new SqlSession
+2017-11-08 18:21:07,458 DEBUG [org.mybatis.spring.SqlSessionUtils] - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4254baa5] was not registered for synchronization because synchronization is not active
+2017-11-08 18:21:07,466 DEBUG [org.mybatis.spring.transaction.SpringManagedTransaction] - JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@602b7d06] will not be managed by Spring
+2017-11-08 18:21:07,470 DEBUG [com.yatang.xc.xcr.biz.pay.dao.DepositPayRecordDao.getPayRecordByOutTradeNo] - ==>  Preparing: select ID,MCH_ID,SHOP_NO,PHONE,OUT_TRADE_NO,CONTRACT_NO,BODY,TOTAL_FEE,MCH_CREATE_IP,NOTIFY_URL,TOKEN_ID,STATE,CREATE_TIME,UPDATE_TIME from XCR_DEPOSIT_PAY_RECORD where OUT_TRADE_NO = ? 
+2017-11-08 18:21:07,494 DEBUG [com.yatang.xc.xcr.biz.pay.dao.DepositPayRecordDao.getPayRecordByOutTradeNo] - ==> Parameters: asdaw123111510058373209(String)
+2017-11-08 18:21:07,514 DEBUG [com.yatang.xc.xcr.biz.pay.dao.DepositPayRecordDao.getPayRecordByOutTradeNo] - <==      Total: 1
+2017-11-08 18:21:07,514 DEBUG [com.alibaba.druid.pool.PreparedStatementPool] - {conn-10002, pstmt-20000} enter cache
+2017-11-08 18:21:07,514 DEBUG [org.mybatis.spring.SqlSessionUtils] - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4254baa5]
+2017-11-08 18:21:07,577 INFO [org.springframework.context.support.GenericApplicationContext] - Closing org.springframework.context.support.GenericApplicationContext@48e18517: startup date [Wed Nov 08 18:21:06 CST 2017]; root of context hierarchy
+2017-11-08 18:21:07,578 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:2}
+2017-11-08 18:21:07,579 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:1}
+2017-11-08 18:21:07,579 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:3}
+2017-11-08 18:21:07,580 DEBUG [com.alibaba.druid.pool.PreparedStatementPool] - {conn-10002, pstmt-20000} exit cache
+2017-11-08 18:21:07,581 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed

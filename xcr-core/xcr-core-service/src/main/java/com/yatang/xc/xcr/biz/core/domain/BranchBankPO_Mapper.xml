@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yatang.xc.xcr.biz.core.dao.BranchBankDao">
+	<sql id="selectBranchListByBankName_where">
+		<if test="branchbankname!=null and branchbankname!=''">
+			and branchbank_name like "%"#{branchbankname}"%"
+		</if>
+		<if test="bankid!=null and bankid!=''">
+			and bank_id = #{bankid}
+		</if>
+	</sql>
+	<resultMap type="com.yatang.xc.xcr.biz.core.domain.BranchBankPO"
+		id="selectBranchListByBankNameResultMap">
+		<id column="id" property="bid" />
+		<result column="bank_no" property="bankno" />
+		<result column="branchbank_name" property="branchbankname" />
+		<result column="bank_name" property="bankname" />
+		<result column="bank_id" property="bankid" />
+		<result column="province" property="province" />
+		<result column="province_id" property="provinceid" />
+		<result column="city" property="city" />
+		<result column="city_id" property="cityid" />
+	</resultMap>
+	<select id="selectBranchListByBankName" parameterType="com.yatang.xc.xcr.biz.core.domain.BranchBankPO"
+		resultMap="selectBranchListByBankNameResultMap">
+		select * from XCR_BRANCHBANK_INFO
+		<where>
+			<include refid="selectBranchListByBankName_where"></include>
+		</where>
+		limit #{pageIndex},#{pageSize}
+	</select>
+	<sql id="selectBranchListByBankCode_where">
+		<if test="bankid!=null and bankid!=''">
+			and bank_id = #{bankid}
+		</if>
+	</sql>
+	<select id="selectBranchListByBankCode" parameterType="com.yatang.xc.xcr.biz.core.domain.BranchBankPO"
+		resultMap="selectBranchListByBankNameResultMap">
+		select * from XCR_BRANCHBANK_INFO
+		<where>
+			<include refid="selectBranchListByBankCode_where"></include>
+		</where>
+		limit #{pageIndex},#{pageSize}
+	</select>
+	<select id="selectCountByBankCode" parameterType="com.yatang.xc.xcr.biz.core.domain.BranchBankPO" resultType="java.lang.Integer">
+		select count(*) totalCount from XCR_BRANCHBANK_INFO
+		<where>
+			<include refid="selectBranchListByBankCode_where"></include>
+		</where>
+	</select>
+	<select id="selectCountByBankName" parameterType="com.yatang.xc.xcr.biz.core.domain.BranchBankPO" resultType="java.lang.Integer">
+		select count(*) totalCount from XCR_BRANCHBANK_INFO
+		<where>
+			<include refid="selectBranchListByBankName_where"></include>
+		</where>
+	</select>
+</mapper>
+

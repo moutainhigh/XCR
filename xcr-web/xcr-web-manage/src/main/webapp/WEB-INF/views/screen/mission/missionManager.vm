@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="/xcr/uploadify/uploadify.css">
+    <link rel="stylesheet" href="/xcr/plugins/window/window.css">
+    <link href="/xcr/css/datePicker.css" rel="stylesheet" type="text/css" media="all"/>
+    <script type="text/javascript" src="/xcr/uploadify/notRefreshFilesUpload.js"></script>
+    <script type="text/javascript" src="/xcr/artDialog/artDialog.js?skin=default"></script>
+    <script type="text/javascript" src="/xcr/plugins/window/window.js"></script>
+    <script src="/xcr/scripts/jquery.date_input.pack.js" type="text/javascript"></script>
+    <style>
+        .Validform_checktip {
+            font-size: 12px;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        .Validform_wrong {
+            color: #f00;
+        }
+
+        .Validform_right {
+            color: #38B119;
+        }
+
+    </style>
+    <script type="text/javascript">
+        //获取普通任务列表
+        function missionList() {
+            $("#menu1").empty();
+            $.ajax({
+                url: "/xcr/normalMissionList.htm",
+                type: "get",
+                success: function (data) {
+                    console.log(data)
+                    $("#menu1").html(data);
+                }
+            });
+        }
+
+        //获取关联任务列表
+        function missionRelList() {
+            $("#menu1").empty();
+            $.ajax({
+                url: "/xcr/relationMissionList.htm",
+                type: "GET",
+                success: function (data) {
+                    $("#menu1").html(data);
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript" src="/xcr/js/mission.js"></script>
+</head>
+<body class="gray-bg">
+<div class="container" style="width: 100%;height: 1400px;">
+    <div style="margin-top: 10px;width: 100%;height:100%;background-color: white">
+        <ul class="nav nav-tabs nav-mt" style="text-align:center">
+            <li id="missionList" class="active" style="width: 50%;">
+                <a data-toggle="tab" href="#" onclick="missionList();">
+                    <h4><i class="fa fa-briefcase"></i> 普通任务</h4>
+                </a>
+            </li>
+
+            <li id="missionRelList" href="#" class="" style="width: 50%">
+                <a data-toggle="tab" onclick="missionRelList();">
+                    <h4><i class=" fa fa-briefcase"></i> 关联任务</h4>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content" style="margin-top: 10px;width: 95%;margin: 0 auto">
+            <div id="menu1">
+                <div id="loginLogTab" class="tab-pane">
+                    <div class="table-responsive">
+                        <div id="toolbar" class="btn-group" style="float: left">
+                            <button id="btn_add" type="button" class="btn btn-success btn-xs rightSize"
+                                    style="width: 100px;"
+                                    onclick="missionAddTest();">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>创建任务
+                            </button>
+                        </div>
+                        <table id="loginLog-table"></table>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    //获取任务添加页面
+                    function missionAddTest() {
+                        window.customData = null;
+                        $("#loginLogTab").empty();
+                        $.ajax({
+                            url: "/xcr/missionAdd.htm",
+                            type: "get",
+                            success: function (data) {
+                                $("#loginLogTab").html(data);
+                            }
+                        });
+                    }
+                    $(".pika-single").remove();
+                </script>
+                <!-- 普通列表js -->
+                <script type="text/javascript" src="/xcr/js/missionList.js"></script>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 提示 -->
+<div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">操作成功</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imgFileError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">不符合文件格式!请选择正确的文件 .jpg, .png, .bmp</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="fail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">操作失败</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">取消删除成功</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="dataJudge" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">现金/积分数据格式不正确</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="titleJudge" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">任务名称重复，请修改名称</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="relLevelJudge" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">未选择关联任务，或者未设置关联任务等级，请检查...</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="serverFail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">服务器连接失败...</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imgTag" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">图标不能为空</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imgdataJudge2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">图片太大，不能超过2MB</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="relTitleJudge" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">关联任务重复，请重新选择</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="missionTypeWrongTip" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">任务分类不能为空</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="picUrlWrongTip" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">图片还没有上传完成，请稍后提交！！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="missionTemplateWrongTip" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">任务/课堂不能为空</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="missionNameWrongTip" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">任务名称不能为空</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="isRelatedWrongTip" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">任务类型不能为空</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="timeError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">时间有误，开始时间要小于结束时间，请检查</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="validTimeError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">任务时间需要在有效期内,请检查</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createTimeError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">开始时间不能小于当前时间,请检查</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="descriptionNotNullError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">任务说明不能为空</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="discontTypeError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">请选择是否奖励</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="continueDateError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">连续天数不能大于任务天数</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="scoreWrongTip" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">奖励积分不能为空!!!</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="continueDateNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">连续签到天数不能为空!!!</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="continueDateinputError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">连续签到天数输入错误!!!</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="facePayAmountError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">请输入正确的当面付金额，单位为元，最多保留两位小数</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="facePayNumberError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">请输入正确的当面付笔数</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="buyAmountError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">请输入正确的采购金额金额，单位为元，最多保留两位小数</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="validTimeError_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">有效期的结束时间必须大于统计区间的结束时间，请检查!</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="facePayAmountIsComplex" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">日均当面付不能是关联任务</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="facePayNumberIsComplex" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">日当面付笔数不能是关联任务</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="buyAmountIsComplex" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">供应链采购金额不能是关联任务</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

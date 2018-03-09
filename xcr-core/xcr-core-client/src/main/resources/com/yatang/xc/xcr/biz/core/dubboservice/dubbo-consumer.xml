@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<!-- 定义模块可被调用的服务,调用方,在Spring加载过程中引用此配置-->
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.core.dubboservice.MsgDubboService" id="msgDubboService" timeout="30000" version="${interface.version}" group="${dubbo.group}" />
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.core.dubboservice.MsgQueryDubboService" id="msgQueryDubboService" timeout="30000" version="${interface.version}" group="${dubbo.group}" />
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.core.dubboservice.AdvertisementDubboService" id="advertisementDubboService" timeout="30000" version="${interface.version}" group="${dubbo.group}" />
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.core.dubboservice.UserSignDubboService" id="userSignDubboService" timeout="30000" version="${interface.version}" group="${dubbo.group}" />
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.core.dubboservice.ActivityDubboService" id="activityDubboService" timeout="30000" version="${interface.version}" group="${dubbo.group}" />
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.core.dubboservice.VersionDubboService" id="versionDubboService" timeout="30000" version="${interface.version}" group="${dubbo.group}" />
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.core.dubboservice.BranchBankListDubboService" id="branchBankListDubboService" timeout="30000" version="${interface.version}" group="${dubbo.group}" />
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.core.dubboservice.XcAdvertisementDubboService" id="xcAdvertisementDubboService" timeout="30000" version="${interface.version}" group="${dubbo.group}" />
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.core.dubboservice.SupplyChainAdvertisementDubboService" id="supplyChainAdvertisementDubboService" timeout="30000" version="${interface.version}" group="${dubbo.group}" />
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.core.dubboservice.F5WhiteListDubboService" id="f5WhiteListDubboService" timeout="30000" version="${interface.version}" group="${dubbo.group}" />
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.core.dubboservice.PermissionDubboService" id="permissionDubboService" timeout="30000" version="${interface.version}" group="${dubbo.group}" />
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.core.dubboservice.ScanPaymentRegionSetDubboService" id="scanPaymentRegionSetDubboService" timeout="30000" version="${interface.version}" group="${dubbo.group}" />
+
+</beans>

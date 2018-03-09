@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="/xcr/css/build.css">
+    <link rel="stylesheet" href="/xcr/plugins/jedate/skin/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="/xcr/plugins/window/window.css">
+    <link type="text/css" rel="stylesheet" href="/xcr/css/fileinput.css"/>
+    <script type="text/javascript" src="/xcr/scripts/fileinput.js"></script>
+    <script type="text/javascript" src="/xcr/scripts/fileinput_locale_zh.js"></script>
+    <script type="text/javascript" src="/xcr/plugins/jedate/jedate.js"></script>
+    <script type="text/javascript" src="/xcr/plugins/window/window.js"></script>
+    <script type="text/javascript" src="/xcr/js/toc/ToC_Common2.js"></script>
+    <style type="text/css">
+        .selectDateOnly {
+            width: 170px;
+            float: left;
+            border: 1px solid #d2d6de;
+            padding-left: 10px;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+        .jedatebox {
+            z-index: 99999999 !important;
+        }
+
+        .file-preview {
+            width: 40%;
+        }
+
+        .input-group {
+            width: 40%;
+        }
+
+        .progress-bar {
+            width: 40% !important;
+        }
+
+        .kv-upload-progress {
+            width: 40% !important;
+        }
+    </style>
+</head>
+<body class="gray-bg" style="overflow:auto ! important;">
+<div class="container" style="width: 100%;background-color: whitesmoke;min-width: 1320px;">
+    <div style="margin-top: 10px;width: 100%;">
+        <div style="width: 100%;height: 10px;"></div>
+        <div style="width: 100%;height: 50px;margin-top: 10px;">
+            <h5>
+                &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;<strong>活动管理</strong>
+                &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;<a
+                    href="javascript:loadHtml('/xcr/toc/share/list.htm')"><strong>分享活动</strong></a>
+                &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;<a href="#"><strong>查看详情</strong></a></h5>
+        </div>
+        <div class="tab-content" style="margin-top: 5px;width: 99%;margin: 0 auto">
+            <div id="detailTable" style="background-color: white;">
+                <div style="width: 100%;margin: 0 auto;">
+                    <div style="width: 80%;margin-left: 1%">
+
+                        <!------------------- 基本信息 ------------------->
+                        <div style="height: 20px;margin-top: 5px;">
+                        </div>
+                        <h4><i class="fa fa-edit" style="color: #00a0e9"></i> 查看
+                        </h4>
+                        <hr/>
+                        <table style="width: 100%;margin-left: 20%" cellspacing="0" cellpadding="0">
+                            <tbody style="margin-top: 30px;" id="discountList">
+                            <tr style="height: 60px;">
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>活动名称:</strong><span style="color:#f00;"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 40%;">
+                                    $!shareActivity.shareName
+                                </td>
+                            </tr>
+                            <tr style="height: 60px;">
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>分享标题:</strong><span style="color:#f00;"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 35%;">
+                                    $!shareActivity.shareTitle
+                                </td>
+                            </tr>
+                            <tr style="height: 60px;">
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>分享内容:</strong><span style="color:#f00;"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 35%;">
+                                    $!shareActivity.shareContent
+                                </td>
+                            </tr>
+                            <tr style="height: 60px;">
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>分享标题图片:</strong><span style="color:#f00;"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 300px;">
+                                    <img src="$!shareActivity.sharePicValue" style="width: 300px;height: 200px;">
+                                </td>
+                            </tr>
+                            <tr style="height: 60px;">
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>分享类型:</strong><span style="color:#f00;"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 35%;">
+                                    $!shareActivity.shareType
+                                </td>
+                            </tr>
+                            <tr style="height: 60px;">
+                                <td style="width: 8%;text-align: right;color:black">
+                                    <strong>分享一次最多领奖人数:</strong><span style="color:#f00;"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 35%;">
+                                    $!shareActivity.sharePrizeNum 人
+                                </td>
+                            </tr>
+                            <tr style="height: 60px;">
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>有效时间:</strong><span style="color:#f00;"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 35%;">
+                                    <input class="datainp selectDateOnly wicon" type="text"
+                                           placeholder="请选择" value="$!shareActivity.activityStartDay" readonly disable>
+                                    <label style="float: left;margin: 5px;"> 至 </label>
+                                    <input class="datainp selectDateOnly wicon" type="text"
+                                           placeholder="请选择" value="$!shareActivity.activityEndDay" readonly disable>
+                                </td>
+                            </tr>
+                            <tr style="height: 60px;">
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>配置优惠券:</strong><span style="color:#f00;"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 35%;">
+                                    #foreach($discountList in $shareActivity.discountList)
+                                        <table>
+                                            <tbody>
+                                            <tr style="margin-top: 10px;">
+                                                <td>
+                                                    <div style="display:inline-block;margin-left: 20px;">
+                                                        $discountList.discountId
+                                                    </div>
+                                                    <div style="display:inline-block;margin-left: 10px;">
+                                                        $discountList.discountNum 张
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    #end
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <hr/>
+                        <table style="margin-left: 30%;margin-top: 50px;">
+                            <tbody>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button id="messageSave" class="btn btn-primary" type="button"
+                                            style="width: 300px;" onclick="cancel()">
+                                        返回列表
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function cancel() {
+        javascript:loadHtml('/xcr/toc/share/list.htm');
+    }
+</script>
+</body>
+</html>

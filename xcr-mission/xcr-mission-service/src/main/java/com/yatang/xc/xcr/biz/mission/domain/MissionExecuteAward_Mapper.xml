@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yatang.xc.xcr.biz.mission.dao.MissionExecuteAwardDAO">
+    <resultMap id="BaseResultMap" type="com.yatang.xc.xcr.biz.mission.domain.MissionExecuteAwardPO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="misson_execute_id_info_id" jdbcType="BIGINT" property="missonExecuteIdInfoId"/>
+        <result column="award_type" jdbcType="VARCHAR" property="awardType"/>
+        <result column="grant_style" jdbcType="VARCHAR" property="grantStyle"/>
+        <result column="grant_num" jdbcType="DOUBLE" property="grantNum"/>
+        <result column="grant_time" jdbcType="TIMESTAMP" property="grantTime"/>
+        <result column="grant_user" jdbcType="VARCHAR" property="grantUser"/>
+    </resultMap>
+
+    <resultMap id="MissionAwardCollectMap" type="com.yatang.xc.xcr.biz.mission.domain.MissionAwardCollectPO">
+        <id column="ID" property="id" jdbcType="BIGINT"/>
+        <result column="SIGN_SCORE_TOTAL" property="signScoreTotal" jdbcType="DOUBLE"/>
+        <result column="MISSION_SCORE_TOTAL" property="messionScoreTotal" jdbcType="DOUBLE"/>
+        <result column="SIGN_CASH_TOTAL" property="signCashTotal" jdbcType="DOUBLE"/>
+        <result column="MISSION_CASH_TOTAL" property="messionCashTotal" jdbcType="DOUBLE"/>
+        <result column="SHOP_CODE" property="shopCode" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, misson_execute_id_info_id, award_type, grant_style, grant_num, grant_time, grant_user
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from XCR_MISSION_EXECUTE_AWARD
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="queryExecuteAwardByExecuteId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from XCR_MISSION_EXECUTE_AWARD
+        where misson_execute_id_info_id = #{id,jdbcType=BIGINT}
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from XCR_MISSION_EXECUTE_AWARD
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionExecuteAwardPO"
+            useGeneratedKeys="true" keyProperty="id">
+    insert into XCR_MISSION_EXECUTE_AWARD ( misson_execute_id_info_id, award_type, 
+      grant_style, grant_num, grant_time, 
+      grant_user)
+    values ( #{missonExecuteIdInfoId,jdbcType=BIGINT}, #{awardType,jdbcType=VARCHAR}, 
+      #{grantStyle,jdbcType=VARCHAR}, #{grantNum,jdbcType=DOUBLE}, #{grantTime,jdbcType=TIMESTAMP}, 
+      #{grantUser,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="backExpireAward" parameterType="String">
+  insert into XCR_MISSION_EXECUTE_HISTORY_AWARD (<include refid="Base_Column_List" />)
+	select 
+	<include refid="Base_Column_List" />
+	from XCR_MISSION_EXECUTE_AWARD where misson_execute_id_info_id in 
+	(SELECT id from XCR_MISSION_EXECUTE_INFO where STATUS =  #{status,jdbcType=VARCHAR})
+	and id not in (
+		select id from XCR_MISSION_EXECUTE_HISTORY_AWARD where misson_execute_id_info_id in 
+		(SELECT id from XCR_MISSION_EXECUTE_INFO where STATUS =  #{status,jdbcType=VARCHAR})
+	)
+  </insert>  
+
+    <delete id="deleteExpireAward" parameterType="String">
+    delete from XCR_MISSION_EXECUTE_AWARD
+ 	where misson_execute_id_info_id in 
+	(SELECT id from XCR_MISSION_EXECUTE_INFO where STATUS =  #{status,jdbcType=VARCHAR})
+  </delete>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionExecuteAwardPO">
+        update XCR_MISSION_EXECUTE_AWARD
+        <set>
+            <if test="missonExecuteIdInfoId != null">
+                misson_execute_id_info_id = #{missonExecuteIdInfoId,jdbcType=BIGINT},
+            </if>
+            <if test="awardType != null">
+                award_type = #{awardType,jdbcType=VARCHAR},
+            </if>
+            <if test="grantStyle != null">
+                grant_style = #{grantStyle,jdbcType=VARCHAR},
+            </if>
+            <if test="grantNum != null">
+                grant_num = #{grantNum,jdbcType=DOUBLE},
+            </if>
+            <if test="grantTime != null">
+                grant_time = #{grantTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="grantUser != null">
+                grant_user = #{grantUser,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionExecuteAwardPO">
+    update XCR_MISSION_EXECUTE_AWARD
+    set misson_execute_id_info_id = #{missonExecuteIdInfoId,jdbcType=BIGINT},
+      award_type = #{awardType,jdbcType=VARCHAR},
+      grant_style = #{grantStyle,jdbcType=VARCHAR},
+      grant_num = #{grantNum,jdbcType=DOUBLE},
+      grant_time = #{grantTime,jdbcType=TIMESTAMP},
+      grant_user = #{grantUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <insert id="saveAward" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionAwardCollectPO">
+      INSERT INTO XCR_AWARD_COLLECT
+        (SIGN_SCORE_TOTAL,MISSION_SCORE_TOTAL,SIGN_CASH_TOTAL,MISSION_CASH_TOTAL,SHOP_CODE,CREATE_TIME,UPDATE_TIME)
+      VALUES
+        (#{signScoreTotal},#{messionScoreTotal},#{signCashTotal},#{messionCashTotal},#{shopCode},#{createTime},#{updateTime})
+      ON DUPLICATE KEY UPDATE
+         SIGN_SCORE_TOTAL=SIGN_SCORE_TOTAL+#{signScoreTotal},
+         MISSION_SCORE_TOTAL=MISSION_SCORE_TOTAL+#{messionScoreTotal},
+         SIGN_CASH_TOTAL=SIGN_CASH_TOTAL+#{signCashTotal},
+         MISSION_CASH_TOTAL=MISSION_CASH_TOTAL+#{messionCashTotal},
+         UPDATE_TIME = #{updateTime};
+  </insert>
+
+    <select id="getAwardTotal" resultMap="MissionAwardCollectMap" parameterType="String">
+        SELECT
+        ID,SIGN_SCORE_TOTAL,MISSION_SCORE_TOTAL,SIGN_CASH_TOTAL,MISSION_CASH_TOTAL,SHOP_CODE,CREATE_TIME,UPDATE_TIME
+        FROM
+        XCR_AWARD_COLLECT
+        WHERE
+        SHOP_CODE = #{shopCode,jdbcType=VARCHAR} LIMIT 1
+    </select>
+
+</mapper>

@@ -1,0 +1,4 @@
+2017-09-15 13:45:23,972 ERROR [com.alibaba.druid.filter.FilterManager] - load filter error, filter not found : logback
+2017-09-15 13:47:18,762 ERROR [com.alibaba.druid.filter.FilterManager] - load filter error, filter not found : logback
+2017-09-15 13:49:46,212 ERROR [com.alibaba.druid.filter.FilterManager] - load filter error, filter not found : logback
+2017-09-15 14:10:14,775 ERROR [com.alibaba.druid.filter.FilterManager] - load filter error, filter not found : logback

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link href="/xcr/css/statistics.css" rel="stylesheet" type="text/css" />
+    </head>
+	<body >
+        <div style="border:1px solid #ccc;">
+        	<table class="table01">
+				<tr ></tr>
+        		<tr class="tr01">
+        			<td>需导入商品次数</td>
+        			<td>需新增商品次数</td>
+        			<td>扫码/输码成功次数</td>
+        			<td></td>
+        			<td></td>
+        			<td></td>
+        		</tr>
+        		<tr>
+        			<td>
+					#if(!$!{jsonObj.NEED_IMPORT.count})
+						0
+					#else
+						$!{jsonObj.NEED_IMPORT.count}
+					#end
+					</td>
+        			<td>
+					#if(!$!{jsonObj.NEED_ADD.count})
+						0
+					#else
+						$!{jsonObj.NEED_ADD.count}
+					#end
+					</td>
+        			<td>
+					#if(!$!{jsonObj.QUERY.count})
+						0
+					#else
+						$!{jsonObj.QUERY.count}
+					#end
+					</td>
+        			<td></td>
+        			<td></td>
+        			<td></td>
+        		</tr>
+				#if($!{condition}!="3" && $!{condition}!="4" &&  $!{condition}!="5")
+            		<tr class="tr01">
+            			<td>较前一天</td>
+            			<td>较前一天</td>
+            			<td>较前一天</td>
+            			<td></td>
+            			<td></td>
+            			<td></td>
+            		</tr>
+            		<tr>
+						#set($a=1)
+						#if(!$!{jsonObj.NEED_IMPORT.increase} || $!{jsonObj.NEED_IMPORT.increase}==0)
+							<td>0.00%</td>
+						#elseif($!{jsonObj.NEED_IMPORT.increase} > 0)
+							#set($b=$!{jsonObj.NEED_IMPORT.increase} * $a)
+							<td style="color:#00BB00;">↑ $b%</td>
+						#elseif($!{jsonObj.NEED_IMPORT.increase} < 0)
+							#set($b=$!{jsonObj.NEED_IMPORT.increase} * $a / -1)
+							<td style="color:#ff0000;">↓ $b%</td>
+						#end
+						#if(!$!{jsonObj.NEED_ADD.increase} || $!{jsonObj.NEED_ADD.increase}==0)
+							<td>0.00%</td>
+						#elseif($!{jsonObj.NEED_ADD.increase} > 0)
+							#set($b=$!{jsonObj.NEED_ADD.increase} * $a)
+							<td style="color:#00BB00;">↑ $b%</td>
+						#elseif($!{jsonObj.NEED_ADD.increase} < 0)
+							#set($b=$!{jsonObj.NEED_ADD.increase} * $a / -1)
+							<td style="color:#ff0000;">↓ $b<span>%</span></td>
+						#end
+						#if(!$!{jsonObj.QUERY.increase} || $!{jsonObj.QUERY.increase}==0)
+							<td>0.00%</td>
+						#elseif($!{jsonObj.QUERY.increase} > 0)
+							#set($b=$!{jsonObj.QUERY.increase} * $a)
+							<td style="color:#00BB00;">↑ $b%</td>
+						#elseif($!{jsonObj.QUERY.increase} < 0)
+							#set($b=$!{jsonObj.QUERY.increase} * $a / -1)
+							<td style="color:#ff0000;">↓ $b%</td>
+						#end
+            			<td></td>
+            			<td></td>
+            			<td></td>
+            		</tr>
+				#end
+        		<tr></tr>
+                <tr style="border-top: 1px solid red;"><td></td><td></td><td></td><td></td></tr>
+             </table>
+			 <hr style="    margin-bottom: 25px;width: 96%;border-color: rgba(204, 204, 204, 0.25);"/>
+			 <table class="table01">
+				<tr class="tr01">
+        			<td>导入成功次数</td>
+        			<td>新增成功次数</td>
+        			<td>调价成功次数</td>
+        			<td>商品入库成功次数</td>
+                    <td></td>
+                    <td></td>
+        		</tr>
+        		<tr>
+        			<td>
+					#if(!$!{jsonObj.IMPORTED.count})
+						0
+					#else
+						$!{jsonObj.IMPORTED.count}
+					#end
+					</td>
+					<td>
+					#if(!$!{jsonObj.ADDED.count})
+						0
+					#else
+						$!{jsonObj.ADDED.count}
+					#end
+					</td>
+					<td>
+					#if(!$!{jsonObj.ADJUST_PRICE.count})
+						0
+					#else
+						$!{jsonObj.ADJUST_PRICE.count}
+					#end
+					</td>
+					<td>
+					#if(!$!{jsonObj.ADD_STOCK.count})
+						0
+					#else
+						$!{jsonObj.ADD_STOCK.count}
+					#end
+					</td>
+					<td></td>
+                    <td></td>
+        		</tr>
+				#if($!{condition}!="3" && $!{condition}!="4" &&  $!{condition}!="5")
+            		<tr class="tr01">
+            			<td>较前一天</td>
+            			<td>较前一天</td>
+            			<td>较前一天</td>
+            			<td>较前一天</td>
+						<td></td>
+						<td></td>
+            		</tr>
+            		<tr>
+						#if(!$!{jsonObj.IMPORTED.increase} || $!{jsonObj.IMPORTED.increase}==0)
+							<td>0.00%</td>
+						#elseif($!{jsonObj.IMPORTED.increase} > 0)
+							#set($b=$!{jsonObj.IMPORTED.increase} * $a)
+							<td style="color:#00BB00;">↑ $b%</td>
+						#elseif($!{jsonObj.IMPORTED.increase} < 0)
+							#set($b=$!{jsonObj.IMPORTED.increase} * $a / -1)
+							<td style="color:#ff0000;">↓ $b%</td>
+						#end
+						#if(!$!{jsonObj.ADDED.increase} || $!{jsonObj.ADDED.increase}==0)
+							<td>0.00%</td>
+						#elseif($!{jsonObj.ADDED.increase} > 0)
+							#set($b=$!{jsonObj.ADDED.increase} * $a)
+							<td style="color:#00BB00;">↑ $b%</td>
+						#elseif($!{jsonObj.ADDED.increase} < 0)
+							#set($b=$!{jsonObj.ADDED.increase} * $a / -1)
+							<td style="color:#ff0000;">↓ $b%</td>
+						#end
+						#if(!$!{jsonObj.ADJUST_PRICE.increase} || $!{jsonObj.ADJUST_PRICE.increase}==0)
+							<td>0.00%</td>
+						#elseif($!{jsonObj.ADJUST_PRICE.increase} > 0)
+							#set($b=$!{jsonObj.ADJUST_PRICE.increase} * $a)
+							<td style="color:#00BB00;">↑ $b%</td>
+						#elseif($!{jsonObj.ADJUST_PRICE.increase} < 0)
+							#set($b=$!{jsonObj.ADJUST_PRICE.increase} * $a / -1)
+							<td style="color:#ff0000;">↓ $b%</td>
+						#end
+						#if(!$!{jsonObj.ADD_STOCK.increase} || $!{jsonObj.ADD_STOCK.increase}==0)
+							<td>0.00%</td>
+						#elseif($!{jsonObj.ADD_STOCK.increase} > 0)
+							#set($b=$!{jsonObj.ADD_STOCK.increase} * $a)
+							<td style="color:#00BB00;">↑ $b%</td>
+						#elseif($!{jsonObj.ADD_STOCK.increase} < 0)
+							#set($b=$!{jsonObj.ADD_STOCK.increase} * $a / -1)
+							<td style="color:#ff0000;">↓ $b%</td>
+						#end
+						<td></td>
+						<td></td>
+            		</tr>
+				#end
+        		<tr></tr>
+        		<tr></tr>
+        	</table>
+        </div>
+        <div style="border:1px solid #ccc;margin-top:5px;">
+        	<div class="titleStyle">
+        		<img src="/xcr/img/tag_goods.gif" class="img_style" />
+        		<label class="label_style">其他统计</label>
+        	</div>
+        	<div>
+        		<table class="table01">
+        			<tr class="tr01">
+        				<td>完成课堂提交次数</td>
+        				<td></td>
+        				<td></td>
+        				<td></td>
+        				<td></td>
+        				<td></td>
+        			</tr>
+        			<tr>
+        				<td>
+						#if(!${jsonObj.FINISH_CLASS.count})
+							0
+						#else
+							${jsonObj.FINISH_CLASS.count}
+						#end
+						</td>
+        				<td></td>
+        				<td></td>
+        				<td></td>
+        				<td></td>
+        				<td></td>
+        			</tr>
+					#if($!{condition}!="3" && $!{condition}!="4" &&  $!{condition}!="5")
+            			<tr class="tr01">
+            				<td>较前一天</td>
+            				<td></td>
+            				<td></td>
+            				<td></td>
+            				<td></td>
+            				<td></td>
+            			</tr>
+            			<tr>
+    						#if(!$!{jsonObj.FINISH_CLASS.increase} || $!{jsonObj.FINISH_CLASS.increase}==0)
+    							<td>0.00%</td>
+    						#elseif($!{jsonObj.FINISH_CLASS.increase} > 0)
+    							#set($b=$!{jsonObj.FINISH_CLASS.increase} * $a)
+    							<td style="color:#00BB00;">↑ $b%</td>
+    						#elseif($!{jsonObj.FINISH_CLASS.increase} < 0)
+    							#set($b=$!{jsonObj.FINISH_CLASS.increase} * $a / -1)
+    							<td style="color:#ff0000;">↓ $b%</td>
+    						#end
+            				<td></td>
+            				<td></td>
+            				<td></td>
+            				<td></td>
+            				<td></td>
+            			</tr>
+					#end
+        		</table>
+        	</div>
+        </div>
+	</body>
+</html>

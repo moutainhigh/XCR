@@ -1,0 +1,13 @@
+<html>
+    #parse("screen/contain/htmlhead.vm")
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            #parse("screen/contain/header.vm")
+            #parse("screen/contain/leftmenu_dev.vm")
+            <div class="content-wrapper" id="contentHtml">
+                $screen_content
+            </div>
+            #parse("screen/contain/footer.vm")
+        </div>
+    </body>
+</html>

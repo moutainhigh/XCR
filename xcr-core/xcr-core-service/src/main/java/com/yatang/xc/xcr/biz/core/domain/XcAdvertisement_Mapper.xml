@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yatang.xc.xcr.biz.core.dao.XcAdvertisementDao">
+	
+	<resultMap id="XcAdvertisementMap" type="XcAdvertisementPO">
+		<id column="ID" property="id" />
+		<result column="SORE" property="position" />
+		<result column="LAST_MODIFY_TIME" property="lastModifyTime" />
+		<result column="ACTIVITY_URL" property="activeUrl" />
+		<result column="PIC_URL" property="imgUrl" />
+		<result column="STATE" property="state" />
+	</resultMap>
+
+	
+	<insert id="insertAdvertisement" parameterType="XcAdvertisementPO" useGeneratedKeys="true" keyProperty="id">
+		insert into XCR_ADVERTISEMENT ( SORE,LAST_MODIFY_TIME,ACTIVITY_URL,PIC_URL,STATE,TYPE) 
+		values (#{position},#{lastModifyTime},#{activeUrl},#{imgUrl},#{state},#{type})
+	</insert>	
+	
+	<update id="updateAdvertisement" parameterType="XcAdvertisementPO" >
+		update XCR_ADVERTISEMENT set
+		LAST_MODIFY_TIME=#{lastModifyTime},
+		PIC_URL=#{imgUrl}
+		where ID = #{id} 
+	</update>
+	
+	<update id="updateState" parameterType="XcAdvertisementUpdatePO" >
+		update XCR_ADVERTISEMENT set STATE=#{state}
+		where ID = #{id} 
+	</update>
+	
+	<select id="findAllById" parameterType="XcAdvertisementQueryPO" resultMap="XcAdvertisementMap">
+		select * from  XCR_ADVERTISEMENT
+		where 1=1 and type=#{type}
+		<if test="id != null"> 
+			and ID=#{id}
+		</if>
+	</select>
+	
+	<select id="findAllForApp" resultMap="XcAdvertisementMap">
+		select * from  XCR_ADVERTISEMENT
+		where 1=1 and type=2 and STATE=1
+	</select>
+	
+</mapper>
+

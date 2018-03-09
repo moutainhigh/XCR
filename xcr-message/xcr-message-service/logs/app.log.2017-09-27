@@ -1,0 +1,310 @@
+2017-09-27 10:39:15,875 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2017-09-27 10:39:15,911 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1aaeead8, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@51bc1897, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@13f28b6d, org.springframework.test.context.support.DirtiesContextTestExecutionListener@189fab56, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1aa9a7bb, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7842f3a9]
+2017-09-27 10:39:16,072 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from class path resource [test/applicationContext-test.xml]
+2017-09-27 10:39:16,243 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-service/target/classes/spring/applicationContext.xml]
+2017-09-27 10:39:16,371 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [jar:file:/D:/maven/self_repository/com/busi/mongo/busi-mongo/dev-SNAPSHOT/busi-mongo-dev-20170926.023658-34.jar!/spring/applicationContext.xml]
+2017-09-27 10:39:16,398 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-service/target/classes/spring/applicationContext-redis.xml]
+2017-09-27 10:39:16,424 INFO [org.springframework.context.support.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@62fdfcef: startup date [Wed Sep 27 10:39:16 CST 2017]; root of context hierarchy
+2017-09-27 10:39:16,569 WARN [org.mybatis.spring.mapper.ClassPathMapperScanner] - No MyBatis mapper was found in '[com.yatang.xc.xcr.biz.mission.dao]' package. Please check your configuration.
+2017-09-27 10:39:16,770 ERROR [com.alibaba.druid.filter.FilterManager] - load filter error, filter not found : logback
+2017-09-27 10:39:17,019 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2017-09-27 10:39:17,046 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-09-27 10:39:17,062 INFO [com.busi.mongo.MongoTools] - MongoDB Client initialize...
+2017-09-27 10:39:17,062 INFO [com.busi.mongo.MongoTools] - server address : sit.mongodb1.com:27019;sit.mongodb2.com:27019;sit.mongodb3.com:27019
+2017-09-27 10:39:17,383 INFO [org.mongodb.driver.cluster] - Cluster created with settings {hosts=[sit.mongodb1.com:27019, sit.mongodb2.com:27019, sit.mongodb3.com:27019], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2017-09-27 10:39:17,383 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb1.com:27019 to client view of cluster
+2017-09-27 10:39:17,414 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb2.com:27019 to client view of cluster
+2017-09-27 10:39:17,415 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb3.com:27019 to client view of cluster
+2017-09-27 10:39:17,417 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=UNKNOWN, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 10:39:17,440 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:3}] to sit.mongodb3.com:27019
+2017-09-27 10:39:17,440 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:2}] to sit.mongodb2.com:27019
+2017-09-27 10:39:17,440 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:1}] to sit.mongodb1.com:27019
+2017-09-27 10:39:17,440 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb2.com:27019
+2017-09-27 10:39:17,440 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb3.com:27019
+2017-09-27 10:39:17,440 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb1.com:27019
+2017-09-27 10:39:17,442 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb1.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1044089}
+2017-09-27 10:39:17,442 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb2.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1228570}
+2017-09-27 10:39:17,442 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1279347}
+2017-09-27 10:39:17,443 INFO [org.mongodb.driver.cluster] - Discovered cluster type of SHARDED
+2017-09-27 10:39:17,444 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.3 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 10:39:17,444 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.3 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.0 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 10:39:17,444 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.3 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.0 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.2 ms, state=CONNECTED}]
+2017-09-27 10:39:17,544 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VFS
+2017-09-27 10:39:17,544 DEBUG [org.apache.ibatis.io.JBoss6VFS] - JBoss 6 VFS API is not available in this environment.
+2017-09-27 10:39:17,544 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VirtualFile
+2017-09-27 10:39:17,545 DEBUG [org.apache.ibatis.io.VFS] - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2017-09-27 10:39:17,545 DEBUG [org.apache.ibatis.io.VFS] - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2017-09-27 10:39:17,547 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2017-09-27 10:39:17,550 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed configuration file: 'class path resource [mybatis/sqlMapConfig.xml]'
+2017-09-27 10:39:17,550 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Property 'mapperLocations' was not specified or no matching resources found
+2017-09-27 10:39:17,822 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:4}] to sit.mongodb1.com:27019
+2017-09-27 10:39:17,827 DEBUG [org.mongodb.driver.protocol.command] - Sending command {count : BsonString{value='scan_turnover'}} to database xcr on connection [connectionId{localValue:4}] to server sit.mongodb1.com:27019
+2017-09-27 10:39:17,882 DEBUG [org.mongodb.driver.protocol.command] - Command execution completed
+2017-09-27 10:39:18,057 DEBUG [org.mongodb.driver.protocol.insert] - Inserting 1 documents into namespace xcr.scan_turnover on connection [connectionId{localValue:4}] to server sit.mongodb1.com:27019
+2017-09-27 10:39:18,074 INFO [org.springframework.context.support.GenericApplicationContext] - Closing org.springframework.context.support.GenericApplicationContext@62fdfcef: startup date [Wed Sep 27 10:39:16 CST 2017]; root of context hierarchy
+2017-09-27 10:39:18,077 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:3}
+2017-09-27 10:39:18,077 INFO [org.mongodb.driver.connection] - Closed connection [connectionId{localValue:4}] to sit.mongodb1.com:27019 because the pool has been closed.
+2017-09-27 10:39:18,077 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:4}
+2017-09-27 10:39:18,078 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:1}
+2017-09-27 10:39:18,078 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:2}
+2017-09-27 10:39:18,080 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed
+2017-09-27 10:39:55,807 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2017-09-27 10:39:55,825 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@682be886, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1aaeead8, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@51bc1897, org.springframework.test.context.support.DirtiesContextTestExecutionListener@13f28b6d, org.springframework.test.context.transaction.TransactionalTestExecutionListener@189fab56, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1aa9a7bb]
+2017-09-27 10:39:55,897 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from class path resource [test/applicationContext-test.xml]
+2017-09-27 10:39:56,012 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-service/target/classes/spring/applicationContext.xml]
+2017-09-27 10:39:56,143 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [jar:file:/D:/maven/self_repository/com/busi/mongo/busi-mongo/dev-SNAPSHOT/busi-mongo-dev-20170926.023658-34.jar!/spring/applicationContext.xml]
+2017-09-27 10:39:56,171 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-service/target/classes/spring/applicationContext-redis.xml]
+2017-09-27 10:39:56,207 INFO [org.springframework.context.support.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@6b9e41fb: startup date [Wed Sep 27 10:39:56 CST 2017]; root of context hierarchy
+2017-09-27 10:39:56,337 WARN [org.mybatis.spring.mapper.ClassPathMapperScanner] - No MyBatis mapper was found in '[com.yatang.xc.xcr.biz.mission.dao]' package. Please check your configuration.
+2017-09-27 10:39:56,589 ERROR [com.alibaba.druid.filter.FilterManager] - load filter error, filter not found : logback
+2017-09-27 10:39:56,824 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2017-09-27 10:39:56,846 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-09-27 10:39:56,854 INFO [com.busi.mongo.MongoTools] - MongoDB Client initialize...
+2017-09-27 10:39:56,854 INFO [com.busi.mongo.MongoTools] - server address : sit.mongodb1.com:27019;sit.mongodb2.com:27019;sit.mongodb3.com:27019
+2017-09-27 10:39:57,064 INFO [org.mongodb.driver.cluster] - Cluster created with settings {hosts=[sit.mongodb1.com:27019, sit.mongodb2.com:27019, sit.mongodb3.com:27019], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2017-09-27 10:39:57,064 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb1.com:27019 to client view of cluster
+2017-09-27 10:39:57,094 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb2.com:27019 to client view of cluster
+2017-09-27 10:39:57,095 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb3.com:27019 to client view of cluster
+2017-09-27 10:39:57,097 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=UNKNOWN, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 10:39:57,116 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:2}] to sit.mongodb1.com:27019
+2017-09-27 10:39:57,116 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:1}] to sit.mongodb2.com:27019
+2017-09-27 10:39:57,116 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:3}] to sit.mongodb3.com:27019
+2017-09-27 10:39:57,116 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb2.com:27019
+2017-09-27 10:39:57,116 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb1.com:27019
+2017-09-27 10:39:57,116 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb3.com:27019
+2017-09-27 10:39:57,118 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb1.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1135127}
+2017-09-27 10:39:57,118 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1057009}
+2017-09-27 10:39:57,118 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb2.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1026362}
+2017-09-27 10:39:57,119 INFO [org.mongodb.driver.cluster] - Discovered cluster type of SHARDED
+2017-09-27 10:39:57,120 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 10:39:57,120 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 10:39:57,120 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.0 ms, state=CONNECTED}]
+2017-09-27 10:39:57,187 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VFS
+2017-09-27 10:39:57,187 DEBUG [org.apache.ibatis.io.JBoss6VFS] - JBoss 6 VFS API is not available in this environment.
+2017-09-27 10:39:57,187 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VirtualFile
+2017-09-27 10:39:57,187 DEBUG [org.apache.ibatis.io.VFS] - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2017-09-27 10:39:57,188 DEBUG [org.apache.ibatis.io.VFS] - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2017-09-27 10:39:57,190 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2017-09-27 10:39:57,192 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed configuration file: 'class path resource [mybatis/sqlMapConfig.xml]'
+2017-09-27 10:39:57,193 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Property 'mapperLocations' was not specified or no matching resources found
+2017-09-27 10:39:57,447 INFO [com.yatang.xc.xcr.biz.message.service.impl.ScanPaymentMessageServiceImpl] - 查询条件params={"merchantId":"ttt","orderId":"xxx","pageNum":0,"pageSize":0,"totalAmount":0}
+2017-09-27 10:39:57,448 INFO [com.yatang.xc.xcr.biz.message.service.impl.ScanPaymentMessageServiceImpl] - 查询条件queryObj={"totalAmount":0,"merchantId":"ttt","orderId":"xxx"},skip=0,pageSize=0
+2017-09-27 10:39:57,531 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:4}] to sit.mongodb2.com:27019
+2017-09-27 10:39:57,539 DEBUG [org.mongodb.driver.protocol.command] - Sending command {find : BsonString{value='scan_payment'}} to database xcr on connection [connectionId{localValue:4}] to server sit.mongodb2.com:27019
+2017-09-27 10:39:57,658 DEBUG [org.mongodb.driver.protocol.command] - Command execution completed
+2017-09-27 10:39:57,671 INFO [com.yatang.xc.xcr.biz.message.service.impl.ScanPaymentMessageServiceImpl] - 查询结果scanPaymentMessages=[]
+2017-09-27 10:39:57,677 INFO [test.service.TestScanPaymentMessageService] - ok:[]
+2017-09-27 10:39:57,681 INFO [org.springframework.context.support.GenericApplicationContext] - Closing org.springframework.context.support.GenericApplicationContext@6b9e41fb: startup date [Wed Sep 27 10:39:56 CST 2017]; root of context hierarchy
+2017-09-27 10:39:57,687 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:3}
+2017-09-27 10:39:57,688 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:2}
+2017-09-27 10:39:57,689 INFO [org.mongodb.driver.connection] - Closed connection [connectionId{localValue:4}] to sit.mongodb2.com:27019 because the pool has been closed.
+2017-09-27 10:39:57,689 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:4}
+2017-09-27 10:39:57,690 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:1}
+2017-09-27 10:39:57,695 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed
+2017-09-27 10:40:27,080 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2017-09-27 10:40:27,091 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6354fe9c, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6117e6b6, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@682be886, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1aaeead8, org.springframework.test.context.transaction.TransactionalTestExecutionListener@51bc1897, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@13f28b6d]
+2017-09-27 10:40:27,145 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from class path resource [test/applicationContext-test.xml]
+2017-09-27 10:40:27,227 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-service/target/classes/spring/applicationContext.xml]
+2017-09-27 10:40:27,359 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [jar:file:/D:/maven/self_repository/com/busi/mongo/busi-mongo/dev-SNAPSHOT/busi-mongo-dev-20170926.023658-34.jar!/spring/applicationContext.xml]
+2017-09-27 10:40:27,385 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-service/target/classes/spring/applicationContext-redis.xml]
+2017-09-27 10:40:27,424 INFO [org.springframework.context.support.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@5081a2e1: startup date [Wed Sep 27 10:40:27 CST 2017]; root of context hierarchy
+2017-09-27 10:40:27,562 WARN [org.mybatis.spring.mapper.ClassPathMapperScanner] - No MyBatis mapper was found in '[com.yatang.xc.xcr.biz.mission.dao]' package. Please check your configuration.
+2017-09-27 10:40:27,786 ERROR [com.alibaba.druid.filter.FilterManager] - load filter error, filter not found : logback
+2017-09-27 10:40:27,989 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2017-09-27 10:40:28,009 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-09-27 10:40:28,017 INFO [com.busi.mongo.MongoTools] - MongoDB Client initialize...
+2017-09-27 10:40:28,018 INFO [com.busi.mongo.MongoTools] - server address : sit.mongodb1.com:27019;sit.mongodb2.com:27019;sit.mongodb3.com:27019
+2017-09-27 10:40:28,218 INFO [org.mongodb.driver.cluster] - Cluster created with settings {hosts=[sit.mongodb1.com:27019, sit.mongodb2.com:27019, sit.mongodb3.com:27019], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2017-09-27 10:40:28,219 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb1.com:27019 to client view of cluster
+2017-09-27 10:40:28,243 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb2.com:27019 to client view of cluster
+2017-09-27 10:40:28,244 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb3.com:27019 to client view of cluster
+2017-09-27 10:40:28,246 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=UNKNOWN, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 10:40:28,264 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:2}] to sit.mongodb3.com:27019
+2017-09-27 10:40:28,264 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:1}] to sit.mongodb1.com:27019
+2017-09-27 10:40:28,264 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb3.com:27019
+2017-09-27 10:40:28,264 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb1.com:27019
+2017-09-27 10:40:28,264 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:3}] to sit.mongodb2.com:27019
+2017-09-27 10:40:28,264 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb2.com:27019
+2017-09-27 10:40:28,266 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb2.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1104180}
+2017-09-27 10:40:28,266 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb1.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1186806}
+2017-09-27 10:40:28,266 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1115898}
+2017-09-27 10:40:28,267 INFO [org.mongodb.driver.cluster] - Discovered cluster type of SHARDED
+2017-09-27 10:40:28,267 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 10:40:28,268 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}]
+2017-09-27 10:40:28,268 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.2 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}]
+2017-09-27 10:40:28,337 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VFS
+2017-09-27 10:40:28,337 DEBUG [org.apache.ibatis.io.JBoss6VFS] - JBoss 6 VFS API is not available in this environment.
+2017-09-27 10:40:28,337 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VirtualFile
+2017-09-27 10:40:28,338 DEBUG [org.apache.ibatis.io.VFS] - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2017-09-27 10:40:28,338 DEBUG [org.apache.ibatis.io.VFS] - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2017-09-27 10:40:28,340 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2017-09-27 10:40:28,342 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed configuration file: 'class path resource [mybatis/sqlMapConfig.xml]'
+2017-09-27 10:40:28,342 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Property 'mapperLocations' was not specified or no matching resources found
+2017-09-27 10:40:28,559 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:4}] to sit.mongodb3.com:27019
+2017-09-27 10:40:28,563 DEBUG [org.mongodb.driver.protocol.command] - Sending command {count : BsonString{value='scan_turnover'}} to database xcr on connection [connectionId{localValue:4}] to server sit.mongodb3.com:27019
+2017-09-27 10:40:28,594 DEBUG [org.mongodb.driver.protocol.command] - Command execution completed
+2017-09-27 10:40:28,664 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:5}] to sit.mongodb1.com:27019
+2017-09-27 10:40:28,670 DEBUG [org.mongodb.driver.protocol.insert] - Inserting 1 documents into namespace xcr.scan_turnover on connection [connectionId{localValue:5}] to server sit.mongodb1.com:27019
+2017-09-27 10:40:28,733 DEBUG [org.mongodb.driver.protocol.insert] - Insert completed
+2017-09-27 10:40:28,742 INFO [org.springframework.context.support.GenericApplicationContext] - Closing org.springframework.context.support.GenericApplicationContext@5081a2e1: startup date [Wed Sep 27 10:40:27 CST 2017]; root of context hierarchy
+2017-09-27 10:40:28,745 INFO [org.mongodb.driver.connection] - Closed connection [connectionId{localValue:4}] to sit.mongodb3.com:27019 because the pool has been closed.
+2017-09-27 10:40:28,745 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:4}
+2017-09-27 10:40:28,747 INFO [org.mongodb.driver.connection] - Closed connection [connectionId{localValue:5}] to sit.mongodb1.com:27019 because the pool has been closed.
+2017-09-27 10:40:28,747 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:5}
+2017-09-27 10:40:28,749 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:3}
+2017-09-27 10:40:28,749 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:1}
+2017-09-27 10:40:28,749 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:2}
+2017-09-27 10:40:28,753 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed
+2017-09-27 10:40:49,694 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2017-09-27 10:40:49,707 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6354fe9c, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6117e6b6, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@682be886, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1aaeead8, org.springframework.test.context.transaction.TransactionalTestExecutionListener@51bc1897, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@13f28b6d]
+2017-09-27 10:40:49,766 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from class path resource [test/applicationContext-test.xml]
+2017-09-27 10:40:49,853 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-service/target/classes/spring/applicationContext.xml]
+2017-09-27 10:40:49,977 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [jar:file:/D:/maven/self_repository/com/busi/mongo/busi-mongo/dev-SNAPSHOT/busi-mongo-dev-20170926.023658-34.jar!/spring/applicationContext.xml]
+2017-09-27 10:40:50,004 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-service/target/classes/spring/applicationContext-redis.xml]
+2017-09-27 10:40:50,040 INFO [org.springframework.context.support.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@5081a2e1: startup date [Wed Sep 27 10:40:50 CST 2017]; root of context hierarchy
+2017-09-27 10:40:50,169 WARN [org.mybatis.spring.mapper.ClassPathMapperScanner] - No MyBatis mapper was found in '[com.yatang.xc.xcr.biz.mission.dao]' package. Please check your configuration.
+2017-09-27 10:40:50,389 ERROR [com.alibaba.druid.filter.FilterManager] - load filter error, filter not found : logback
+2017-09-27 10:40:50,602 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2017-09-27 10:40:50,624 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-09-27 10:40:50,634 INFO [com.busi.mongo.MongoTools] - MongoDB Client initialize...
+2017-09-27 10:40:50,634 INFO [com.busi.mongo.MongoTools] - server address : sit.mongodb1.com:27019;sit.mongodb2.com:27019;sit.mongodb3.com:27019
+2017-09-27 10:40:50,844 INFO [org.mongodb.driver.cluster] - Cluster created with settings {hosts=[sit.mongodb1.com:27019, sit.mongodb2.com:27019, sit.mongodb3.com:27019], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2017-09-27 10:40:50,844 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb1.com:27019 to client view of cluster
+2017-09-27 10:40:50,872 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb2.com:27019 to client view of cluster
+2017-09-27 10:40:50,873 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb3.com:27019 to client view of cluster
+2017-09-27 10:40:50,875 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=UNKNOWN, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 10:40:50,894 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:1}] to sit.mongodb1.com:27019
+2017-09-27 10:40:50,894 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:2}] to sit.mongodb3.com:27019
+2017-09-27 10:40:50,894 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:3}] to sit.mongodb2.com:27019
+2017-09-27 10:40:50,894 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb3.com:27019
+2017-09-27 10:40:50,894 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb1.com:27019
+2017-09-27 10:40:50,894 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb2.com:27019
+2017-09-27 10:40:50,896 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1100875}
+2017-09-27 10:40:50,896 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb1.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1116800}
+2017-09-27 10:40:50,896 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb2.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1134827}
+2017-09-27 10:40:50,897 INFO [org.mongodb.driver.cluster] - Discovered cluster type of SHARDED
+2017-09-27 10:40:50,897 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}]
+2017-09-27 10:40:50,898 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}]
+2017-09-27 10:40:50,898 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}]
+2017-09-27 10:40:50,965 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VFS
+2017-09-27 10:40:50,965 DEBUG [org.apache.ibatis.io.JBoss6VFS] - JBoss 6 VFS API is not available in this environment.
+2017-09-27 10:40:50,965 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VirtualFile
+2017-09-27 10:40:50,966 DEBUG [org.apache.ibatis.io.VFS] - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2017-09-27 10:40:50,966 DEBUG [org.apache.ibatis.io.VFS] - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2017-09-27 10:40:50,970 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2017-09-27 10:40:50,972 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed configuration file: 'class path resource [mybatis/sqlMapConfig.xml]'
+2017-09-27 10:40:50,972 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Property 'mapperLocations' was not specified or no matching resources found
+2017-09-27 10:40:51,173 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:4}] to sit.mongodb1.com:27019
+2017-09-27 10:40:51,178 DEBUG [org.mongodb.driver.protocol.command] - Sending command {count : BsonString{value='scan_turnover'}} to database xcr on connection [connectionId{localValue:4}] to server sit.mongodb1.com:27019
+2017-09-27 10:40:51,187 DEBUG [org.mongodb.driver.protocol.command] - Command execution completed
+2017-09-27 10:40:51,192 INFO [org.springframework.context.support.GenericApplicationContext] - Closing org.springframework.context.support.GenericApplicationContext@5081a2e1: startup date [Wed Sep 27 10:40:50 CST 2017]; root of context hierarchy
+2017-09-27 10:40:51,194 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:2}
+2017-09-27 10:40:51,195 INFO [org.mongodb.driver.connection] - Closed connection [connectionId{localValue:4}] to sit.mongodb1.com:27019 because the pool has been closed.
+2017-09-27 10:40:51,195 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:4}
+2017-09-27 10:40:51,195 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:1}
+2017-09-27 10:40:51,195 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:3}
+2017-09-27 10:40:51,198 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed
+2017-09-27 10:41:05,904 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2017-09-27 10:41:05,915 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6354fe9c, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6117e6b6, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@682be886, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1aaeead8, org.springframework.test.context.transaction.TransactionalTestExecutionListener@51bc1897, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@13f28b6d]
+2017-09-27 10:41:05,970 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from class path resource [test/applicationContext-test.xml]
+2017-09-27 10:41:06,052 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-service/target/classes/spring/applicationContext.xml]
+2017-09-27 10:41:06,182 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [jar:file:/D:/maven/self_repository/com/busi/mongo/busi-mongo/dev-SNAPSHOT/busi-mongo-dev-20170926.023658-34.jar!/spring/applicationContext.xml]
+2017-09-27 10:41:06,213 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-service/target/classes/spring/applicationContext-redis.xml]
+2017-09-27 10:41:06,244 INFO [org.springframework.context.support.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@5081a2e1: startup date [Wed Sep 27 10:41:06 CST 2017]; root of context hierarchy
+2017-09-27 10:41:06,374 WARN [org.mybatis.spring.mapper.ClassPathMapperScanner] - No MyBatis mapper was found in '[com.yatang.xc.xcr.biz.mission.dao]' package. Please check your configuration.
+2017-09-27 10:41:06,550 ERROR [com.alibaba.druid.filter.FilterManager] - load filter error, filter not found : logback
+2017-09-27 10:41:06,773 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2017-09-27 10:41:06,796 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-09-27 10:41:06,804 INFO [com.busi.mongo.MongoTools] - MongoDB Client initialize...
+2017-09-27 10:41:06,804 INFO [com.busi.mongo.MongoTools] - server address : sit.mongodb1.com:27019;sit.mongodb2.com:27019;sit.mongodb3.com:27019
+2017-09-27 10:41:07,021 INFO [org.mongodb.driver.cluster] - Cluster created with settings {hosts=[sit.mongodb1.com:27019, sit.mongodb2.com:27019, sit.mongodb3.com:27019], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2017-09-27 10:41:07,021 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb1.com:27019 to client view of cluster
+2017-09-27 10:41:07,046 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb2.com:27019 to client view of cluster
+2017-09-27 10:41:07,047 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb3.com:27019 to client view of cluster
+2017-09-27 10:41:07,049 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=UNKNOWN, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 10:41:07,069 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:3}] to sit.mongodb2.com:27019
+2017-09-27 10:41:07,069 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:1}] to sit.mongodb1.com:27019
+2017-09-27 10:41:07,070 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb2.com:27019
+2017-09-27 10:41:07,069 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:2}] to sit.mongodb3.com:27019
+2017-09-27 10:41:07,070 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb1.com:27019
+2017-09-27 10:41:07,070 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb3.com:27019
+2017-09-27 10:41:07,072 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1109589}
+2017-09-27 10:41:07,072 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb1.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1110791}
+2017-09-27 10:41:07,072 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb2.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1045892}
+2017-09-27 10:41:07,072 INFO [org.mongodb.driver.cluster] - Discovered cluster type of SHARDED
+2017-09-27 10:41:07,073 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.0 ms, state=CONNECTED}]
+2017-09-27 10:41:07,073 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.0 ms, state=CONNECTED}]
+2017-09-27 10:41:07,073 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.0 ms, state=CONNECTED}]
+2017-09-27 10:41:07,137 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VFS
+2017-09-27 10:41:07,137 DEBUG [org.apache.ibatis.io.JBoss6VFS] - JBoss 6 VFS API is not available in this environment.
+2017-09-27 10:41:07,137 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VirtualFile
+2017-09-27 10:41:07,138 DEBUG [org.apache.ibatis.io.VFS] - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2017-09-27 10:41:07,138 DEBUG [org.apache.ibatis.io.VFS] - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2017-09-27 10:41:07,140 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2017-09-27 10:41:07,142 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed configuration file: 'class path resource [mybatis/sqlMapConfig.xml]'
+2017-09-27 10:41:07,142 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Property 'mapperLocations' was not specified or no matching resources found
+2017-09-27 10:41:07,348 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:4}] to sit.mongodb2.com:27019
+2017-09-27 10:41:07,352 DEBUG [org.mongodb.driver.protocol.command] - Sending command {count : BsonString{value='scan_turnover'}} to database xcr on connection [connectionId{localValue:4}] to server sit.mongodb2.com:27019
+2017-09-27 10:41:07,383 DEBUG [org.mongodb.driver.protocol.command] - Command execution completed
+2017-09-27 10:41:07,458 DEBUG [org.mongodb.driver.protocol.insert] - Inserting 1 documents into namespace xcr.scan_turnover on connection [connectionId{localValue:4}] to server sit.mongodb2.com:27019
+2017-09-27 10:41:07,472 INFO [org.springframework.context.support.GenericApplicationContext] - Closing org.springframework.context.support.GenericApplicationContext@5081a2e1: startup date [Wed Sep 27 10:41:06 CST 2017]; root of context hierarchy
+2017-09-27 10:41:07,474 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:2}
+2017-09-27 10:41:07,474 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:1}
+2017-09-27 10:41:07,475 INFO [org.mongodb.driver.connection] - Closed connection [connectionId{localValue:4}] to sit.mongodb2.com:27019 because the pool has been closed.
+2017-09-27 10:41:07,475 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:4}
+2017-09-27 10:41:07,475 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:3}
+2017-09-27 10:41:07,478 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed
+2017-09-27 10:42:08,594 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2017-09-27 10:42:08,606 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6354fe9c, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6117e6b6, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@682be886, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1aaeead8, org.springframework.test.context.transaction.TransactionalTestExecutionListener@51bc1897, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@13f28b6d]
+2017-09-27 10:42:08,661 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from class path resource [test/applicationContext-test.xml]
+2017-09-27 10:42:08,752 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-service/target/classes/spring/applicationContext.xml]
+2017-09-27 10:42:08,875 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [jar:file:/D:/maven/self_repository/com/busi/mongo/busi-mongo/dev-SNAPSHOT/busi-mongo-dev-20170926.023658-34.jar!/spring/applicationContext.xml]
+2017-09-27 10:42:08,903 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-service/target/classes/spring/applicationContext-redis.xml]
+2017-09-27 10:42:08,929 INFO [org.springframework.context.support.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@5081a2e1: startup date [Wed Sep 27 10:42:08 CST 2017]; root of context hierarchy
+2017-09-27 10:42:09,063 WARN [org.mybatis.spring.mapper.ClassPathMapperScanner] - No MyBatis mapper was found in '[com.yatang.xc.xcr.biz.mission.dao]' package. Please check your configuration.
+2017-09-27 10:42:09,295 ERROR [com.alibaba.druid.filter.FilterManager] - load filter error, filter not found : logback
+2017-09-27 10:42:09,508 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2017-09-27 10:42:09,530 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-09-27 10:42:09,537 INFO [com.busi.mongo.MongoTools] - MongoDB Client initialize...
+2017-09-27 10:42:09,538 INFO [com.busi.mongo.MongoTools] - server address : sit.mongodb1.com:27019;sit.mongodb2.com:27019;sit.mongodb3.com:27019
+2017-09-27 10:42:09,783 INFO [org.mongodb.driver.cluster] - Cluster created with settings {hosts=[sit.mongodb1.com:27019, sit.mongodb2.com:27019, sit.mongodb3.com:27019], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2017-09-27 10:42:09,784 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb1.com:27019 to client view of cluster
+2017-09-27 10:42:09,808 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb2.com:27019 to client view of cluster
+2017-09-27 10:42:09,810 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb3.com:27019 to client view of cluster
+2017-09-27 10:42:09,812 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=UNKNOWN, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 10:42:09,832 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:3}] to sit.mongodb1.com:27019
+2017-09-27 10:42:09,832 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:1}] to sit.mongodb3.com:27019
+2017-09-27 10:42:09,832 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:2}] to sit.mongodb2.com:27019
+2017-09-27 10:42:09,832 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb3.com:27019
+2017-09-27 10:42:09,832 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb1.com:27019
+2017-09-27 10:42:09,832 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb2.com:27019
+2017-09-27 10:42:09,834 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=996616}
+2017-09-27 10:42:09,834 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb1.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1054004}
+2017-09-27 10:42:09,834 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb2.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1054004}
+2017-09-27 10:42:09,835 INFO [org.mongodb.driver.cluster] - Discovered cluster type of SHARDED
+2017-09-27 10:42:09,835 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.0 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 10:42:09,836 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.0 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 10:42:09,836 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.0 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}]
+2017-09-27 10:42:09,908 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VFS
+2017-09-27 10:42:09,908 DEBUG [org.apache.ibatis.io.JBoss6VFS] - JBoss 6 VFS API is not available in this environment.
+2017-09-27 10:42:09,908 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VirtualFile
+2017-09-27 10:42:09,908 DEBUG [org.apache.ibatis.io.VFS] - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2017-09-27 10:42:09,909 DEBUG [org.apache.ibatis.io.VFS] - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2017-09-27 10:42:09,911 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2017-09-27 10:42:09,914 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed configuration file: 'class path resource [mybatis/sqlMapConfig.xml]'
+2017-09-27 10:42:09,914 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Property 'mapperLocations' was not specified or no matching resources found
+2017-09-27 10:42:10,141 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:4}] to sit.mongodb3.com:27019
+2017-09-27 10:42:10,145 DEBUG [org.mongodb.driver.protocol.command] - Sending command {count : BsonString{value='scan_turnover'}} to database xcr on connection [connectionId{localValue:4}] to server sit.mongodb3.com:27019
+2017-09-27 10:42:10,153 DEBUG [org.mongodb.driver.protocol.command] - Command execution completed
+2017-09-27 10:42:10,226 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:5}] to sit.mongodb1.com:27019
+2017-09-27 10:42:10,232 DEBUG [org.mongodb.driver.protocol.insert] - Inserting 1 documents into namespace xcr.scan_turnover on connection [connectionId{localValue:5}] to server sit.mongodb1.com:27019
+2017-09-27 10:42:10,236 DEBUG [org.mongodb.driver.protocol.insert] - Insert completed
+2017-09-27 10:42:10,241 INFO [org.springframework.context.support.GenericApplicationContext] - Closing org.springframework.context.support.GenericApplicationContext@5081a2e1: startup date [Wed Sep 27 10:42:08 CST 2017]; root of context hierarchy
+2017-09-27 10:42:10,243 INFO [org.mongodb.driver.connection] - Closed connection [connectionId{localValue:4}] to sit.mongodb3.com:27019 because the pool has been closed.
+2017-09-27 10:42:10,243 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:4}
+2017-09-27 10:42:10,244 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:1}
+2017-09-27 10:42:10,245 INFO [org.mongodb.driver.connection] - Closed connection [connectionId{localValue:5}] to sit.mongodb1.com:27019 because the pool has been closed.
+2017-09-27 10:42:10,245 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:5}
+2017-09-27 10:42:10,245 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:3}
+2017-09-27 10:42:10,245 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:2}
+2017-09-27 10:42:10,248 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed

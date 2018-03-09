@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="/xcr/summernote/summernote.js"></script><!-- 不用summernote.min.js,summernote.js针对插入图片慢改了源码-->
+    <script src="/xcr/summernote/lang/summernote-zh-CN.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="/xcr/plugins/fontAwesome/css/font-awesome.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="/xcr/summernote/summernote.css"></link>
+    <script type="text/javascript" src="/xcr/artDialog/artDialog.js"></script>
+    <script type="text/javascript" src="/xcr/plugins/window/window.js"></script>
+</head>
+<div class="table-style" id="trainAdd">
+    <div style="width: 100%;height: 10px;"></div>
+    <div id="dateSearch" style="background-color: gainsboro;height: 30px;">
+        <span style="height: 30px;line-height: 30px;"><strong><h5 style="line-height: 30px;margin-left: 10px;"><i
+                class="fa fa-pencil"></i> <strong>创建课堂</strong></h5></strong></span>
+    </div>
+
+    <table class="table" style="margin-top: 20px;background-color: whitesmoke;" border="0">
+        <tbody>
+        <tr>
+            <td><input id="id" class="form-control clean" type="hidden" value=""/></td>
+        </tr>
+        <tr>
+            <td class="table-style-td">
+                <div style="text-align:right;margin-top: 5px;"><strong>课堂名称:</strong>
+                    <span style="color:#f00;">*</span>
+                </div>
+            </td>
+            <td><input id="name" class="form-control clean" type="text" value="" maxlength="20"
+                       style="width: 300px;border:0;border-bottom:1px solid gainsboro;background:whitesmoke"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="table-style-td">
+                <div style="text-align:right;"><strong>课堂图标:</strong>
+                    <span style="color:#f00;">*</span>
+                </div
+            </td>
+            <td>
+                <div class="uploadImg_picker">
+                    <button id="Button1" type="button" value="" class="btn btn-warning btn-xs" style="width: 200px;">
+                        <li class="fa fa-picture-o"/>
+                        选择图标
+                    </button>
+                    <div id="fileList">
+                    </div>
+                </div>
+                <div class="icon">
+
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="table-style-td">
+                <div style="text-align:right;margin-top: 5px;"><strong>课堂内容:</strong>
+                    <span style="color:#f00;">*</span>
+                </div>
+            </td>
+            <td>
+                <div id="summernote"></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="table-style-td">
+                <div style="text-align:right;margin-top: 5px;"><strong>建议时长:</strong>
+                    <span style="color:#f00;">*</span>
+                </div>
+            </td>
+            <td><input id="trainLength" class="form-control clean" type="text" value="" placeholder="单位为分钟"
+                       style="width: 200px;border:0;border-bottom:1px solid gainsboro;background:whitesmoke"/></td>
+        </tr>
+        </tbody>
+    </table>
+    <div style="background-color: gainsboro;height: 50px;">
+        <button id="surerelease" class="btn btn-default btn-sm" type="button"
+                style="margin-left: 30%;margin-top: 10px;width: 150px;" onclick="sureReleaseTrain();"><strong>
+            <li class="fa fa-send-o"></li>
+            确认发布</strong>
+        </button>
+        <button id="savetrain" class="btn btn-default btn-sm" type="button"
+                style="margin-left: 150px;margin-top: 10px;width: 150px;"
+                onclick="saveTrain(this);"><strong>
+            <li class="fa fa-save"></li>
+            保存</strong>
+        </button>
+    </div>
+    <div style="height: 100px;"></div>
+</div>
+
+<div class="modal" id="imgdataJudge2">
+    <div class="modal-dialog" style="width: 280px;padding-top:200px;">
+        <div class="modal-content">
+            <div class="modal-body" style="padding: 20px 94px;font-size:16px;width:280px;">
+                <p style="width:276px;border-bottom:none;margin-left:-94px;text-align:center;">图片太大，不能超过2MB</p>
+            </div>
+            <div class="modal-footer" style="padding: 5px 20px;">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-right: -10px;">关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal fade" id="successModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">操作成功！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="nameNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">课堂名不能为空！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="nameSizeError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">课堂名称长度为3-16！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="iconNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">图标不能为空！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="picUrlNotExist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">图标链接不存在！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="contentNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">编辑框不能为空！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="classTimeNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">培训时长不能为空！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="classTimeError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">课堂时长为正整数！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="classTimeLess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">课堂时长小于1000！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="imgFileError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">不符合文件格式!请选择正确的文件 .jpg, .png, .bmp</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="imgdataJudge3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">图片太大，不能超过2MB</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="classNameExist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">课堂名称已存在</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function classList() {
+        javascript:loadHtml('/xcr/train.htm');
+    }
+
+    $(function () {
+        var btn = $("#Button1");
+        btn.uploadFile({
+            url: "/xcr/fileupload/single.htm",
+            fileSuffixs: ["jpg", "png", "bmp"],
+            buttonFeature: false,
+            errorText: "{0}",
+            onCheckUpload: function (text) { // 上传时检查文件后缀名不包含在fileSuffixs属性中时触发的回调函数，(text为错误提示文本)
+                if (text != null && text != "") {
+                    var str = this.fileSuffixs.join(",.");
+                    $("#imgFileError").modal("toggle");
+                    perviewImage.isCloseImg(true);
+                    $("#fileList").empty();
+                }
+                return false;
+            },
+            onSubmitHandle: function (uploadFileNumber) { //提交上传时的回调函数，uploadFileNumber为当前上传的文件数量
+                return true;
+            },
+            onSameFilesHandle: function (file) { //当重复选择相同的文件时触发
+                return false;
+            },
+            maximumFilesUpload: 1,//最大文件上传数
+            onComplete: function (msg) {
+                console.log(msg);
+                if (msg == "error") {
+                    $("#fileList").empty();
+                } else {
+                    var srcUrl = msg.substring(msg.indexOf(':') + 1);
+                    if (srcUrl) {
+                        perviewImage.isCloseImg(true);
+                        $('img#icon.preventImg_pre').remove();
+                        $('img.preventImg_pre').attr('src', srcUrl);
+                    } else {
+                        alert("上传失败!请重新上传");
+                    }
+                }
+            },
+            onChosen: function (file, obj) {
+                console.log("111111111111");
+                $("#fileList").empty();
+                $("#msgEdit .icon").empty();
+
+                //判断图片大小
+                var imgSize;
+                if (obj.files) {
+                    imgSize = obj.files[0].size;
+                } else {
+                    var filePath = file;
+                    var fileSystem = new ActiveXObject("Scripting.FileSystemObject");
+                    var file = fileSystem.GetFile(filePath);
+                    imgSize = file.Size;
+                }
+                if (imgSize > 2097152) {
+                    $("#imgdataJudge3").modal("toggle");
+                    $("#fileList").empty();
+                    obj.outerHTML = '';
+                    return false;
+                }
+
+                return true;
+            },
+            perviewImageElementId: "fileList", //设置预览图片的元素id
+            perviewImgStyle: {width: '300px', height: '200px', border: '1px solid #ebebeb'}//设置预览图片的样式
+        });
+
+        var upload = btn.data("uploadFileData");
+    });
+
+    //加载编辑器
+    $(document).ready(function () {
+        $('#summernote').summernote({
+            width: 600,
+            height: 300,
+            minHeight: 300,
+            maxHeight: 1000,
+            focus: true,
+            lang: 'zh-CN',
+            // 重写图片上传
+            callbacks: {
+                onImageUpload: function (files) {
+                    var editor =
+                            $(this);
+                    var data = new FormData();
+                    data.append('file', files[0]);
+                    $.ajax({
+                        url: '/xcr/fileupload/single.htm',
+                        method: 'POST',
+                        data: data,
+                        processData: false,
+                        contentType: false,
+                        success: function (url) {
+                            var srcUrl = url.substring(url.indexOf(':') + 1);
+                            console.log("url:" + url);
+                            editor.summernote('insertImage', srcUrl);
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    var input = window.customData;//取传过来的值
+    if ("undefined" != typeof input) {
+        for (key in input) {
+            if (key == "content") {
+                console.log("input[key]:" + input[key])
+                $('#summernote').summernote('code', input[key]);
+            } else if (key == "icon") {
+                $("#trainAdd .icon").html('<img id="icon" class="preventImg_pre" src="' + input[key] + '" style="width:300px;height: 150px;margin-top: 5px;">');
+//                $('. preventImg_pre').hide();
+            } else {
+                $("#" + key).val(input[key]);//显示data中的数据
+            }
+        }
+        input = null;
+    }
+    window.customData = null;
+
+    <!-- 保存 -->
+    function saveTrain() {
+        $("#savetrain").attr("disabled", true);
+        console.log("in sureReleaseTrain() ... )")
+
+        var id = $("#id").val();
+        //获取编辑器内容
+        var sHTML = $('#summernote').summernote('code');
+        var name = $("#name").val().trim();
+        try {
+            $(".preventImg_pre")[0]["src"];
+        } catch (err) {
+            $("#iconNotNull").modal("toggle");
+            $("#savetrain").attr("disabled", false);
+            return false;
+        }
+        var trainIconUrl = $(".preventImg_pre")[0]["src"];
+        var trainContent = sHTML;
+        var trainLength = $("#trainLength").val().trim();
+        console.log("name:" + name + "\ntrainIconUrl:" + trainIconUrl + "\ntrainContent:" + trainContent + "\ntrainLength:" + trainLength);
+        if (!chkinput()) {
+            $("#savetrain").attr("disabled", false);
+            return false;
+        }
+        $.ajax({
+            url: "/xcr/train/trainAdd.htm",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify({
+                "id": id,
+                "name": name,
+                "content": trainContent,
+                "trainLength": trainLength,
+                "icon": trainIconUrl,
+                "status": "0"
+            }),
+            success: function (data) {
+                console.log("data:" + data.toString())
+                console.log("data.errorMessage:" + data.errorMessage)
+                var errorMessage = data.errorMessage;
+                if (errorMessage == "课堂名已存在") {
+                    $("#classNameExist").modal("toggle");
+                    $("#savetrain").attr("disabled", false);
+                } else {
+                    $("#successModel").modal("toggle");
+                    $("#savetrain").attr("disabled", false);
+                    $('#successModel').on('hidden.bs.modal', function () {
+                        classList();
+                    })
+                }
+            }
+        });
+    }
+    <!-- 保存发布 -->
+    function sureReleaseTrain() {
+        console.log("in sureReleaseTrain() ... )")
+
+        var id = $("#id").val();
+        //获取编辑器内容
+        var sHTML = $('#summernote').summernote('code');
+        var name = $("#name").val().trim();
+        try {
+            $(".preventImg_pre")[0]["src"];
+        } catch (err) {
+            $("#iconNotNull").modal("toggle");
+            return false;
+        }
+        var trainIconUrl = $(".preventImg_pre")[0]["src"];
+        var trainContent = sHTML;
+        var trainLength = $("#trainLength").val().trim();
+        console.log("name:" + name + "\ntrainIconUrl:" + trainIconUrl + "\ntrainContent:" + trainContent + "\ntrainLength:" + trainLength);
+        if (!chkinput()) {
+            return false;
+        }
+        $.ajax({
+            url: "/xcr/train/trainAdd.htm",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify({
+                "id": id,
+                "name": name,
+                "content": trainContent,
+                "trainLength": trainLength,
+                "icon": trainIconUrl,
+                "status": "1"
+            }),
+            success: function (data) {
+                console.log("data.errorMessage:" + data.errorMessage)
+                var errorMessage = data.errorMessage;
+                if (errorMessage == "课堂名已存在") {
+                    $("#classNameExist").modal("toggle");
+                } else {
+                    $("#successModel").modal("toggle");
+                    $('#successModel').on('hidden.bs.modal', function () {
+                        classList();
+                    })
+                }
+            }
+        });
+    }
+
+
+    //  验证文本框
+    //js前台验证代码
+    function chkinput() {
+        if ($('#name').val().trim() == "") {
+            $("#nameNotNull").modal("toggle");
+            return false;
+        } else {
+            if ($('#name').val().trim().length <= 2 || $('#name').val().trim().length >= 17) {
+                //alert("长度为3-16");
+                $("#nameSizeError").modal("toggle");
+                return false;
+            }
+        }
+        if ($(".preventImg_pre")[0]["src"].lastIndexOf("htm") >= 0) {
+            //alert("图标不能为空");
+            $("#iconNotNull").modal("toggle");
+            if ($(".preventImg_pre")[0]["src"].trim() == "") {
+                //alert("图标链接不存在");
+                $("#picUrlNotExist").modal("toggle");
+            }
+            return false;
+        }
+        var classContent = $('#summernote').summernote('code').trim();
+        console.log("classContent:" + classContent)
+        if (classContent == "" || classContent == "<p><br></p>") {
+            //alert("编辑框不能为空");
+            $("#contentNotNull").modal("toggle");
+            return false;
+        }
+        var regTel = /^[1-9]\d*$/;
+        if ($('#trainLength').val().trim() == "") {
+            //alert("培训时长不能为空");
+            $("#classTimeNotNull").modal("toggle");
+            return false;
+        } else {
+            if (!(regTel.test($('#trainLength').val().trim()))) {
+                //alert("课堂时长为正整数");
+                $("#classTimeError").modal("toggle");
+                return false;
+            } else if ($('#trainLength').val().trim() > 999) {
+                //alert("课堂时长小于1000");
+                $("#classTimeLess").modal("toggle");
+                return false;
+            }
+        }
+        return true;
+    }
+</script>
+</html>
+
+
+

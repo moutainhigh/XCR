@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yatang.xc.xcr.biz.mission.dao.MissionInfoDAO">
+    <!--<cache type="com.yatang.xc.xcr.biz.mission.redis.MybatisRedisCache"/>-->
+    <resultMap id="BaseResultMap" type="com.yatang.xc.xcr.biz.mission.domain.MissionInfoPO">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="trigger_interface_name" property="triggerInterfaceName" jdbcType="VARCHAR"/>
+        <result column="special_award_remark" property="specialAwardRemark" jdbcType="VARCHAR"/>
+        <result column="bpm_identity" property="bpmIdentity" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="link" property="link" jdbcType="VARCHAR"/>
+        <result column="need_manual_audit" property="isManualAudit" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="reason" property="reason" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="misson_template_code" property="missonTemplateCode" jdbcType="VARCHAR"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="INTEGER"/>
+        <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP"/>
+        <result column="complete_tips" property="completeTips" jdbcType="VARCHAR"/>
+        <result column="icon_url" property="iconUrl" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="course_id" property="courseId" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="is_related" property="isRelated" jdbcType="INTEGER"/>
+        <result column="DURATION_TIME_START" property="durationTimeStart" jdbcType="TIMESTAMP"/>
+        <result column="DURATION_TIME_END" property="durationTimeEnd" jdbcType="TIMESTAMP"/>
+        <result column="VALID_TIME_START" property="validTimeStart" jdbcType="TIMESTAMP"/>
+        <result column="VALID_TIME_END" property="validTimeEnd" jdbcType="TIMESTAMP"/>
+
+    </resultMap>
+
+    <resultMap id="userSignInfoMap" type="com.yatang.xc.xcr.biz.mission.domain.UserSignPO">
+        <id column="ID" property="id"/>
+        <result column="USER_ID" property="userId" jdbcType="VARCHAR"/>
+        <result column="SHOP_CODE" property="shopCode" jdbcType="VARCHAR"/>
+        <result column="SCORE" property="score" jdbcType="VARCHAR"/>
+        <result column="CASH" property="cash" jdbcType="VARCHAR"/>
+        <result column="CONTINUE_DAY" property="continueDay" jdbcType="INTEGER"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="DATE"/>
+    </resultMap>
+
+    <resultMap id="ResultMapWithBLOBs" type="com.yatang.xc.xcr.biz.mission.domain.MissionInfoPO"
+               extends="BaseResultMap">
+        <result column="rule" property="rule" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, trigger_interface_name,special_award_remark, bpm_identity, create_time, link, need_manual_audit, status, 
+    reason, type, misson_template_code, is_deleted, last_modify_time, complete_tips, 
+    icon_url, name, description,course_id, sort, is_related,DURATION_TIME_START,DURATION_TIME_END,VALID_TIME_START,VALID_TIME_END
+  </sql>
+    <sql id="Blob_Column_List">
+    rule
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from XCR_MISSION_INFO
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="queryMissionInfo" resultMap="BaseResultMap"
+            parameterType="com.yatang.xc.xcr.biz.mission.bo.MissionInfoQuery">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from XCR_MISSION_INFO where (is_deleted = 0 or is_deleted is null)
+        <if test="id != null">
+            and id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="type != null">
+            and type = #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            and status = #{status,jdbcType=VARCHAR}
+        </if>
+        <if test="isRelated != null">
+            and is_related = #{isRelated,jdbcType=INTEGER}
+        </if>
+        <if test="orderBy != null">
+            order by ${orderBy}
+        </if>
+        <if test="startIndex != null">
+            <if test="endIndex != null">
+                limit #{startIndex,jdbcType=INTEGER},#{endIndex,jdbcType=INTEGER}
+            </if>
+        </if>
+    </select>
+
+    <select id="queryMissionInfoCount" resultType="int"
+            parameterType="com.yatang.xc.xcr.biz.mission.bo.MissionInfoQuery">
+        select count(*)
+        from XCR_MISSION_INFO where (is_deleted = 0 or is_deleted is null)
+        <if test="id != null">
+            and id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="type != null">
+            and type = #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            and status = #{status,jdbcType=VARCHAR}
+        </if>
+        <if test="isRelated != null">
+            and is_related = #{isRelated,jdbcType=INTEGER}
+        </if>
+        <if test="orderBy != null">
+            order by ${orderBy}
+        </if>
+
+    </select>
+
+    <select id="countMissionByName" resultType="int" parameterType="String">
+    select count(*) 
+    from XCR_MISSION_INFO where name = #{name,jdbcType=VARCHAR} and  (is_deleted = 0 or is_deleted is null)
+  </select>
+
+
+    <select id="queryMissionByCourseId" resultMap="BaseResultMap"
+            parameterType="com.yatang.xc.xcr.biz.mission.bo.MissionByCourseIdQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from XCR_MISSION_INFO where course_id = #{courseId,jdbcType=VARCHAR}
+        <if test="status != null">
+            and status = #{status,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+
+    <update id="updateSort" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionInfoPO">
+        update XCR_MISSION_INFO
+        <set>
+            <if test="id != null">
+                sort = #{sort,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="removeMissionById" parameterType="java.lang.Long">
+        update XCR_MISSION_INFO
+        <set>
+            <if test="value != null">
+                is_deleted = 1,
+            </if>
+        </set>
+        where id = #{value,jdbcType=BIGINT}
+    </update>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from XCR_MISSION_INFO
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionInfoPO" useGeneratedKeys="true"
+            keyProperty="id">
+    insert into XCR_MISSION_INFO ( trigger_interface_name, special_award_remark,bpm_identity, 
+      create_time, link, need_manual_audit, 
+      status, reason, type, 
+      misson_template_code, is_deleted, last_modify_time, 
+      complete_tips, icon_url, name, 
+      description,course_id, sort,is_related, rule,DURATION_TIME_START,DURATION_TIME_END,VALID_TIME_START,VALID_TIME_END
+      )
+    values ( #{triggerInterfaceName,jdbcType=VARCHAR}, #{specialAwardRemark,jdbcType=VARCHAR},#{bpmIdentity,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{link,jdbcType=VARCHAR}, #{isManualAudit,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{missonTemplateCode,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
+      #{completeTips,jdbcType=VARCHAR}, #{iconUrl,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR},#{courseId,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{isRelated,jdbcType=INTEGER}, #{rule,jdbcType=LONGVARCHAR},
+      #{durationTimeStart,jdbcType=TIMESTAMP},#{durationTimeEnd,jdbcType=TIMESTAMP},#{validTimeStart,jdbcType=TIMESTAMP},#{validTimeEnd,jdbcType=TIMESTAMP}
+      )
+  </insert>
+
+
+    <update id="updateStatus" parameterType="com.yatang.xc.xcr.biz.mission.bo.UpdateStatusQuery">
+        update XCR_MISSION_INFO
+        <set>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="reason != null">
+                reason = #{reason,jdbcType=VARCHAR},
+            </if>
+            <if test="lastModifyTime != null">
+                last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+        <if test="oldStatus != null">
+            and
+            <foreach collection="oldStatus" open="(" close=")" index="index" item="item">
+                <if test="index!=0">
+                    or
+                </if>
+                status = #{item,jdbcType=VARCHAR}
+            </foreach>
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionInfoPO">
+        update XCR_MISSION_INFO
+        <set>
+            <if test="triggerInterfaceName != null">
+                trigger_interface_name = #{triggerInterfaceName,jdbcType=VARCHAR},
+            </if>
+            <if test="triggerInterfaceName != null">
+                special_award_remark = #{specialAwardRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="bpmIdentity != null">
+                bpm_identity = #{bpmIdentity,jdbcType=VARCHAR},
+            </if>
+            <if test="link != null">
+                link = #{link,jdbcType=VARCHAR},
+            </if>
+            <if test="isManualAudit != null">
+                need_manual_audit = #{isManualAudit,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="missonTemplateCode != null">
+                misson_template_code = #{missonTemplateCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted,jdbcType=INTEGER},
+            </if>
+            <if test="lastModifyTime != null">
+                last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="completeTips != null">
+                complete_tips = #{completeTips,jdbcType=VARCHAR},
+            </if>
+            <if test="iconUrl != null">
+                icon_url = #{iconUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="courseId != null">
+                course_id = #{courseId,jdbcType=VARCHAR},
+            </if>
+            <if test="isRelated != null">
+                is_related = #{isRelated,jdbcType=INTEGER},
+            </if>
+            <if test="rule != null">
+                rule = #{rule,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="durationTimeStart != null">
+                DURATION_TIME_START = #{durationTimeStart,jdbcType=TIMESTAMP},
+            </if>
+            <if test="durationTimeEnd != null">
+                DURATION_TIME_END = #{durationTimeEnd,jdbcType=TIMESTAMP},
+            </if>
+            <if test="validTimeStart != null">
+                VALID_TIME_START = #{validTimeStart,jdbcType=TIMESTAMP},
+            </if>
+            <if test="validTimeEnd != null">
+                VALID_TIME_END = #{validTimeEnd,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionInfoPO">
+    update XCR_MISSION_INFO
+    set trigger_interface_name = #{triggerInterfaceName,jdbcType=VARCHAR},
+      special_award_remark = #{specialAwardRemark,jdbcType=VARCHAR},
+      bpm_identity = #{bpmIdentity,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      need_manual_audit = #{isManualAudit,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      misson_template_code = #{missonTemplateCode,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=INTEGER},
+      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      complete_tips = #{completeTips,jdbcType=VARCHAR},
+      icon_url = #{iconUrl,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      course_id = #{courseId,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      is_related = #{isRelated,jdbcType=INTEGER},
+      rule = #{rule,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionInfoPO">
+    update XCR_MISSION_INFO
+    set trigger_interface_name = #{triggerInterfaceName,jdbcType=VARCHAR},
+      special_award_remark = #{specialAwardRemark,jdbcType=VARCHAR},
+      bpm_identity = #{bpmIdentity,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      need_manual_audit = #{isManualAudit,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      misson_template_code = #{missonTemplateCode,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=INTEGER},
+      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      complete_tips = #{completeTips,jdbcType=VARCHAR},
+      icon_url = #{iconUrl,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      course_id = #{courseId,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      is_related = #{isRelated,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <select id="getSignCount" resultType="java.lang.Integer">
+       SELECT COUNT(*) FROM XCR_SIGN_INFO WHERE SHOP_CODE = #{0} AND create_time &gt;= #{1} AND create_time &lt;= #{2};
+    </select>
+
+    <insert id="backupsSignHistory">
+        INSERT INTO
+          XCR_SIGN_INFO_BACKUPS
+          (User_ID,SHOP_CODE,SCORE,CASH,CONTINUE_DAY,CREATE_TIME)
+        SELECT
+          USER_ID,SHOP_CODE,SCORE,CASH,CONTINUE_DAY,CREATE_TIME
+        FROM
+          XCR_SIGN_INFO
+        WHERE CREATE_TIME &lt;= DATE_ADD(CURDATE(),INTERVAL -90 DAY);
+    </insert>
+
+    <delete id="deleteSignHistoryBackups">
+        DELETE FROM XCR_SIGN_INFO
+        WHERE CREATE_TIME &lt;= DATE_ADD(CURDATE(),INTERVAL -90 DAY)
+    </delete>
+
+    <select id="getSignPo" resultMap="userSignInfoMap">
+       SELECT ID,USER_ID,SHOP_CODE,SCORE,CASH,continue_DAY,CREATE_TIME FROM XCR_SIGN_INFO 
+       WHERE SHOP_CODE = #{0} AND CREATE_TIME &gt;= #{1} AND CREATE_TIME &lt;= #{2} 
+    </select>
+
+</mapper>

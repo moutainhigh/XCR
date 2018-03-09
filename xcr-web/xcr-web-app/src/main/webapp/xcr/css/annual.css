@@ -1,0 +1,107 @@
+@CHARSET "UTF-8";
+* {
+	padding: 0;
+	margin: 0;
+}
+
+ul,li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+img {
+	border: none;
+	display: block;
+	width: 100%;
+}
+body{
+	background-color: #efeff4;
+}
+#annual-button {
+	width: 66%;
+	margin: 0 auto;
+}
+
+.annual-a {
+	position: absolute;
+	top: 253px;
+	width: 100%;
+}
+
+.annual-part2 {
+	padding-left: 25px;
+	padding-right: 25px;
+}
+.annual-text{
+	font-size: 12px;
+	line-height: 22px;
+}
+.annual-rule{
+	font-weight: bold;
+	font-size: 15px;
+}
+.annual-img{
+	height: 283px;
+}
+.annual-center-text{
+	text-align: center;
+	font-size: 13px;
+	color: #888888;
+	height: 50px;
+	padding-top: 30px;
+}
+.pop-box {
+	/*弹出窗口后，弹出的DIV采用此CSS，保证置于最上层
+    z-index控制Z轴的坐标，数值越大，离用户越近
+   */
+	z-index: 9999999;
+	/*这个数值要足够大，才能够显示在最上层*/
+	margin-bottom: 3px;
+	display: none;
+	position: absolute;
+	background: #fff;
+	border: solid 1px #6e8bde;
+	border-radius: 15px;
+	width: 300px;
+}
+
+#bg {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	/*弹出窗口后，添加遮罩层，采用此CSS，将该层置于弹出DIV和页面层之间
+    z-index控制Z轴的坐标，数值越大，离用户越近 rgba(72, 74, 68, 0.46)
+   */
+	z-index: 1001;
+	background-color: #000;
+	-moz-opacity: 0.5;
+	opacity: .50;
+	filter: alpha(opacity=50);
+}
+#buttonPanel li{
+	display: inline-block;
+}
+#buttonPanel{
+	font-size: 20px;
+	color: #db362f;
+	text-align:center;
+	}
+.pop-box-body{
+	text-align: center;
+	padding: 30px;
+	border-bottom: 1px solid gainsboro ;
+	font-size: 20px;
+}
+.bottom-sure{
+	border-right: 1px solid gainsboro;
+	width: 48%;
+	margin-top: 7px;
+}
+.bottom-cancel{
+	width: 48%;
+}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.yatang.xc.xcr.sql</groupId>
+	<artifactId>xcr-initial-sqls</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>xcr-initial-sqls</name>
+
+	<properties>
+		<db.url>jdbc:mysql://localhost:3306/test</db.url>
+		<db.username>root</db.username>
+		<db.password>root</db.password>
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>sql-maven-plugin</artifactId>
+					<version>1.5</version>
+					<dependencies>
+						<dependency>
+							<groupId>mysql</groupId>
+							<artifactId>mysql-connector-java</artifactId>
+							<version>5.1.34</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<!-- 执行增量SQL -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>sql-maven-plugin</artifactId>
+				<!--为该插件配置数据库连接信息 -->
+				<configuration>
+					<driver>com.mysql.jdbc.Driver</driver>
+					<url>${db.url}</url>
+					<username>${db.username}</username>
+					<password>${db.password}</password>
+					<autocommit>true</autocommit>
+					<encoding>utf-8</encoding>
+					<forceMojoExecution>true</forceMojoExecution>
+					<onError>continue</onError>
+					<orderFile>ascending</orderFile>
+					<fileset>
+						<basedir>${basedir}/full</basedir>
+						<includes>
+							<include>**/*.sql</include>
+						</includes>
+					</fileset>
+				</configuration>
+
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>

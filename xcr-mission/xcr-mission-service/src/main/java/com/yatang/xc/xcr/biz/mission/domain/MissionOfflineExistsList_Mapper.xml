@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yatang.xc.xcr.biz.mission.dao.MissionOfflineExistsListDAO" >
+<cache type="com.yatang.xc.xcr.biz.mission.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.yatang.xc.xcr.biz.mission.domain.MissionOfflineExistsListPO" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="MERCHANT_ID" property="merchantId" jdbcType="VARCHAR" />
+    <result column="TEMPLATE_CODE" property="templateCode" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, DESCRIPTION, MERCHANT_ID, TEMPLATE_CODE, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from XCR_MISSION_OFFLINE_EXISTS_LIST
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+ 
+  <select id="queryOfflineList" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from XCR_MISSION_OFFLINE_EXISTS_LIST
+    where MERCHANT_ID = #{merchantId,jdbcType=VARCHAR} 
+	<if test="templateCode != null" >
+	  and TEMPLATE_CODE = #{templateCode,jdbcType=VARCHAR}
+	</if>    
+  </select>  
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from XCR_MISSION_OFFLINE_EXISTS_LIST
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionOfflineExistsListPO" useGeneratedKeys="true" keyProperty="id">
+    insert into XCR_MISSION_OFFLINE_EXISTS_LIST ( NAME, DESCRIPTION, 
+      MERCHANT_ID, TEMPLATE_CODE, STATUS
+      )
+    values ( #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{merchantId,jdbcType=VARCHAR}, #{templateCode,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionOfflineExistsListPO" >
+    insert into XCR_MISSION_OFFLINE_EXISTS_LIST
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="merchantId != null" >
+        MERCHANT_ID,
+      </if>
+      <if test="templateCode != null" >
+        TEMPLATE_CODE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="templateCode != null" >
+        #{templateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionOfflineExistsListPO" >
+    update XCR_MISSION_OFFLINE_EXISTS_LIST
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null" >
+        MERCHANT_ID = #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="templateCode != null" >
+        TEMPLATE_CODE = #{templateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionOfflineExistsListPO" >
+    update XCR_MISSION_OFFLINE_EXISTS_LIST
+    set NAME = #{name,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      MERCHANT_ID = #{merchantId,jdbcType=VARCHAR},
+      TEMPLATE_CODE = #{templateCode,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

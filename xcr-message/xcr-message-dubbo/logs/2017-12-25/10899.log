@@ -1,0 +1,13 @@
+2017-12-25 10:24:06 [com.xxl.job.core.thread.JobThread]-[run]-[117]-[Thread-13] <br>----------- xxl-job job execute start -----------<br>----------- Params:null
+2017-12-25 10:24:06 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[43]-[Thread-13] 【收钱码流水无门店编号数据修复任务】 ...start .
+2017-12-25 10:24:06 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[getShopCodeByMchId]-[79]-[Thread-13] 根据商户号获取门店编号 -> mch_id:201709274228294271
+2017-12-25 10:24:06 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[getShopCodeByMchId]-[82]-[Thread-13] 根据商户号获取门店编号 -> 返回结果 -> mch_id:201709274228294271  storeSettlementInfoDubboService.queryStoreSettlementInfoByBusinessNumber(mch_id) > response :com.busi.common.resp.Response@1015a6e5
+2017-12-25 10:24:06 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[66]-[Thread-13] 【收钱码流水无门店编号数据修复任务】 -> 数据修复成功 -> 201709274228294271  shopCode:null
+2017-12-25 10:24:06 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[getShopCodeByMchId]-[79]-[Thread-13] 根据商户号获取门店编号 -> mch_id:16229117483068611
+2017-12-25 10:24:06 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[getShopCodeByMchId]-[82]-[Thread-13] 根据商户号获取门店编号 -> 返回结果 -> mch_id:16229117483068611  storeSettlementInfoDubboService.queryStoreSettlementInfoByBusinessNumber(mch_id) > response :com.busi.common.resp.Response@63b44f82
+2017-12-25 10:24:06 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[66]-[Thread-13] 【收钱码流水无门店编号数据修复任务】 -> 数据修复成功 -> 16229117483068611  shopCode:null
+2017-12-25 10:24:06 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[getShopCodeByMchId]-[79]-[Thread-13] 根据商户号获取门店编号 -> mch_id:32547002451457855
+2017-12-25 10:24:06 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[getShopCodeByMchId]-[82]-[Thread-13] 根据商户号获取门店编号 -> 返回结果 -> mch_id:32547002451457855  storeSettlementInfoDubboService.queryStoreSettlementInfoByBusinessNumber(mch_id) > response :com.busi.common.resp.Response@4277f9b9
+2017-12-25 10:24:06 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[66]-[Thread-13] 【收钱码流水无门店编号数据修复任务】 -> 数据修复成功 -> 32547002451457855  shopCode:null
+2017-12-25 10:24:06 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[68]-[Thread-13] 【收钱码流水无门店编号数据修复任务】 ...end .
+2017-12-25 10:24:06 [com.xxl.job.core.thread.JobThread]-[run]-[124]-[Thread-13] <br>----------- xxl-job job execute end(finish) -----------<br>----------- ReturnT:ReturnT [code=200, msg=null, content=null]

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yatang.xc.xcr.biz.mission.dao.MissionUserHistoryDAO" >
+  <resultMap id="BaseResultMap" type="com.yatang.xc.xcr.biz.mission.domain.MissionUserHistoryPO" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="LOGIN" property="login" jdbcType="VARCHAR" />
+    <result column="MERCHANT_ID" property="merchantId" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+    <result column="COLUMN_ONE" property="registrationId" jdbcType="VARCHAR" />
+    <result column="COLUMN_TWO" property="realNameCheckResult" jdbcType="VARCHAR" />
+    <result column="COLUMN_THREE" property="companyId" jdbcType="VARCHAR" />
+    <result column="LAST_MODIFY_TIME" property="lastModifyTime" jdbcType="TIMESTAMP" />
+    <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <resultMap id="userSignInfoMap" type="com.yatang.xc.xcr.biz.mission.domain.UserSignPO">
+    <id column="ID" property="id"/>
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR"/>
+    <result column="SHOP_CODE" property="shopCode" jdbcType="VARCHAR"/>
+    <result column="SCORE" property="score" jdbcType="VARCHAR"/>
+    <result column="CASH" property="cash" jdbcType="VARCHAR"/>
+    <result column="CONTINUE_DAY" property="continueDay" jdbcType="INTEGER"/>
+    <result column="CREATE_TIME" property="createTime" jdbcType="DATE"/>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    ID, LOGIN, MERCHANT_ID, USER_NAME, REAL_NAME,COLUMN_ONE,COLUMN_TWO,COLUMN_THREE,LAST_MODIFY_TIME,SHOP_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from XCR_MISSION_USER_HISTORY
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+ 
+   <select id="selectUserHistoryByMerchantId" resultMap="BaseResultMap" parameterType="String" >
+    select 
+    <include refid="Base_Column_List" />
+    from XCR_MISSION_USER_HISTORY
+    where MERCHANT_ID = #{id,jdbcType=VARCHAR}
+  </select> 
+  
+  <select id="queryMerchantIdFromUserHistory" resultType="String" >
+    select 
+    MERCHANT_ID
+    from XCR_MISSION_USER_HISTORY
+  </select> 
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from XCR_MISSION_USER_HISTORY
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionUserHistoryPO" useGeneratedKeys="true" keyProperty="id">
+    insert into XCR_MISSION_USER_HISTORY ( LOGIN, MERCHANT_ID, 
+      USER_NAME, REAL_NAME,COLUMN_ONE,COLUMN_TWO,COLUMN_THREE,LAST_MODIFY_TIME,SHOP_NAME)
+    values ( #{login,jdbcType=VARCHAR}, #{merchantId,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},#{registrationId,jdbcType=VARCHAR},#{realNameCheckResult,jdbcType=VARCHAR},#{companyId,jdbcType=VARCHAR},#{lastModifyTime,jdbcType=TIMESTAMP},#{shopName,jdbcType=VARCHAR})
+  </insert>
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionUserHistoryPO" >
+    update XCR_MISSION_USER_HISTORY
+    <set >
+      <if test="login != null" >
+        LOGIN = #{login,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null" >
+        MERCHANT_ID = #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        REAL_NAME = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationId != null" >
+        COLUMN_ONE = #{registrationId,jdbcType=VARCHAR},
+      </if>     
+      <if test="realNameCheckResult != null" >
+        COLUMN_TWO = #{realNameCheckResult,jdbcType=VARCHAR},
+      </if>   
+      <if test="companyId != null" >
+        COLUMN_THREE = #{companyId,jdbcType=VARCHAR},
+      </if>    
+      <if test="shopName != null" >
+        SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      </if>                
+       <if test="lastModifyTime != null" >
+        LAST_MODIFY_TIME = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>     
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionUserHistoryPO" >
+    update XCR_MISSION_USER_HISTORY
+    set LOGIN = #{login,jdbcType=VARCHAR},
+      MERCHANT_ID = #{merchantId,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      COLUMN_ONE = #{registrationId,jdbcType=VARCHAR},
+      COLUMN_TWO = #{realNameCheckResult,jdbcType=VARCHAR},
+      COLUMN_THREE = #{companyId,jdbcType=VARCHAR},
+      LAST_MODIFY_TIME = #{lastModifyTime,jdbcType=VARCHAR},
+      SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      REAL_NAME = #{realName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getSignShopCodeList" resultType="String">
+    SELECT SHOP_CODE FROM XCR_SIGN_INFO GROUP BY Shop_Code;
+  </select>
+
+  <select id="getSignListByShopCode" resultMap="userSignInfoMap">
+    SELECT ID,USER_ID,SHOP_CODE,SCORE,CASH,continue_DAY,CREATE_TIME FROM XCR_SIGN_INFO
+    WHERE SHOP_CODE = #{0} ORDER BY  CREATE_TIME ASC;
+  </select>
+
+  <update id="updateContinueDayById">
+    UPDATE XCR_SIGN_INFO SET CONTINUE_DAY = #{1} WHERE ID = #{0};
+  </update>
+</mapper>

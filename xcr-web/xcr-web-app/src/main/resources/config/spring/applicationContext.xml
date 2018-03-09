@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xmlns:metrics="http://www.ryantenney.com/schema/metrics"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://code.alibabatech.com/schema/dubbo 
+           http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+           http://www.ryantenney.com/schema/metrics
+           http://www.ryantenney.com/schema/metrics/metrics.xsd
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	<context:component-scan base-package="com.yatang.xc.xcr.service,com.yatang.xc.xcr.biz.service,com.yatang.xc.xcr.web.aop" />
+
+	<aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"></aop:aspectj-autoproxy>
+
+	<!-- Dubbo config -->
+	<dubbo:application name="${dubbo.application}" />
+	<dubbo:registry protocol="zookeeper" address="${dubbo.zookeeper.host}" default="true" timeout="10000" />
+	<dubbo:registry protocol="zookeeper" address="${dubbo.zookeeper.smzk.host}" default="false" id="smzk" timeout="10000" />
+	<dubbo:protocol name="dubbo" port="${dubbo.protocol.port}" />
+	<dubbo:monitor protocol="${dubbo.monitor}" />
+	<dubbo:consumer check="${dubbo.consumer.check}" />
+
+	<bean class="com.yatang.xc.xcr.biz.service.StaticUtilTransfer" init-method="init">
+		<property name="propertieMap">
+			<map>
+				<entry key="com.yatang.xc.xcr.util.TokenUtil.redisService" value-ref="redisService" />
+				<entry key="com.yatang.xc.xcr.util.TokenUtil.INTERVAL" value="${TOKEN_OUTTIME}" />
+				<entry key="com.yatang.xc.xcr.util.TokenUtil.IGNORE_TOKEN_VOLIDATION" value="${token_ignore_volidation}" />
+				<entry key="com.yatang.xc.xcr.util.CommonUtil.redisService" value-ref="redisService" />
+				<entry key="com.yatang.xc.xcr.util.Validation.IGNORE_TOKEN_VOLIDATION" value="${token_ignore_volidation}" />
+			</map>
+		</property>
+	</bean>
+
+	<!--  引入client工程中定义的 dubbo consumer配置  -->
+	<import resource="classpath*:com/yatang/xc/oles/biz/**/dubbo-consumer.xml" />
+	<import resource="classpath*:com/yatang/xc/dc/biz/**/dubbo-consumer.xml" />
+	<import resource="classpath*:com/yatang/xc/mbd/biz/**/dubbo-consumer.xml" />
+	<import resource="classpath*:com/yatang/xc/xcr/biz/**/dubbo-consumer.xml" />
+	<!-- 店铺 -->
+	<!-- <import resource="classpath*:com/yatang/xcsm/remote/api/**/dubbo-consumer.xml" />  -->
+	<!-- 结算 -->
+	<import resource="classpath*:com/yatang/fc/facade/dubbo/dubbo-consumer.xml" />
+	<import resource="classpath*:com/yatang/xc/rp/dubboservice/dubbo-consumer.xml" />
+	<import resource="classpath*:com/yatang/xc/oc/**/dubbo-consumer.xml" />
+
+	<import resource="classpath*:com/yatang/xc/mbd/org/es/dubboservice/dubbo-consumer.xml"/>
+	<!--缓存服务-->
+
+	<dubbo:reference registry="smzk" interface="com.yatang.xcsm.remote.api.dubboxservice.PushOrderDubboxService" id="pushOrderDubboxService" timeout="30000" version="1.0" />
+	<dubbo:reference registry="smzk" interface=" com.yatang.xcsm.remote.api.dubboxservice.PushShopNoticeDubboService" id="pushShopNoticeDubboService" timeout="30000" version="1.0" />
+
+	<dubbo:reference registry="smzk" interface="com.yatang.xcsm.remote.api.dubboxservice.OutGoodsCaptureDubboxService" id="outGoodsCaptureDubboService" timeout="30000" version="1.0" />
+	<dubbo:reference registry="smzk" interface="com.yatang.xcsm.remote.api.dubboxservice.OutShopCaptureDubboxService" id="outShopCaptureDubboxService" timeout="30000" version="1.0" />
+	<dubbo:reference registry="smzk" interface="com.yatang.xcsm.remote.api.dubboxservice.OutGoodsCaptureTask" id="outGoodsCaptureTask" timeout="30000" version="1.0" />
+	<dubbo:reference registry="smzk" interface="com.yatang.xcsm.remote.api.dubboxservice.OutShopCaptureTask" id="outShopCaptureTask" timeout="30000" version="1.0" />
+	<dubbo:reference registry="smzk" interface="com.yatang.xcsm.remote.api.dubboxservice.UpdateShopStatusDubboxService" id="updateShopStatusDubboxService" timeout="30000" version="1.0" />
+	<dubbo:reference registry="smzk" interface="com.yatang.xcsm.remote.api.dubboxservice.PushCancelDubboxService" id="cancelDubboxService" timeout="30000" version="1.0" />
+	<dubbo:reference registry="smzk" interface="com.yatang.xcsm.remote.api.dubboxservice.PushShopActivityDubboService" id="pushShopActivityDubboService" timeout="30000" version="1.0" />
+	<dubbo:reference registry="smzk" interface="com.yatang.xcsm.remote.api.dubboxservice.PushPopularizeDubboxService" id="pushPopularizeDubboxService" timeout="30000" version="1.0" />
+
+	<!--F5-->
+	<dubbo:reference interface="com.yatang.xc.pos.cloud.dubboservice.XcrUserDubboService" id="xcrUserDubboService" timeout="30000" version="1.0.0" />
+	<dubbo:reference interface="com.yatang.xc.pos.cloud.dubboservice.ISuperManShopProductDubboService" id="iSuperManShopProductDubboService" timeout="30000" version="1.0.0" />
+
+	<!-- 主数据基于es基础信息dubbo服务 -->
+	<dubbo:reference interface="com.yatang.xc.mbd.pi.es.dubboservice.ProductStoreIndexDubboService" id="productStoreIndexDubboService" timeout="60000" version="1.0.0"/>
+
+</beans>

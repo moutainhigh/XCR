@@ -1,0 +1,47 @@
+.tableDefine{
+	margin-top: 20px;
+	width: 100%;
+	height:120px;
+	background-color: whitesmoke;
+	margin: 0 auto;
+	border-radius: 5px;
+}
+.marginLeft1{
+	margin-left:5px;
+	margin-right: 10px;
+	cursor:pointer;
+}
+.marginLeft2{
+	margin-left:20px;
+}
+.tableDefine tbody tr td{
+	width:10%;
+	text-align:right;
+	height: 30px;
+    line-height: 30px;
+    padding-right: 10px;
+}
+.td{
+	width:6%;
+	text-align:right;
+}
+.tableDefine tbody tr td select{
+	width:96%;
+	height:35px;
+	border-radius:5px;
+	margin-bottom: 6px;
+}
+.tableDefine tbody tr td input{
+	width:96%;
+	height:35px;
+	border-radius:5px;
+	margin-bottom: 6px;
+}
+.tableDefine tbody tr td button{
+	margin-right:30px;
+	float:left;
+	width:80px;
+}
+.dateInput{
+	border-radius:5px;
+}

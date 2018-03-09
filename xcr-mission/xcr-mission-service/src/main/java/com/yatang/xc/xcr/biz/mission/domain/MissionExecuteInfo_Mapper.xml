@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yatang.xc.xcr.biz.mission.dao.MissionExecuteInfoDAO">
+    <resultMap id="BaseResultMap" type="com.yatang.xc.xcr.biz.mission.domain.MissionExecuteInfoPO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="misson_info_id" jdbcType="BIGINT" property="missonInfoId"/>
+        <result column="special_award_remark" property="specialAwardRemark" jdbcType="VARCHAR"/>
+        <result column="merchant_Id" jdbcType="VARCHAR" property="merchantId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="reason" jdbcType="VARCHAR" property="reason"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="is_deleted" jdbcType="INTEGER" property="isDeleted"/>
+        <result column="last_modify_time" jdbcType="TIMESTAMP" property="lastModifyTime"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="course_id" jdbcType="VARCHAR" property="courseId"/>
+        <result column="bpm_identity" property="bpmIdentity" jdbcType="VARCHAR"/>
+        <result column="trigger_interface_name" jdbcType="VARCHAR" property="triggerInterfaceName"/>
+        <result column="is_backup" jdbcType="INTEGER" property="isBackup"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="VALID_TIME_START" jdbcType="TIMESTAMP" property="validTimeStart"/>
+        <result column="VALID_TIME_END" jdbcType="TIMESTAMP" property="validTimeEnd"/>
+        <result column="DESCRIPTION" jdbcType="VARCHAR" property="description"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+               type="com.yatang.xc.xcr.biz.mission.domain.MissionExecuteInfoPO">
+        <result column="rule" jdbcType="LONGVARCHAR" property="rule"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, misson_info_id,special_award_remark, merchant_Id, create_time, status, reason, type, is_deleted, last_modify_time, 
+    start_time, end_time,course_id, trigger_interface_name,sort,is_backup,bpm_identity,VALID_TIME_START,VALID_TIME_END,DESCRIPTION
+  </sql>
+    <sql id="Blob_Column_List">
+    rule
+  </sql>
+
+    <sql id="Base_Column_List_Join">
+    e.id, e.misson_info_id,e.special_award_remark, e.merchant_Id, e.create_time, e.status, e.reason, e.type, e.is_deleted, e.last_modify_time, 
+    e.start_time, e.end_time, e.course_id,e.trigger_interface_name,e.sort,e.is_backup,e.bpm_identity,e.VALID_TIME_START,e.VALID_TIME_END,e.DESCRIPTION
+  </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from XCR_MISSION_EXECUTE_INFO
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+
+    <select id="queryMissionExecute" resultMap="BaseResultMap"
+            parameterType="com.yatang.xc.xcr.biz.mission.bo.MissionExecuteQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from XCR_MISSION_EXECUTE_INFO where (is_deleted = 0 or is_deleted is null) and status !='INVALID'
+        and #{now,jdbcType=TIMESTAMP} between START_TIME and END_TIME
+        <if test="id != null">
+            and id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="type != null">
+            and type = #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            and status = #{status,jdbcType=VARCHAR}
+        </if>
+        <if test="merchantId != null">
+            and merchant_Id = #{merchantId,jdbcType=VARCHAR}
+        </if>
+        <if test="orderBy != null">
+            order by ${orderBy}
+        </if>
+        <if test="startIndex != null">
+            <if test="endIndex != null">
+                limit #{startIndex,jdbcType=INTEGER},#{endIndex,jdbcType=INTEGER}
+            </if>
+        </if>
+    </select>
+
+    <select id="queryMissionExecuteOrderByRelated" resultMap="BaseResultMap"
+            parameterType="com.yatang.xc.xcr.biz.mission.bo.MissionExecuteQuery">
+        select distinct
+        <include refid="Base_Column_List_Join"/>
+        from XCR_MISSION_EXECUTE_INFO e left join XCR_MISSION_RELATED_DETAIL r on r.MISSON_INFO_ID=e.MISSON_INFO_ID
+        where (e.is_deleted = 0 or e.is_deleted is null) and e.status !='INVALID'
+        and #{now,jdbcType=TIMESTAMP} between e.start_time and e.end_time
+        <if test="id != null">
+            and e.id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="type != null">
+            and e.type = #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            and e.status = #{status,jdbcType=VARCHAR}
+        </if>
+        <if test="merchantId != null">
+            and e.merchant_Id = #{merchantId,jdbcType=VARCHAR}
+        </if>
+        <if test="orderBy != null">
+            order by e.sort DESC , r.level
+        </if>
+        <if test="startIndex != null">
+            <if test="endIndex != null">
+                limit #{startIndex,jdbcType=INTEGER},#{endIndex,jdbcType=INTEGER}
+            </if>
+        </if>
+    </select>
+
+    <select id="queryMissionExecuteCount" resultType="int"
+            parameterType="com.yatang.xc.xcr.biz.mission.bo.MissionExecuteQuery">
+        select count(*)
+        <include refid="Base_Column_List"/>
+        from XCR_MISSION_EXECUTE_INFO where (is_deleted = 0 or is_deleted is null) and status !='INVALID'
+        and #{now,jdbcType=TIMESTAMP} between START_TIME and END_TIME
+        <if test="id != null">
+            and id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="type != null">
+            and type = #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            and status = #{status,jdbcType=VARCHAR}
+        </if>
+        <if test="merchantId != null">
+            and merchant_Id = #{merchantId,jdbcType=VARCHAR}
+        </if>
+        <if test="orderBy != null">
+            order by ${orderBy}
+        </if>
+    </select>
+
+
+    <select id="queryMissionExecuteInHistory" resultMap="BaseResultMap"
+            parameterType="com.yatang.xc.xcr.biz.mission.bo.MissionExecuteQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from XCR_MISSION_EXECUTE_HISTORY where 1 = 1
+        <if test="id != null">
+            and id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="type != null">
+            and type = #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            and status = #{status,jdbcType=VARCHAR}
+        </if>
+        <if test="merchantId != null">
+            and merchant_Id = #{merchantId,jdbcType=VARCHAR}
+        </if>
+        <if test="orderBy != null">
+            order by ${orderBy}
+        </if>
+        <if test="startIndex != null">
+            <if test="endIndex != null">
+                limit #{startIndex,jdbcType=INTEGER},#{endIndex,jdbcType=INTEGER}
+            </if>
+        </if>
+    </select>
+
+
+    <select id="queryMissionExecuteCountInHistory" resultType="int"
+            parameterType="com.yatang.xc.xcr.biz.mission.bo.MissionExecuteQuery">
+        select count(*)
+        <include refid="Base_Column_List"/>
+        from XCR_MISSION_EXECUTE_HISTORY #{now,jdbcType=TIMESTAMP} between START_TIME and END_TIME
+        <if test="id != null">
+            and id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="type != null">
+            and type = #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            and status = #{status,jdbcType=VARCHAR}
+        </if>
+        <if test="merchantId != null">
+            and merchant_Id = #{merchantId,jdbcType=VARCHAR}
+        </if>
+        <if test="orderBy != null">
+            order by ${orderBy}
+        </if>
+    </select>
+
+    <select id="queryExecuteMissionByMissionIdAndMerchantId" resultMap="BaseResultMap"
+            parameterType="com.yatang.xc.xcr.biz.mission.bo.ExecuteByMissionIdAndMerchantIdQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from XCR_MISSION_EXECUTE_INFO where 1=1 and status !='INVALID'
+        <if test="missionId != null">
+            and misson_info_id = #{missionId,jdbcType=BIGINT}
+        </if>
+        <if test="merchantId != null">
+            and merchant_Id = #{merchantId,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+
+    <select id="queryExecuteMissionByMissionIdAndMerchantIdInHistory" resultMap="BaseResultMap"
+            parameterType="com.yatang.xc.xcr.biz.mission.bo.ExecuteByMissionIdAndMerchantIdQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from XCR_MISSION_EXECUTE_INFO where 1=1
+        <if test="missionId != null">
+            and misson_info_id = #{missionId,jdbcType=BIGINT}
+        </if>
+        <if test="merchantId != null">
+            and merchant_Id = #{merchantId,jdbcType=VARCHAR}
+        </if>
+        UNION
+        select
+        <include refid="Base_Column_List"/>
+        from XCR_MISSION_EXECUTE_HISTORY where 1=1
+        <if test="missionId != null">
+            and misson_info_id = #{missionId,jdbcType=BIGINT}
+        </if>
+        <if test="merchantId != null">
+            and merchant_Id = #{merchantId,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+
+    <select id="queryExecuteMissionByMerchantIdAndCourseId" resultMap="BaseResultMap"
+            parameterType="com.yatang.xc.xcr.biz.mission.bo.ExecuteByMerchantIdAndCourseIdQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from XCR_MISSION_EXECUTE_INFO where status !='INVALID'
+        <if test="courseId != null">
+            and course_id = #{courseId,jdbcType=VARCHAR}
+        </if>
+        <if test="merchantId != null">
+            and merchant_Id = #{merchantId,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            and status = #{status,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="queryExecuteMissionByMerchantIdAndCourseIdInHistory" resultMap="BaseResultMap"
+            parameterType="com.yatang.xc.xcr.biz.mission.bo.ExecuteByMerchantIdAndCourseIdQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from XCR_MISSION_EXECUTE_HISTORY where status !='INVALID'
+        <if test="courseId != null">
+            and course_id = #{courseId,jdbcType=VARCHAR}
+        </if>
+        <if test="merchantId != null">
+            and merchant_Id = #{merchantId,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            and status = #{status,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+
+    <select id="queryExecuteMissionByMissionIdAndMerchantIdCount" resultType="int"
+            parameterType="com.yatang.xc.xcr.biz.mission.bo.ExecuteByMissionIdAndMerchantIdQuery">
+        select count(*)
+        from XCR_MISSION_EXECUTE_INFO where 1=1
+        <if test="missionId != null">
+            and misson_info_id = #{missionId,jdbcType=BIGINT}
+        </if>
+        <if test="merchantId != null">
+            and merchant_Id = #{merchantId,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+
+    <select id="selectByMerchantId" resultMap="BaseResultMap" parameterType="String">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from XCR_MISSION_EXECUTE_INFO
+        where id = #{merchantId,jdbcType=VARCHAR} and status !='INVALID'
+    </select>
+
+
+    <update id="removeByPrimaryKey" parameterType="java.lang.Long">
+    update XCR_MISSION_EXECUTE_INFO set is_deleted=1  , is_backup=1
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <update id="removeByMissionInfoId" parameterType="java.lang.Long">
+        update XCR_MISSION_EXECUTE_INFO set is_deleted=1
+        where MISSON_INFO_ID = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="invalidExecuteMissionHasDeleted" parameterType="String">
+    update XCR_MISSION_EXECUTE_INFO set 
+    status= #{merchantId,jdbcType=VARCHAR} , reason='MISSION_DELETED'
+    where misson_info_id in(select id from  XCR_MISSION_INFO where is_deleted=1) and status!='END' 
+  </update>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from XCR_MISSION_EXECUTE_INFO
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+    <delete id="deleteMissionExecuteByIsDeleted">
+    delete from XCR_MISSION_EXECUTE_INFO
+    where is_deleted=1
+  </delete>
+
+
+    <update id="updateStatus" parameterType="com.yatang.xc.xcr.biz.mission.bo.UpdateStatusQuery">
+        update XCR_MISSION_EXECUTE_INFO
+        <set>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="reason != null">
+                reason = #{reason,jdbcType=VARCHAR},
+            </if>
+            <if test="lastModifyTime != null">
+                last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+        <if test="oldStatus != null">
+            and
+            <foreach collection="oldStatus" open="(" close=")" index="index" item="item">
+                <if test="index!=0">
+                    or
+                </if>
+                status = #{item,jdbcType=VARCHAR}
+            </foreach>
+        </if>
+    </update>
+
+    <update id="expireMissionExecutes" parameterType="com.yatang.xc.xcr.biz.mission.bo.ExpireQuery">
+        update XCR_MISSION_EXECUTE_INFO
+        <set>
+            <if test="reason != null">
+                reason = CONCAT(#{reason,jdbcType=VARCHAR},':',status),
+            </if>
+            <if test="now != null">
+                last_modify_time = #{now,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where #{now,jdbcType=TIMESTAMP} > END_TIME
+        and trigger_interface_name != 'DayFacePayTriggerCaller'
+        <if test="status != null">
+            and status != #{status,jdbcType=VARCHAR}
+        </if>
+        and status != 'END'
+    </update>
+
+    <update id="expireMissionDayExecutes" parameterType="com.yatang.xc.xcr.biz.mission.bo.ExpireQuery">
+        update XCR_MISSION_EXECUTE_INFO
+        <set>
+            <if test="now != null">
+                last_modify_time = #{now,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where #{now,jdbcType=TIMESTAMP} > END_TIME
+        and trigger_interface_name = 'DayFacePayTriggerCaller'
+        <if test="status != null">
+            and status != #{status,jdbcType=VARCHAR}
+        </if>
+        and status != 'END'
+    </update>
+
+    <update id="expireNotExistMissionExecutes" parameterType="com.yatang.xc.xcr.biz.mission.bo.ExpireQuery">
+        update XCR_MISSION_EXECUTE_INFO
+        <set>
+            <if test="reason != null">
+                reason = CONCAT(#{reason,jdbcType=VARCHAR},':',status),
+            </if>
+            <if test="now != null">
+                last_modify_time = #{now,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where MISSON_INFO_ID not in (select id from XCR_MISSION_INFO)
+        <if test="status != null">
+            and status != #{status,jdbcType=VARCHAR}
+        </if>
+    </update>
+
+    <update id="updateStatusAndBpmId" parameterType="com.yatang.xc.xcr.biz.mission.bo.UpdateStatusAndBpmIdQuery">
+        update XCR_MISSION_EXECUTE_INFO
+        <set>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="reason != null">
+                reason = #{reason,jdbcType=VARCHAR},
+            </if>
+            <if test="lastModifyTime != null">
+                last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bpmId != null">
+                bpm_identity = #{bpmId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+        <if test="oldStatus != null">
+            and
+            <foreach collection="oldStatus" open="(" close=")" index="index" item="item">
+                <if test="index!=0">
+                    or
+                </if>
+                status = #{item,jdbcType=VARCHAR}
+            </foreach>
+        </if>
+    </update>
+
+
+    <insert id="insert" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionExecuteInfoPO"
+            useGeneratedKeys="true" keyProperty="id">
+    insert into XCR_MISSION_EXECUTE_INFO ( misson_info_id,special_award_remark, merchant_Id, 
+      create_time, status, reason, course_id,
+      type, is_deleted, last_modify_time, 
+      start_time, end_time, trigger_interface_name, sort,bpm_identity,
+      rule,VALID_TIME_START,VALID_TIME_END,DESCRIPTION)
+    values ( #{missonInfoId,jdbcType=BIGINT},#{specialAwardRemark,jdbcType=VARCHAR}, #{merchantId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR},
+      #{type,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{triggerInterfaceName,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER},#{bpmIdentity,jdbcType=VARCHAR}, #{rule,jdbcType=LONGVARCHAR},
+      #{validTimeStart,jdbcType=TIMESTAMP},#{validTimeEnd,jdbcType=TIMESTAMP},#{description,jdbcType=VARCHAR})
+  </insert>
+
+    <insert id="backExpireMissionExecuteToHistory" parameterType="String">
+        insert into XCR_MISSION_EXECUTE_HISTORY (
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        )
+
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from XCR_MISSION_EXECUTE_INFO where status = #{status,jdbcType=VARCHAR} and (is_backup is null or is_backup=0)
+    </insert>
+
+
+    <update id="removeExpireMisiionExecute" parameterType="String">
+    update XCR_MISSION_EXECUTE_INFO set is_deleted=1
+    where status = #{status,jdbcType=VARCHAR} 
+  </update>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionExecuteInfoPO">
+        update XCR_MISSION_EXECUTE_INFO
+        <set>
+            <if test="missonInfoId != null">
+                misson_info_id = #{missonInfoId,jdbcType=BIGINT},
+            </if>
+            <if test="specialAwardRemark != null">
+                special_award_remark = #{specialAwardRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="merchantId != null">
+                merchant_Id = #{merchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted,jdbcType=INTEGER},
+            </if>
+            <if test="lastModifyTime != null">
+                last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="courseId != null">
+                course_id = #{courseId,jdbcType=VARCHAR},
+            </if>
+            <if test="triggerInterfaceName != null">
+                trigger_interface_name = #{triggerInterfaceName,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="bpmIdentity != null">
+                bpm_identity = #{bpmIdentity,jdbcType=VARCHAR},
+            </if>
+            <if test="rule != null">
+                rule = #{rule,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="validTimeStart != null">
+                VALID_TIME_START = #{validTimeStart,jdbcType=TIMESTAMP},
+            </if>
+            <if test="validTimeEnd != null">
+                VALID_TIME_END = #{validTimeEnd,jdbcType=TIMESTAMP},
+            </if>
+            <if test="description != null">
+                DESCRIPTION = #{description,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionExecuteInfoPO">
+    update XCR_MISSION_EXECUTE_INFO
+    set misson_info_id = #{missonInfoId,jdbcType=BIGINT},
+      special_award_remark = #{specialAwardRemark,jdbcType=VARCHAR},
+      merchant_Id = #{merchantId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=INTEGER},
+      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      course_id = #{courseId,jdbcType=VARCHAR},
+      trigger_interface_name = #{triggerInterfaceName,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      bpm_identity = #{bpmIdentity,jdbcType=VARCHAR},
+      rule = #{rule,jdbcType=LONGVARCHAR},
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionExecuteInfoPO">
+    update XCR_MISSION_EXECUTE_INFO
+    set misson_info_id = #{missonInfoId,jdbcType=BIGINT},
+      special_award_remark = #{specialAwardRemark,jdbcType=VARCHAR},
+      merchant_Id = #{merchantId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=INTEGER},
+      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      sort = #{sort,jdbcType=INTEGER},
+      bpm_identity = #{bpmIdentity,jdbcType=VARCHAR},
+      course_id = #{courseId,jdbcType=VARCHAR},
+      trigger_interface_name = #{triggerInterfaceName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

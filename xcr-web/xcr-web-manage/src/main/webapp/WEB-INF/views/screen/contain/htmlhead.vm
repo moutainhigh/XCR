@@ -1,0 +1,118 @@
+<head>
+    <title>小超运营中心#if($title)-${title}#end</title>
+    <meta http-equiv="x-ua-compatible" content="IE=8,10,11">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link href="${link.contextURL}/css/iF.step.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="${link.contextURL}/css/font-awesome.min.css">
+    <!-- jQuery 2.1.4 -->
+    <script src="${link.contextURL}/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <!-- iCheck -->
+    <script src="${link.contextURL}/plugins/iCheck/icheck.min.js"></script>
+    <script src="${link.contextURL}/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${link.contextURL}/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript"
+            src="${link.contextURL}/plugins/bootstrap-clockpicker/js/bootstrap-clockpicker.min.js"
+            charset="UTF-8"></script>
+
+    <!-- AdminLTE App -->
+    <script src="${link.contextURL}/scripts/app.min.js"></script>
+    <script type="text/javascript" src="${link.contextURL}/plugins/datatables/js/datatables.min.js"></script>
+    <script type="text/javascript" src="${link.contextURL}/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="${link.contextURL}/plugins/bootstrap-table/bootstrap-table-zh-CN.js"></script>
+    <script type="text/javascript" src="${link.contextURL}/plugins/jQuery/jquery.form.js"></script>
+
+    <link href="${link.contextURL}/plugins/viewer/viewer.min.css" rel="stylesheet">
+    <script src="${link.contextURL}/plugins/viewer/viewer.min.js"></script>
+    <script src="https://cdn.bootcss.com/raphael/2.2.7/raphael.min.js"></script>
+    <!-- bootstrap-treeview -->
+    <script src="${link.contextURL}/plugins/bootstrap-treeview/js/bootstrap-treeview.js"></script>
+    <link rel="stylesheet" href="${link.contextURL}/plugins/bootstrap-treeview/css/bootstrap-treeview.css">
+
+    <!-- time format -->
+    <script src="${link.contextURL}/scripts/base.js"></script>
+    <script type="text/javascript">
+        jQuery.extend({ctx: "${ctx}", imageServerDomain: "${imageServerDomain}"});
+    </script>
+    <script type="text/javascript" src="${ctx}/plugins/jTemplates/jquery-jtemplates.js"></script>
+
+    <script type="text/javascript" src="${ctx}/plugins/treetable/js/jquery.treetable.js"></script>
+    <link rel="stylesheet" href="${link.contextURL}/plugins/treetable/css/jquery.treetable.css">
+    <link rel="stylesheet" href="${link.contextURL}/plugins/treetable/css/jquery.treetable.theme.default.css">
+
+    <link rel="stylesheet" href="${link.contextURL}/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="${link.contextURL}/plugins/bootstrap-table/bootstrap-table.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="${link.contextURL}/plugins/fontAwesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="${link.contextURL}/css/AdminLTE.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="${link.contextURL}/plugins/iCheck/square/blue.css">
+
+    <!-- DataTables -->
+    <!-- <link rel="stylesheet" href="${link.contextURL}/plugins/datatables/dataTables.bootstrap.css"> -->
+    <link rel="stylesheet" type="text/css" href="${link.contextURL}/plugins/datatables/css/datatables.min.css"/>
+
+    <link rel="stylesheet" href="${link.contextURL}/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="${link.contextURL}/plugins/bootstrap-clockpicker/css/bootstrap-clockpicker.min.css">
+    <!-- AdminLTE for demo purposes -->
+    <script src="${link.contextURL}/scripts/demo.js"></script>
+
+    <script type="text/javascript" src="${link.contextURL}/scripts/Validform_v5.3.2_min.js"></script>
+    <script type="text/javascript" src="${link.contextURL}/plugins/jq-treegrid/js/jquery.treegrid.min.js"></script>
+    <link rel="stylesheet" href="${link.contextURL}/plugins/jq-treegrid/css/jquery.treegrid.css">
+
+    <script src="${link.contextURL}/plugins/art-template/template-web.js"></script>
+    <script src="${link.contextURL}/scripts/pagBootStrap.js"></script>
+    <!-- zcg 详情show -->
+    <link rel="stylesheet" href="${link.contextURL}/css/pointTable.css">
+    <script src="${link.contextURL}/scripts/zcgShow.js"></script>
+
+
+    <style>
+        .showNoticeItem {
+            background: white;
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
+            border-collapse: collapse;
+        }
+
+        .showNoticeItem:hover {
+            background: rgba(0, 0, 0, .1);
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 767px) {
+            .main-header .navbar-iframe-tabs .nav .topMenu {
+                display: inline-block;
+                font-size: 13px;
+                width: 32%;
+                font-weight: bold;
+            }
+
+            .navbar-nav > li > a {
+                padding-top: 0px;
+                padding-bottom: 0px;
+                line-height: 0px;
+            }
+
+            .nav > li > a {
+
+                padding: 0;
+            }
+
+            .main-header .sidebar-toggle {
+                float: none;
+            }
+
+            .content-wrapper h1 {
+                display: none;
+            }
+        }
+
+    </style>
+</head>

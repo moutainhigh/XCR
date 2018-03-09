@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yatang.xc.xcr.biz.mission.dao.MissionExecuteHistoryDAO">
+  <resultMap id="BaseResultMap" type="com.yatang.xc.xcr.biz.mission.domain.MissionExecuteHistoryPO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="misson_info_id" jdbcType="BIGINT" property="missonInfoId" />
+    <result column="special_award_remark" property="specialAwardRemark" jdbcType="VARCHAR" />
+    <result column="merchant_Id" jdbcType="VARCHAR" property="merchantId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+    <result column="last_modify_time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="course_id" jdbcType="VARCHAR" property="courseId" />
+    <result column="bpm_identity" property="bpmIdentity" jdbcType="VARCHAR" />      
+    <result column="trigger_interface_name" jdbcType="VARCHAR" property="triggerInterfaceName" />
+    <result column="is_backup" jdbcType="INTEGER" property="isBackup" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yatang.xc.xcr.biz.mission.domain.MissionExecuteHistoryPO">
+    <result column="rule" jdbcType="LONGVARCHAR" property="rule" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, misson_info_id,special_award_remark, merchant_Id, create_time, status, reason, type, is_deleted, last_modify_time, 
+    start_time, end_time, trigger_interface_name, course_id, sort,is_backup,bpm_identity
+  </sql>
+  <sql id="Blob_Column_List">
+    rule
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from XCR_MISSION_EXECUTE_HISTORY
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from XCR_MISSION_EXECUTE_HISTORY
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  
+  <insert id="backMissionExecuteToHistory" parameterType="java.lang.Long">
+  insert into XCR_MISSION_EXECUTE_HISTORY (
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+	)
+	select 
+	<include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" /> 
+    from XCR_MISSION_EXECUTE_INFO where id = #{id,jdbcType=BIGINT} 
+  </insert>
+  
+  
+  
+</mapper>

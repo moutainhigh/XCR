@@ -1,0 +1,63 @@
+<head>
+  <title>小超后台运营管理系统#if($title)-${title}#end</title>
+   <meta http-equiv="x-ua-compatible" content="IE=8,10,11">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+	 
+	 
+    
+    
+    
+ 
+	 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="${link.contextURL}/plugins/fontAwesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="${link.contextURL}/css/AdminLTE.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="${link.contextURL}/plugins/iCheck/square/blue.css">
+    <!-- bootstrap datetimepicker --> 
+    <link rel="stylesheet" type="text/css" href="${link.contextURL}/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="${link.contextURL}/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="${link.contextURL}/plugins/bootstrap-clockpicker/css/bootstrap-clockpicker.min.css">
+    <!-- AdminLTE for demo purposes -->
+    <script src="${link.contextURL}/scripts/demo.js"></script>
+	
+	<!--
+	----2017年4月10日(星期一)
+	----gaodawei
+	-->
+	<!--uploadify-->
+	<link rel="stylesheet" type="text/css" href="${link.contextURL}/plugins/uploadify/uploadify.css">
+	<script type="text/javascript" src="${link.contextURL}/plugins/uploadify/jquery.uploadify.min.js"></script>
+	<!--bootstrap-->
+	<link rel="stylesheet" href="${link.contextURL}/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${link.contextURL}/css/task.css">
+	<script src="${link.contextURL}/scripts/bootstrap.min.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/2.3.1/js/bootstrap-transition.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/2.3.1/js/bootstrap-modal.js"></script>
+	<!--datatables-->
+	<link rel="stylesheet" type="text/css" href="${link.contextURL}/plugins/datatables/css/datatables.min.css"/>
+	<script type="text/javascript" src="${link.contextURL}/plugins/datatables/js/datatables.min.js"></script>
+	<!--Ueditor-->
+	<script type="text/javascript" charset="utf-8" src="${link.contextURL}/plugins/UEditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="${link.contextURL}/plugins/UEditor/ueditor.all.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="${link.contextURL}/plugins/UEditor/lang/zh-cn/zh-cn.js"></script>
+	
+	
+    <style>
+        .showNoticeItem {
+            background: white;
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
+            border-collapse: collapse;
+        }
+
+        .showNoticeItem:hover {
+            background: rgba(0, 0, 0, .1);
+            cursor: pointer;
+        }
+    </style>
+</head> 

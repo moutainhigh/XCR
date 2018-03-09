@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yatang.xc.xcr.biz.core.dao.SupplyChainAdvertisementDao">
+	
+	<resultMap id="advertisementMap" type="advertisementPO">
+		<id column="ID" property="id" />
+		<result column="PIC_URL" property="picUrl" />
+		<result column="STATE" property="state" />
+		<result column="ACTIVITY_URL" property="activityUrl" />
+		<result column="LAST_MODIFY_TIME" property="lastModifyTime" />
+		<result column="REMAIND" property="remaind" />
+		<result column="GROUP_ID" property="groupId" />
+		<result column="TYPE" property="type" />
+		<result column="SORE" property="sore" />
+	</resultMap>
+	
+	
+	<resultMap id="advertisementGroupMap" type="advertisementGroupPO">
+		<id column="ID" property="id" />
+		<result column="GROUP_NAME" property="groupName" />
+		<result column="ADDR_CODE" property="addrCode" />
+		<result column="POSITION_CODE" property="positionCode" />
+		<result column="IS_ENABLE" property="isEnable" />
+		<result column="LAST_MODIFY_TIME" property="lastModifyTime" />
+	</resultMap>
+	
+	
+	<resultMap id="supplyAdvertisementMap" type="SupplyAdvertisementGroupPO">
+		<id column="aId" property="id" />
+		<result column="GROUP_NAME" property="groupName" />
+		<result column="ADDR_CODE" property="addrCode" />
+		<result column="LAST_MODIFY_TIME" property="lastModifyTime" />
+			<collection property="advertisementPOs" ofType="AdvertisementPO">
+				<id column="ID" property="id"/>
+				<result column="PIC_URL" property="picUrl" />
+				<result column="STATE" property="state" />
+				<result column="ACTIVITY_URL" property="activityUrl" />
+				<result column="LAST_MODIFY_TIME" property="lastModifyTime" />
+				<result column="REMAIND" property="remaind" />
+				<result column="GROUP_ID" property="groupId" />
+				<result column="TYPE" property="type" />
+				<result column="SORE" property="sore" />
+			</collection>
+		
+	</resultMap>
+
+	
+	<insert id="insertGroup" parameterType="AdvertisementGroupPO" useGeneratedKeys="true" keyProperty="id">
+		insert into XCR_ADVERTISEMENT_GROUP ( POSITION_CODE,GROUP_NAME,LAST_MODIFY_TIME,IS_ENABLE,ADDR_CODE) 
+		values (#{positionCode},#{groupName},#{lastModifyTime},#{isEnable},#{addrCode})
+	</insert>
+	
+	<insert id="insertChain" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+		insert into XCR_ADVERTISEMENT ( SORE,LAST_MODIFY_TIME,ACTIVITY_URL,PIC_URL,STATE,GROUP_ID,TYPE,REMAIND) 
+		values 
+		<foreach collection="list" item="AdvertisementPO" index="index" separator=",">
+		(
+		#{AdvertisementPO.sore},#{AdvertisementPO.lastModifyTime},#{AdvertisementPO.activityUrl},#{AdvertisementPO.picUrl},#{AdvertisementPO.state},#{AdvertisementPO.groupId},#{AdvertisementPO.type},#{AdvertisementPO.remaind}
+		)
+		</foreach>
+	</insert>
+
+
+	<update id="updateGroup" parameterType="AdvertisementGroupPO">
+    	update XCR_ADVERTISEMENT_GROUP set 
+    	GROUP_NAME=#{groupName}, LAST_MODIFY_TIME=#{lastModifyTime}
+    	where ID=#{id}
+    </update>
+    
+    <update id="updateChain" parameterType="java.util.List">
+    	<foreach collection="list" item="AdvertisementPO" index="index" separator=";">  
+    		update XCR_ADVERTISEMENT set 
+    		ACTIVITY_URL=#{AdvertisementPO.activityUrl},LAST_MODIFY_TIME=#{AdvertisementPO.lastModifyTime},PIC_URL=#{AdvertisementPO.picUrl},REMAIND=#{AdvertisementPO.remaind}
+    		where ID=#{AdvertisementPO.id}
+    	</foreach>
+    </update>
+    
+    <update id="updateGroupState" parameterType="XcAdvertisementUpdatePO">
+    	update XCR_ADVERTISEMENT_GROUP set 
+    	IS_ENABLE=#{state}
+    	where ID=#{id}
+    </update>
+    
+	<select id="findGroup" parameterType="XcAdvertisementQueryPO" resultMap="advertisementGroupMap">
+		select * from XCR_ADVERTISEMENT_GROUP
+		where IS_ENABLE &lt;&gt; 2 and POSITION_CODE=#{type}
+		order by ADDR_CODE
+		limit #{start}, #{length};
+	</select>
+	
+	<select id="findGroupTotal" parameterType="XcAdvertisementQueryPO" resultType="int">
+		select count(*) from XCR_ADVERTISEMENT_GROUP
+		where IS_ENABLE &lt;&gt; 2 and POSITION_CODE=#{type}
+	</select>
+	
+	<select id="findAdverByGroupId" parameterType="integer" resultMap="advertisementMap">
+		select * from XCR_ADVERTISEMENT
+		where GROUP_ID=#{groupId} order by SORE
+	</select>
+	
+	<select id="findPublishAdver" resultMap="supplyAdvertisementMap">
+		SELECT a.ID as aId,a.GROUP_NAME,a.ADDR_CODE,a.LAST_MODIFY_TIME,b.* 
+		from XCR_ADVERTISEMENT_GROUP a
+		left join XCR_ADVERTISEMENT b
+		on a.ID=b.GROUP_ID
+		where 
+		GROUP_ID in(
+									SELECT ID from XCR_ADVERTISEMENT_GROUP 
+									WHERE IS_ENABLE=1 and POSITION_CODE=3
+								)
+		order by GROUP_ID
+	</select>
+	
+	<select id="findMaxCode" resultType="int">
+		select MAX(ADDR_CODE) from XCR_ADVERTISEMENT_GROUP
+	</select>
+	
+	
+
+</mapper>
+

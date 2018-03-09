@@ -1,0 +1,224 @@
+<script type="text/javascript" src="/xcr/uploadify/notRefreshFilesUpload.js">
+</script>
+<style >
+	.form-control-reWrite{
+		width: 85%;
+        display: inline;
+        height: 28px;
+        border-radius: 3px;
+        padding: 2px 5px;
+        margin-left: 15px;
+	}
+</style>
+<div class="table-style" id="missionAdd">
+	<div id="dateSearch" style="background-color: whitesmoke;height: 50px;">
+		<span style="height: 50px;line-height: 50px;"><strong><h4 style="line-height: 50px;margin-left: 10px;">轮播图配置/新建轮播图</h4></strong></span>
+	</div>
+
+	<form class="demoform">
+		<table class="table" style="margin-top: 20px;background-color: whitesmoke;" border="0">
+			<tbody>
+				<input type="hidden" name="totalflag" id="totalflag" value="" />
+				<input type="hidden" name="adverflag" id="adverflag" value="" />
+				<input type="hidden" name="editFlag" id="editFlag" value="" />
+				<tr>
+					<td class="table-style-td">
+						<div style="width:160px;text-align:right"><span style="color:#f00;"></span></div>
+					</td>
+					<td>
+						<input type="hidden" id="advertiseId" class="form-control" type="text" value="" maxlength="20" style="width:40%;" />
+					</td>
+				</tr>
+
+				<tr>
+					<td class="table-style-td">
+						<div style="width:160px;text-align:right">轮播图名称:<span style="color:#f00;">*</span></div>
+					</td>
+					<td>
+						<input id="advertiseName" class="form-control" type="text" value="" maxlength="20" style="width:40%;" placeholder="最多20个字"/>
+					</td>
+				</tr>
+
+				<tr>
+					<td class="table-style-td">
+						<div style="width:160px;text-align:right">图片:<span style="color:#f00;">*</span></div>
+					</td>
+					<td>
+						<div class="uploadImg_picker">
+							<table style="text-align:left;">
+								<tr>
+									<td><input id="Button3" type="button" value="选择图片" class="btn btn-primary" /></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>
+										<div id="fileList" style="float: right;margin-right: 1040px;margin-top: -39px;"></div>
+										<div class="icon" style="float: left;margin-top: -35px;"></div>
+									</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td style="font-size:10px;"><span style="margin-left:70px;">建议图片尺寸1080*317像素，比例为75：22</span><br /><span style="margin-left: 34px;">仅支持jpg、png、bmp，大小不超过5MB</span></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+				<div class="modal fade" id="serverFail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="myModalLabel">消息</h4>
+							</div>
+							<div class="modal-body">
+								<div style="width: 100%">
+									<h5 style="text-align: center">服务器连接失败...</h5></div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" id="imgTag" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="myModalLabel">消息</h4>
+							</div>
+							<div class="modal-body">
+								<div style="width: 100%">
+									<h5 style="text-align: center">图标不能为空</h5></div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" id="imgdataJudge2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="myModalLabel">消息</h4>
+							</div>
+							<div class="modal-body">
+								<div style="width: 100%">
+									<h5 style="text-align: center">图片太大，不能超过2MB</h5></div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<tr class="advertiseUrlClass">
+					<td class="table-style-td">
+						<div style="width:160px;text-align:right">链接:<span style="color:#f00;"></span></div>
+					</td>
+					<td>
+						<input id="advertiseUrl" class="form-control" type="text" value="" style="width:40%;" placeholder="url"/>
+					</td>
+				</tr>
+				<tr border="0">
+					<td class="table-style-td">
+						<div style="width:160px;text-align:right">广告组:<span style="color:#f00;">*</span></div>
+					</td>
+					<td>
+						<table style="width: 610px;">
+							<tr>
+								<td>
+									<select class="form-control" id="GroupNameList" style="width:562px;" onchange="selectGroupInfo()">
+									</select>
+								</td>
+								<td>
+									<a href="javascript:ceshi();" style="font-size: 10px;">新建组</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label style="margin-top:5px;color:#dd635d;font-size:12px;">一个广告组最多包含五个轮播图</label>
+								</td>
+								<td>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="table-style-td">
+						<div style="width:160px;text-align:right">位置:<span style="color:#f00;">*</span></div>
+					</td>
+					<td>
+						<input id="XcrAdverGroup" class="form-control" type="text" value="" maxlength="20" style="width:40%;" disabled="disabled" />
+					</td>
+				</tr>
+				<div class="modal" id="groupCre">
+					<div class="modal-dialog" style="width: 20%;padding-top:260px;">
+						<div class="modal-content" style="border-radius: 10px;">
+							<div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">新建广告组</h4>
+                            </div>
+							<div class="modal-body" style="padding:4%;font-size:14px;">
+								<form id="groupCreate">
+									<div style="padding:1%;">
+										<span>位置</span>
+										<select class="form-control form-control-reWrite" id="position">
+											<option value="">-请选择-</option>
+											<option value="100">首页</option>
+										</select>
+									</div>
+									<div style="padding:1%">
+										<span>组名</span>
+										<input id="advertiseGroupName" class="form-control form-control-reWrite" type="text" value="" maxlength="20"/></div>
+									<div class="modal-footer" style="padding: 6px 14px;">
+										<button id="saveTask" type="button" class="btn btn-primary"  style="padding:6px 14px;" onclick="saveAdvertiseGroup()">保存
+										</button>
+										<input type="hidden" name="flag" id="flag" value="" />
+										<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<tr>
+					<td></td>
+					<td>
+						<button id="saveTask" type="button" class="btn btn-primary"  style="padding:6px 28px;" onclick="saveAdvertise()">保存
+						</button>
+						<button id="cancleTask" type="button" class="btn btn-primary" style="padding:6px 28px;" onclick="cancleAdvertise()">取消
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<div class="modal fade" id="imgFileError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">消息</h4>
+                </div>
+                <div class="modal-body">
+                    <div style="width: 100%"><h5 style="text-align: center">上传图片失败，请重新上传!</h5></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/xcr/js/advertiseList.js"></script>
+<script type="text/javascript" src="/xcr/js/advertisementAdd.js"></script>

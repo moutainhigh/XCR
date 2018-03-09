@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/xcr/js/mission.js"></script>
+    <style type="text/css">
+        .title {
+            padding: 5px 10px;
+            color: #000;
+            width: 160px;
+            text-align: right;
+        }
+
+        .tab {
+            width: 100%;
+        }
+
+        .tab td {
+            vertical-align: top;
+            padding: 8px 5px;
+        }
+
+        .tab td label {
+            line-height: 34px;
+        }
+
+        .tab td .plus {
+            line-height: 34px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .tab td .plus:hover {
+            color: #069;
+        }
+    </style>
+</head>
+<body>
+<div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">操作成功</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="fail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">操作失败</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="judgeRelMisNum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">关联任务至少应该有两个</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="add-task" style="width: 100%;height: 100%">
+    <div id="dateSearch" style="background-color: gainsboro;height: 50px;border: 1px;">
+        <span style="height: 50px;line-height: 50px;"><strong><h4 style="line-height: 50px;margin-left: 10px;"><i
+                class="fa fa-pencil"></i> <strong>创建任务</strong></h4></strong></span>
+    </div>
+    <div style="border: 1px solid gainsboro;background-color: whitesmoke">
+        <table class="tab" style="margin-top: 20px;background-color: whitesmoke">
+            <tr>
+                <td class="title">
+                    <div style="width:160px;"><strong>任务名称:</strong><span style="color:#f00;">*</span></div>
+                </td>
+                <td style="width: 50%;float: left">
+                    <div class="col-xs-11">
+                        <div class="row">
+                            <div class="form-group ">
+                                <input id="relMissionId" type="hidden" value=""/>
+                                <input type="text" class="form-control" id="relMissionName" placeholder="最多输入16个字符">
+                                <div id="relMissionNameWrongTip"
+                                     style="color:red;float: right;margin-top: -25px;margin-right: -150px;font-size: 12px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table class="tab task-list-body">
+                        <tr>
+                            <td class="title">
+                                <div style="width:160px;"><strong>任务关联:</strong><span style="color:#f00;">*</span></div>
+                            </td>
+                            <td style="width: 50%;float: left">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <input id="relMissionAllId" value="" type="hidden"/>
+                                                    <input id="relatedMissionIdfirst" type="hidden"
+                                                           class="relatedMissionId"/>
+                                                    <select name="" class="form-control relMissionName"
+                                                            id="relatedMissionfirst">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3 col-xs-offset-1">
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <select name="" class="form-control relMissionLevel"
+                                                            id="relatedLevelfirst">
+                                                        <option value="">请选择</option>
+                                                        <option value="1">1级</option>
+                                                        <option value="2">2级</option>
+                                                        <option value="3">3级</option>
+                                                        <option value="4">4级</option>
+                                                        <option value="5">5级</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-1" style="padding-top:8px;">
+                                            <div class="row">
+                                                <div class="plus add"><i class="fa fa-plus"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <div style="width:160px;"><strong>任务详情说明:</strong><span style="color:#f00;">*</span></div>
+                </td>
+                <td style="width: 50%;float: left">
+                    <div class="col-xs-11">
+                        <div class="row">
+                            <div class="form-group">
+                            <textarea class="form-control" rows="13" id="relMissionDetail"
+                                      placeholder="最多输入60个字符"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr id="isPublish">
+                <td class="title"></td>
+                <td>
+                    <div class="form-group">
+                        <button id="surePub" type="button" class="btn btn-primary"
+                                style="width: 100px;height: 35px;line-height: 35px;text-align: center;padding: 0;margin-right:70px;margin-left:80px"
+                                onclick="saveRelMission('publish');">确认发布
+                        </button>
+                        <button id="saveRel" type="button" class="btn btn-primary"
+                                style="width: 100px;height: 35px;line-height: 35px;text-align: center;padding: 0;"
+                                style="margin-left:120px;padding:6px 35px;" onclick="saveRelMission('save');">保存
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" src="/xcr/js/missionRelAdd.js"></script>
+</body>
+</html>

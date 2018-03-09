@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport"
+		content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" />
+		<meta name="screen-orientation" content="portrait">
+		<meta name="x5-orientation" content="portrait">
+		<script src="../xcr/plugins/jquery.js" type="text/javascript"></script>
+		<script src="../xcr/js/annualCommon.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="../xcr/plugins/slider/slider.css">
+		<link rel="stylesheet" href="../xcr/plugins/slider/zzsc.css">
+		<style type="text/css">
+			/*my*/
+			.myImg {
+				width: 100%;
+				height: auto;
+			}
+			
+			.yaxc-box {
+				max-width: 750px;
+				width: 100%;
+				margin: 0 auto;
+			}
+			
+			.yaxc-box img {
+				display: block;
+				width: 100%;
+			}
+			
+			.wrap .footer{
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				height: 10%;
+				width: 100%;
+			    -webkit-animation:resize 1.2s infinite linear ;
+			}
+			.wrap .footer img{
+				position: absolute;
+			    bottom: 10px;
+			    left: 50%;
+			    margin-left: -11px;
+			}
+			@-webkit-keyframes resize{
+			        0% {
+			        	opacity: 0;
+			          -webkit-transform:translateY(-20px);}
+			        50% {
+			        	opacity: 0.5;
+			          -webkit-transform:translateY(-10px);}
+			        100% {
+			        	opacity: 1;
+			          -webkit-transform:translateY(0px);
+			        }
+			     }
+		</style>
+	</head>
+<body class="bodybox">
+	<script>
+		window.debug = true;
+	</script>
+	<div class="wrap" id="wrap">
+		<div class="item item-1">
+			<div class="box">
+				<div class="yaxc-box ">
+					<img src="../xcr/img/franchiseeEnroll/01_01.gif" class="myImg" />
+				</div>
+				<div class="yaxc-box ">
+					<img src="../xcr/img/franchiseeEnroll/01_02.gif" class="myImg" 
+					onclick="joinEnroll()"/>
+				</div>
+				<div class="yaxc-box ">
+					<img src="../xcr/img/franchiseeEnroll/01_03.gif" class="myImg" />
+				</div>
+				<div class="yaxc-box ">
+					<img src="../xcr/img/franchiseeEnroll/01_04.gif" class="myImg" 
+					onclick="appDownload()"/>
+				</div>
+			</div>
+			<div class="footer"><img src="../xcr/img/franchiseeEnroll/next-page.png" alt=""></div>
+		</div>
+		<div class="item item-2">
+			<div class="box">
+				<img src="../xcr/img/franchiseeEnroll/02.jpg" class="myImg" />
+			</div>
+			<div class="footer"><img src="../xcr/img/franchiseeEnroll/next-page-2.png" alt=""></div>
+		</div>
+		<div class="item item-3">
+			<div class="box">
+				<img src="../xcr/img/franchiseeEnroll/03.jpg" class="myImg" />
+			</div>
+			<div class="footer"><img src="../xcr/img/franchiseeEnroll/next-page-2.png" alt=""></div>
+		</div>
+		<div class="item item-4">
+			<div class="box">
+				<img src="../xcr/img/franchiseeEnroll/04.jpg" class="myImg" />
+			</div>
+			<div class="footer"><img src="../xcr/img/franchiseeEnroll/next-page-2.png" alt=""></div>
+		</div>
+		<div class="item item-5">
+			<div class="box">
+				<img src="../xcr/img/franchiseeEnroll/05.jpg" class="myImg" />
+			</div>
+			<div class="footer"><img src="../xcr/img/franchiseeEnroll/next-page-2.png" alt=""></div>
+		</div>
+		<div class="item item-6">
+			<div class="box">
+				<img src="../xcr/img/franchiseeEnroll/06.jpg" class="myImg" />
+			</div>
+			<div class="footer"><img src="../xcr/img/franchiseeEnroll/next-page-2.png" alt=""></div>
+		</div>
+		<div class="item item-7">
+			<div class="box">
+				<div class="yaxc-box ">
+					<img src="../xcr/img/franchiseeEnroll/07_01.gif" class="myImg" />
+				</div>
+				<div class="yaxc-box ">
+					<img src="../xcr/img/franchiseeEnroll/07_02.gif" class="myImg"
+						id="join" onclick="joinEnroll()"/>
+				</div>
+				<div class="yaxc-box ">
+					<img src="../xcr/img/franchiseeEnroll/07_03.gif" class="myImg" />
+				</div>
+				<div class="yaxc-box ">
+					<img src="../xcr/img/franchiseeEnroll/07_04.gif" class="myImg"
+						id="appLoad"  onclick="appDownload()"/>
+				</div>
+				<div class="yaxc-box ">
+					<img src="../xcr/img/franchiseeEnroll/07_05.gif" class="myImg" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 加载提示 _S -->
+	<div class="global">
+		<div class="slider">
+			<span class="sprite_global"></span>
+		</div>
+	</div>
+	<div class="mod_loading" id="loading" style="display: none">
+		<div class="content">
+			<div class="progress">
+				<span id="progress_bg" style="width: 0;"></span>
+			</div>
+			<p>Loading...</p>
+		</div>
+	</div>
+	<!-- 加载提示 _E -->
+	<audio style="height: 0; width: 0; display: none"></audio>
+	<!-- 播放状态 _S -->
+	<!-- btn_pause为暂停状态 -->
+	<div class="sprite_global btn_play" id="J_btnMusic"
+		style="display: none">
+		<i class="sprite_global"></i>
+	</div>
+	<!-- 播放状态 _E -->
+	<!-- 滑块 _E -->
+	<div class="m_share" style="display: none;" id="shareLayer">
+		<!--这里的箭头指向要做判断，不同的平台指向不同-->
+		<!--箭头向上-->
+		<img id="shareimgup"
+			src="http://imgcache.qq.com/mediastyle/mobile/event/20140318_ceremony_live/img/share_top.png?max_age=2592000"
+			class="top" alt="点击上方分享按钮分享" />
+		<!--箭头向下-->
+		<img id="shareimgdown"
+			src="http://imgcache.qq.com/mediastyle/mobile/event/20140318_ceremony_live/img/share_bottom.png?max_age=2592000"
+			class="bottom" alt="点击下方分享按钮分享" style="display: none;" />
+	</div>
+
+	<script type="text/javascript" src="../xcr/plugins/slider/iSlider.js"></script>
+	<script type="text/javascript" src="../xcr/js/publicity/publicity.js"></script>
+</body>
+</html>

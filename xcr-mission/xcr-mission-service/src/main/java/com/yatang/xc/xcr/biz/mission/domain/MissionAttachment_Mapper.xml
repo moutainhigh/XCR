@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yatang.xc.xcr.biz.mission.dao.MissionAttachmentDAO" >
+  <resultMap id="BaseResultMap" type="com.yatang.xc.xcr.biz.mission.domain.MissionAttachmentPO" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="ATTACHMENT_CODE" property="attachmentCode" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="MISSION_INFO_ID" property="missionInfoId" jdbcType="VARCHAR" />
+    <result column="MISSION_EXECUTE_ID" property="missionExecuteId" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, DESCRIPTION, ATTACHMENT_CODE, TYPE, MISSION_INFO_ID, MISSION_EXECUTE_ID, 
+    URL, SORT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from XCR_MISSION_ATTACHMENT
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+ 
+  <select id="queryAttachmentByMissionId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from XCR_MISSION_ATTACHMENT
+    where MISSION_INFO_ID = #{id,jdbcType=BIGINT}
+  </select>  
+
+  <select id="queryAttachmentByExecuteId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from XCR_MISSION_ATTACHMENT
+    where MISSION_EXECUTE_ID = #{id,jdbcType=BIGINT}
+  </select>    
+
+  <select id="queryAttachmentHistoryByExecuteId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from XCR_MISSION_ATTACHMENT_HISTORY
+    where MISSION_EXECUTE_ID = #{id,jdbcType=BIGINT}
+  </select>      
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from XCR_MISSION_ATTACHMENT
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionAttachmentPO" useGeneratedKeys="true" keyProperty="id">
+    insert into XCR_MISSION_ATTACHMENT ( NAME, DESCRIPTION, 
+      ATTACHMENT_CODE, TYPE, MISSION_INFO_ID, 
+      MISSION_EXECUTE_ID, URL, SORT
+      )
+    values (#{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{attachmentCode,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{missionInfoId,jdbcType=VARCHAR}, 
+      #{missionExecuteId,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertToHistory" parameterType="java.lang.Long" >
+  insert into XCR_MISSION_ATTACHMENT_HISTORY (<include refid="Base_Column_List" />)
+	select 
+	<include refid="Base_Column_List" />
+	from XCR_MISSION_ATTACHMENT 
+	where ID = #{id,jdbcType=BIGINT} 
+	and ID NOT IN (SELECT ID FROM XCR_MISSION_ATTACHMENT_HISTORY WHERE ID = #{id,jdbcType=BIGINT})
+  </insert>  
+  
+
+  <insert id="backExpireAttachment" parameterType="String">
+  insert into XCR_MISSION_ATTACHMENT_HISTORY (<include refid="Base_Column_List" />)
+	select 
+	<include refid="Base_Column_List" />
+	from XCR_MISSION_ATTACHMENT 
+	where MISSION_EXECUTE_ID in 
+	(SELECT id from XCR_MISSION_EXECUTE_INFO where STATUS =  #{status,jdbcType=VARCHAR})
+	and id not in (select id from XCR_MISSION_ATTACHMENT_HISTORY where MISSION_EXECUTE_ID in 
+	(SELECT id from XCR_MISSION_EXECUTE_INFO where STATUS =  #{status,jdbcType=VARCHAR}))
+  </insert>  
+  
+  <delete id="deleteExpireAttachment" parameterType="String">
+    delete from XCR_MISSION_ATTACHMENT
+ 	where MISSION_EXECUTE_ID in 
+	(SELECT id from XCR_MISSION_EXECUTE_INFO where STATUS =  #{status,jdbcType=VARCHAR})
+  </delete>
+  
+    
+  <update id="updateByPrimaryKeySelective" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionAttachmentPO" >
+    update XCR_MISSION_ATTACHMENT
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentCode != null" >
+        ATTACHMENT_CODE = #{attachmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="missionInfoId != null" >
+        MISSION_INFO_ID = #{missionInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="missionExecuteId != null" >
+        MISSION_EXECUTE_ID = #{missionExecuteId,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionAttachmentPO" >
+    update XCR_MISSION_ATTACHMENT
+    set NAME = #{name,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      ATTACHMENT_CODE = #{attachmentCode,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      MISSION_INFO_ID = #{missionInfoId,jdbcType=VARCHAR},
+      MISSION_EXECUTE_ID = #{missionExecuteId,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 注解扫描器 -->
+    <context:component-scan base-package="com.yatang.xc.xcr.biz.message"/>
+    <!-- 引入client工程中定义的 dubbo consumer配置 -->
+    <import resource="classpath*:com/yatang/xc/mbd/biz/org/dubboservice/dubbo-consumer.xml"/>
+    <import resource="classpath*:com/yatang/xc/xcr/biz/core/dubboservice/dubbo-consumer.xml"/>
+
+    <!-- load properties file -->
+    <!--<context:property-placeholder ignore-unresolvable="true" location="classpath*:env/dev/*.properties"/>-->
+
+    <!-- mq-producer -->
+    <bean id="producer" class="com.yatang.xc.xcr.biz.message.mq.producer.Producer" init-method="init"
+          destroy-method="destroy">
+        <property name="producerGroup" value="${mq.producerGroup.name}"/>
+        <property name="namesrvAddr" value="${mq.rocketmq.url}"/>
+        <property name="instanceName" value="${mq.instance.name}"/>
+    </bean>
+
+    <!-- mq-message -->
+    <bean id="message" class="com.alibaba.rocketmq.common.message.Message" scope="prototype">
+        <property name="topic" value="${mq.consumer.topic}"/>
+        <property name="tags" value="${mq.consumer.tags}"/>
+        <property name="keys" value="${mq.consumer.keys}"/>
+    </bean>
+
+    <!-- 限速参数配置 -->
+    <bean id="rateLimit" class="com.yatang.xc.xcr.biz.message.dto.RateLimit" scope="prototype">
+        <property name="type" value="${rate.type.push}"/>
+        <property name="unitTime" value="${rate.unit.time}"/>
+        <property name="countLimit" value="${rate.count.limit}"/>
+    </bean>
+
+    <!-- 数据中心producer -->
+    <bean id="dcProducer" class="com.yatang.xc.xcr.biz.message.mq.producer.DcProducer" init-method="init"
+          destroy-method="destroy">
+        <property name="producerGroup" value="${mq.dc.producerGroup.name}"/>
+        <property name="namesrvAddr" value="${mq.dc.rocketmq.url}"/>
+        <property name="instanceName" value="${mq.dc.instance.name}"/>
+        <property name="open" value="${mq.dc.open}"/>
+    </bean>
+
+    <!-- 数据中心mq-message -->
+    <bean id="dcMessage" class="com.alibaba.rocketmq.common.message.Message" scope="prototype">
+        <property name="topic" value="${mq.dc.consumer.topic}"/>
+        <property name="tags" value="${mq.dc.consumer.tags}"/>
+    </bean>
+
+    <bean id="xxlJobExecutor" class="com.xxl.job.core.executor.XxlJobExecutor" init-method="start"
+          destroy-method="destroy">
+        <!-- 执行器AppName[选填]，为空则关闭自动注册 -->
+        <property name="appName" value="xcr-message-schedule-job"/>
+        <!-- 执行器端口号[必须] -->
+        <property name="port" value="${xxl.job.executor.port}"/>
+        <!-- 执行器注册中心地址[选填]，为空则关闭自动注册 -->
+        <property name="adminAddresses" value="${xxl.job.admin.addresses}"/>
+        <!-- 执行器日志路径[必填] -->
+        <property name="logPath" value="${xxl.job.executor.logpath}"/>
+    </bean>
+
+</beans>

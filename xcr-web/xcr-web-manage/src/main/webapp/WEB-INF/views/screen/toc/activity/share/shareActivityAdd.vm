@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="/xcr/css/build.css">
+    <link rel="stylesheet" href="/xcr/plugins/jedate/skin/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="/xcr/plugins/window/window.css">
+    <link type="text/css" rel="stylesheet" href="/xcr/css/fileinput.css"/>
+    <script type="text/javascript" src="/xcr/scripts/fileinput.js"></script>
+    <script type="text/javascript" src="/xcr/scripts/fileinput_locale_zh.js"></script>
+    <script type="text/javascript" src="/xcr/plugins/jedate/jedate.js"></script>
+    <script type="text/javascript" src="/xcr/plugins/window/window.js"></script>
+    <script type="text/javascript" src="/xcr/js/toc/ToC_Common2.js"></script>
+    <style type="text/css">
+        .selectDateOnly {
+            width: 170px;
+            float: left;
+            border: 1px solid #d2d6de;
+            padding-left: 10px;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+        .jedatebox {
+            z-index: 99999999 !important;
+        }
+
+        .file-preview {
+            width: 40%;
+        }
+
+        .input-group {
+            width: 40%;
+        }
+
+        /*.progress-bar {*/
+        /*width: 40% !important;*/
+        /*}*/
+
+        .kv-upload-progress {
+            width: 40% !important;
+        }
+    </style>
+</head>
+<body class="gray-bg" style="overflow:auto ! important;">
+<div class="container" style="width: 100%;background-color: whitesmoke;min-width: 1320px;">
+    <div style="margin-top: 10px;width: 100%;">
+        <div style="width: 100%;height: 10px;"></div>
+        <div style="width: 100%;height: 50px;margin-top: 10px;">
+            <h5>
+                &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;<strong>活动管理</strong>
+                &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;<a
+                    href="javascript:loadHtml('/xcr/toc/share/list.htm')"><strong>分享活动</strong></a>
+                &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;<a href="#"><strong>新增分享活动</strong></a></h5>
+        </div>
+        <div class="tab-content" style="margin-top: 5px;width: 99%;margin: 0 auto">
+            <div id="detailTable" style="background-color: white;">
+                <div style="width: 100%;margin: 0 auto;">
+                    <div style="width: 80%;margin-left: 1%">
+
+                        <!------------------- 基本信息 ------------------->
+                        <div style="height: 20px;margin-top: 5px;">
+                        </div>
+                        <h4><i class="fa fa-edit" style="color: #00a0e9"></i> <strong>编辑/查看</strong>
+                        </h4>
+                        <hr/>
+                        <table style="width: 100%;margin-left: 20%" cellspacing="0" cellpadding="0">
+                            <tbody style="margin-top: 30px;" id="discountList">
+                            <tr style="height: 60px;">
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>活动名称:</strong><span style="color:#f00;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 40%;">
+                                    <input id="shareName" name="shareName" value="" maxlength="50"
+                                           style="height: 30px;width: 30%"/><span style="color:#f00;margin-left: 10px;">50个字符</span>
+                                </td>
+                            </tr>
+                            <tr style="height: 60px;">
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>分享标题:</strong><span style="color:#f00;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 35%;">
+                                    <input id="shareTitle" name="shareTitle" value="" maxlength="50"
+                                           style="height: 30px;width: 30%"/><span style="color:#f00;margin-left: 10px;">50个字符</span>
+                                </td>
+                            </tr>
+                            <tr style="height: 60px;">
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>分享内容:</strong><span style="color:#f00;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td>
+                                    <textarea id="shareContent" name="shareContent" value="" maxlength="200"
+                                              style="height: 150px;width: 500px;"/><span
+                                        style="color:#f00;margin-left: 10px;">200个字符</span>
+                                </td>
+                            </tr>
+                            <tr style="height: 60px;">
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>分享标题图片:</strong><span style="color:#f00;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 300px;">
+                                    <input id="sharePic" name="file" type="file"
+                                           value=""/>
+                                    <input id="sharePicValue" name="sharePicValue" type="text" value=""
+                                           style="display: none"/>
+                                </td>
+                            </tr>
+                            <tr style="height: 60px;">
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>分享类型:</strong><span style="color:#f00;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 35%;">
+                                    <select class="form-control" id="shareType" style="width:20%;">
+                                        <option value="1" selected="selected">订单分享</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr style="height: 60px;">
+                                <td style="width: 8%;text-align: right;color:black">
+                                    <strong>分享一次最多领奖人数:</strong><span style="color:#f00;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 35%;">
+                                    <input id="sharePrizeNum" name="sharePrizeNum" type="number" value=""
+                                           style="height: 30px;width: 10%"/>人
+                                </td>
+                            </tr>
+                            <tr style="height: 60px;">
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>有效时间:</strong><span style="color:#f00;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 35%;">
+                                    <input class="datainp selectDateOnly wicon" id="activityStartDay" type="text"
+                                           placeholder="请选择" readonly>
+                                    <label style="float: left;margin: 5px;"> 至 </label>
+                                    <input class="datainp selectDateOnly wicon" id="activityEndDay" type="text"
+                                           placeholder="请选择">
+                                </td>
+                            </tr>
+                            <tr style="height: 60px;">
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>配置优惠券:</strong><span style="color:#f00;"> </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 35%;">
+                                    <table>
+                                        <tbody>
+                                        <tr style="margin-top: 10px;">
+                                            <td>
+                                                <div style="display:inline-block;">
+                                                    <select class="form-control selectList" id="discountId"
+                                                            name="discountId" onclick="selectList(this.value);"
+                                                            style="width: 200px;">
+                                                    </select>
+                                                </div>
+                                                <div style="display:inline-block">
+                                                    <input type="number" id="discountNum" name="discountNum"
+                                                           style="height: 30px;width: 50%;margin-left: 20px;"/>
+                                                </div>
+                                                <div class="addDiscount" style="display:inline-block">
+                                                    <i class="fa fa-plus" style="color: green"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr id="discountDown" style="display: none;">
+                                <td style="width: 5%;text-align: right;color:black">
+                                </td>
+                                <td style="width: 35%;">
+                                    <table style="margin-top: 10px;">
+                                        <tbody>
+                                        <tr style="margin-top: 10px;">
+                                            <td>
+                                                <div style="display:inline-block;">
+                                                    <select class="form-control selectList" id="discountId"
+                                                            name="discountId" onclick="selectList(this.value);"
+                                                            style="width: 200px;">
+                                                    </select>
+                                                </div>
+                                                <div style="display:inline-block">
+                                                    <input type="number" id="discountNum" name="discountNum"
+                                                           style="height: 30px;width: 50%;margin-left: 20px;"/>
+                                                </div>
+                                                <div class="removeDiscount" style="display:inline-block">
+                                                    <i class="fa fa-remove" style="color: red"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table style="margin-left: 30%;margin-top: 50px;">
+                            <tbody>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button id="mR" class="btn btn-primary" type="button"
+                                            style="margin-left: 40px;width: 200px;"
+                                            onclick="saveActivity()">确认
+                                    </button>
+                                    <button id="messageSave" class="btn btn-primary" type="button"
+                                            style="margin-left: 150px;width: 200px;" onclick="cancel()">
+                                        取消
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div style="height: 50px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="nameNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">名称不能为空！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="shareTitleNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">分享标题不能为空！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="sharePicValueNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">请上传分享图片！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="timeNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">有效时间不能为空,请检查！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="timeError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">开始时间不能大于结束时间！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="startTimeError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">开始时间不能小于当前时间！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">保存成功！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="fail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">保存失败！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="shareContentNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">活动内容不能为空！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="discountTimeError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">请先选择活动时间！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="sharePrizeNumError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">请输入正确的领奖人数！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="imgRemoveFast" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">上传新文件前请先删除原文件！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var startDay_temp;
+    var endDay_temp;
+    function selectList(value) {
+        console.log("in selectList ....value:" + value)
+        var activityStartDay = $("#activityStartDay").val();
+        var activityEndDay = $("#activityEndDay").val();
+
+        if (startDay_temp == activityStartDay && endDay_temp == activityEndDay) {
+            if (value != null && value != "") {
+                return;
+            }
+        }
+        startDay_temp = activityStartDay;
+        endDay_temp = activityEndDay;
+        if (activityStartDay == null || activityStartDay == "" || activityEndDay == null || activityEndDay == "") {
+            $("#discountTimeError").modal("toggle");
+            return false;
+        }
+        var param = {
+            "activityStartDay": activityStartDay,
+            "activityEndDay": activityEndDay
+        };
+        var temp_html = "";
+        $.ajax({
+            url: "/xcr/toc/share/getPushCouponList.htm",
+            type: "POST",
+            data: JSON.stringify(param),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                console.log("data:" + data)
+                $.each(data, function (i, pushCoupon) {
+                    console.log("pushCoupon.couponId:" + pushCoupon.couponId + "  pushCoupon.couponName:" + pushCoupon.couponName)
+                    temp_html += "<option value='" + pushCoupon.couponId + "'>" + pushCoupon.couponName + "</option>";
+                });
+                $(".selectList").html(temp_html);
+            }
+        });
+    }
+
+    $("#sharePic").fileinput({
+        language: 'zh',
+        uploadUrl: '/xcr/fileupload/default.htm',
+        maxFilesNum: 1,
+        maxFileCount: 1,
+        autoReplace: true,
+        showUpload: false, //是否显示上传按钮
+        showRemove: true, //显示移除按钮
+        showPreview: true, //是否显示预览
+        showCaption: true,//是否显示标题
+        dropZoneEnabled: false,//是否显示拖拽区域
+        enctype: 'multipart/form-data',
+//        initialPreview: "<img src='http://sit.image.com/group1/M00/01/4F/rB4KPFmvqwaASBKwAAdOKOy3QKc760.jpg' class='file-preview-image'/>",
+//        initialPreviewCount: 1,
+//        initialPreviewShowRemove: true,
+        validateInitialCount: true,
+        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+        allowedFileExtensions: ['jpg', 'png', 'gif'],
+        layoutTemplates: {
+            actionDelete: '', //去除上传预览的缩略图中的删除图标
+            actionUpload: '',//去除上传预览缩略图中的上传图片；
+            actionZoom: ''   //去除上传预览缩略图中的查看详情预览的缩略图标。
+        },
+    }).on("filebatchselected", function (event, files) { //自动上传
+        $(this).fileinput("upload");
+    }).on("fileuploaded", function (event, data) { //回调
+        console.log("data.response:" + data.response.data)
+        var imgServerUrl = data.response.data;
+        $("#sharePicValue").val(imgServerUrl);
+    });
+
+    jeDate({
+        dateCell: "#activityStartDay",
+        format: "YYYY-MM-DD hh:mm:ss",
+        isinitVal: false,
+        isTime: true, //isClear:false,
+        minDate: "2010-01-01 00:00:00",
+        okfun: function (val) {
+        }
+    })
+    jeDate({
+        dateCell: "#activityEndDay",
+        format: "YYYY-MM-DD hh:mm:ss",
+        isinitVal: false,
+        isTime: true, //isClear:false,
+        minDate: "2010-01-01 00:00:00",
+        okfun: function (val) {
+        }
+    })
+
+    $(".addDiscount").click(function () {
+        var html = '';
+        html += '<tr style="height: 60px;">';
+        html += $("#discountDown").html();
+        html += '</tr>';
+        var a = $("#discountList").append(html);
+        a.find('.removeDiscount').on('click', function () {
+            $(this).parent().parent().parent().parent().parent().parent().remove();
+        });
+    });
+
+    $(".btn-file").click(function () {
+        console.log("开始文件上传 ...")
+        var filePreview = $(".file-preview-image")[0];
+        console.log("filePreview:" + filePreview)
+        var url = "";
+        if (filePreview != null && filePreview != "") {
+            url = filePreview.src;
+        }
+        console.log("url:" + url)
+        if (url != null && url != "") {
+            $("#imgRemoveFast").modal("toggle");
+            return false;
+        }
+    });
+
+    //确认发送
+    function saveActivity() {
+        console.log("in saveActivity ...");
+
+        var shareName = $("#shareName").val();
+        var shareTitle = $("#shareTitle").val();
+        var shareContent = $("#shareContent").val();
+        var sharePicValue = $("#sharePicValue").val();
+        var shareType = $("#shareType option:selected").val();
+        var sharePrizeNum = $("#sharePrizeNum").val();
+        var activityStartDay = $("#activityStartDay").val();
+        var activityEndDay = $("#activityEndDay").val();
+        var discountIds = document.getElementsByName('discountId');
+        var discountNums = document.getElementsByName('discountNum');
+
+        var discountList = [];
+        for (var i = 0; i < discountIds.length; i++) {
+            var discount = {};
+            if (discountIds[i].value != null && discountIds[i].value != "" && discountNums[i].value != null && discountNums[i].value != "") {
+                discount.discountId = discountIds[i].value;
+                discount.discountNum = discountNums[i].value;
+                discountList.push(discount);
+            }
+        }
+
+        var param = {
+            "shareName": shareName,
+            "shareTitle": shareTitle,
+            "shareContent": shareContent,
+            "sharePicValue": sharePicValue,
+            "shareType": shareType,
+            "sharePrizeNum": sharePrizeNum,
+            "activityStartDay": activityStartDay,
+            "activityEndDay": activityEndDay,
+            "discountList": discountList
+        };
+
+        //校验
+        if (shareName == null || shareName == "") {
+            $("#nameNotNull").modal("toggle");
+            return false;
+        }
+        if (shareTitle == null || shareTitle == "") {
+            $("#shareTitleNotNull").modal("toggle");
+            return false;
+        }
+        if (shareContent == null || shareContent == "") {
+            $("#shareContentNotNull").modal("toggle");
+            return false;
+        }
+        if (sharePicValue == null || sharePicValue == "") {
+            $("#sharePicValueNotNull").modal("toggle");
+            return false;
+        }
+
+        if (sharePrizeNum == null || sharePrizeNum == "" || sharePrizeNum < 0) {
+            $("#sharePrizeNumError").modal("toggle");
+            return false;
+        }
+        if (activityStartDay == null || activityStartDay == "" || activityEndDay == null || activityEndDay == "") {
+            $("#timeNotNull").modal("toggle");
+            return false;
+        }
+        if (new Date(activityStartDay).getTime() > new Date(activityEndDay).getTime()) {
+            $("#timeError").modal("toggle");
+            return false;
+        }
+        if (new Date(activityStartDay).getTime() < new Date().getTime()) {
+            $("#startTimeError").modal("toggle");
+            return false;
+        }
+
+        console.log("param:" + JSON.stringify(param));
+        win.confirm(' 保存确认', '确认保存？', function (r) {
+            if (r === true) {
+                $.ajax({
+                    url: "/xcr/toc/share/save.htm",
+                    type: "POST",
+                    data: JSON.stringify(param),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        if (data) {
+                            $("#success").modal("toggle");
+                            $('#success').on('hidden.bs.modal', function () {
+                                javascript:loadHtml('/xcr/toc/share/list.htm');
+                            })
+                        } else {
+                            $("#fail").modal("toggle");
+                        }
+                    }
+                });
+            }
+        })
+    }
+    //取消返回
+    function cancel() {
+        javascript:loadHtml('/xcr/toc/share/list.htm');
+    }
+
+
+    //    //正则校验title
+    //    function checkTitle(s) {
+    //        var regu = /^[\u4e00-\u9fa5]*$/;
+    //        var re = new RegExp(regu);
+    //        if (re.test(s)) {
+    //            return true;
+    //        } else {
+    //            return false;
+    //        }
+    //    }
+
+</script>
+</body>
+</html>

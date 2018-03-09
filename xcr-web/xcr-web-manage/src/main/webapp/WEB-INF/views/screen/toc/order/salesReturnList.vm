@@ -1,0 +1,142 @@
+<div id="loginLogTab" class="tab-pane">
+    <div style="width: 100%;margin: 0 auto;">
+        <table style="margin-top: 20px;width: 100%;height:120px;background-color: whitesmoke;margin: 0 auto;"
+               border="0">
+            <tbody style="margin-top: 30px;">
+            <tr style="margin-top: 20px;">
+                <td style="width: 20px;"></td>
+                <td style="width: 70px;">
+                    <div style="margin-top: 5px;">退货状态:</div>
+                </td>
+                <td style="width: 150px;">
+                    <select class="form-control" id="cancelState" style="width:80%;">
+                        <option value="0">全部状态</option>
+                        <option value="201">待审核</option>
+                        <option value="202">待退款</option>
+                        <option value="203">已完成</option>
+                        <option value="204">已拒绝</option>
+                        <option value="205">已取消</option>
+                        <option value="206">退款失败</option>
+                    </select>
+                </td>
+                <td style="width: 70px;">
+                    <div style="margin-top: 5px;">支付渠道:</div>
+                </td>
+                <td style="width: 150px;">
+                    <select class="form-control" id="payWay" name="payWay" style="width:80%;">
+                        <option value="0">全部</option>
+                        <option value="11">微信</option>
+                        <option value="10">支付宝</option>
+                    </select>
+                </td>
+                <td style="width: 70px;">
+                    <div style="margin-top: 5px;">退单编号:</div>
+                </td>
+                <td style="width: 150px;">
+                    <input id="cancelId" name="cancelId" style="width:200px;"/>
+                </td>
+                <td style="width: 100px;"></td>
+                <td style="width: 100px;"></td>
+                <td style="width: 100px;"></td>
+            </tr>
+            <tr>
+                <td style="width: 20px;"></td>
+                <td style="width: 70px;">
+                    <div style="margin-top: 5px;">门店编号:</div>
+                </td>
+                <td style="width: 150px;">
+                    <input id="shopId" name="shopId" style="width:80%;"/>
+                </td>
+                <td style="width: 70px;">
+                    <div style="margin-top: 5px;">所属子公司:</div>
+                </td>
+                <td style="width: 150px;">
+                    <input id="companyName" name="companyName" style="width:80%"/>
+                </td>
+                <td style="width: 70px;">
+                    <div style="margin-top: 5px;">申请时间:</div>
+                </td>
+                <td style="width: 300px;">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <input readonly type="text" style="width: 100%;" name="date" id="startTime" class="date"
+                                       value=""/>
+                            </td>
+                            <td>
+                                <strong>&nbsp;&nbsp;-&nbsp;&nbsp;</strong>
+                            </td>
+                            <td>
+                                <input readonly type="text" style="width: 100%;" name="date" id="endTime" class="date"
+                                       value=""/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td style="width: 70px;">
+                    <div style="margin-left: -10px;">
+                        <a href="#" onclick="orderExport();"><h4><i class="fa fa-print"></i>导出订单</h4></a>
+                    </div>
+                </td>
+                <td style="width: 50px;">
+                    <button id="btn_add" type="button" class="btn btn-vk btn-sm rightSize"
+                            style="width: 70%;float: left;margin-left: -50px;margin-top: 5px;"
+                            onclick="resetInput();">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>重置
+                    </button>
+                </td>
+                <td style="width: 50px;">
+                    <button id="btn_add" type="button" class="btn btn-vk btn-sm rightSize"
+                            style="width: 70%;float: left;margin-left: -80px;margin-top: 5px;"
+                            onclick="searchSalesResult();">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive">
+        <div id="toolbar" class="btn-group" style="float: left">
+
+        </div>
+        <table id="loginLog-table"></table>
+    </div>
+</div>
+<div class="modal fade" id="timeSearchError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">结束时间不能大于开始时间</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function resetInput() {
+        $("#menu1").empty();
+        $.ajax({
+            url: "/xcr/toc/salesReturnList.htm",
+            type: "get",
+            success: function (data) {
+                console.log(data)
+                $("#menu1").html(data);
+            }
+        });
+    }
+    $('#startTime').date_input();
+    $('#endTime').date_input();
+</script>
+<!-- 普通列表js -->
+<script type="text/javascript" src="/xcr/js/toc/tocSalesReturnList.js"></script>
+

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yatang.xc.xcr.biz.core.dao.VersionDao">
+	
+	<resultMap id="versionResultMap" type="VersionPO">
+		<id column="ID" property="id" />
+		<result column="TYPE" property="type" />
+		<result column="VERSION_CODE" property="versionCode" />
+		<result column="PUBLISH_TIME" property="publishTime" />
+		<result column="IS_LIVE_UP" property="isLiveUp" />
+		<result column="DESCRIPTION" property="description" />
+		<result column="STATE" property="state" />
+		<result column="APK_URL" property="apkUrl" />
+		<result column="CODE" property="code" />
+	</resultMap>
+	
+	
+	
+	<select id="findVersionList" parameterType="VersionListQueryPO" resultMap="versionResultMap">
+		select * from XCR_APP_VERSION where 1=1 and IS_DELATE=0
+		<if test="type != null "> 
+		and TYPE=#{type} 
+		</if>
+		
+		<if test="id != null"> 
+		and ID=#{id}
+		</if>
+		
+	
+		<if test="versionCode != null and versionCode != ''"> 
+		and VERSION_CODE=#{versionCode}
+		</if>				
+		<if test="startTime != null "> 
+		and PUBLISH_TIME &gt; #{startTime}
+		</if>
+		<if test="endTime != null "> 
+		and PUBLISH_TIME &lt; #{endTime}
+		</if>
+		<if test="state != null "> 
+		and STATE = #{state}
+		</if>
+		<if test="isLiveUp != null "> 
+		and IS_LIVE_UP=#{isLiveUp}
+		</if>	
+		order by PUBLISH_TIME DESC
+		<if test="pageIndex != null "> 
+		limit #{pageIndex},#{pageSize}
+		</if>	
+		
+	</select>
+	
+	
+	<select id="findTotalByCondetion" parameterType="VersionListQueryPO"  resultType="int">
+		select count(1) from XCR_APP_VERSION where 1=1 and IS_DELATE=0
+		<if test="type != null"> 
+		and TYPE=#{type} 
+		</if>
+		<if test="versionCode != null and versionCode != ''"> 
+		and VERSION_CODE=#{versionCode}
+		</if>
+		<if test="startTime != null "> 
+		and PUBLISH_TIME &gt; #{startTime}
+		</if>
+		<if test="endTime != null "> 
+		and PUBLISH_TIME &lt; #{endTime}
+		</if>
+		<if test="state != null "> 
+		and STATE = #{state}
+		</if>
+		<if test="isLiveUp != null "> 
+		and IS_LIVE_UP=#{isLiveUp}
+		</if>
+	</select>
+	
+	<select id="findByTypeAndVersion" parameterType="VersionAppQueryPO" resultMap="versionResultMap">	
+		SELECT * from XCR_APP_VERSION where CODE &gt; #{code}
+		and IS_DELATE=0 and STATE=1 and TYPE=#{type}
+		order by CODE DESC
+	</select>
+	
+	<select id="findGongYingLianVersion" parameterType="VersionAppQueryPO" resultMap="versionResultMap">	
+		SELECT * from XCR_APP_VERSION where CODE &gt; #{code}
+		and IS_DELATE=0 and STATE=1 and TYPE=2 and VERSION_CODE=#{currentVersion}
+		order by CODE DESC
+	</select>
+	
+	<update id="updateStateAndPublish" parameterType="UpdateStatePO">
+    	update XCR_APP_VERSION set 
+    	   <if test="state != null "> 
+			 STATE=#{state},PUBLISH_TIME=#{publishTime}
+			</if>
+			<if test="isDelate != null "> 
+			 IS_DELATE=#{isDelate}
+			</if>
+			where ID=#{id}
+    </update>
+    
+    <insert id="insertVersion" parameterType="VersionPO" useGeneratedKeys="true" keyProperty="id">
+    	insert into XCR_APP_VERSION ( TYPE,VERSION_CODE,IS_LIVE_UP,DESCRIPTION,APK_URL,STATE,IS_DELATE,CODE) 
+		values (#{type},#{versionCode},#{isLiveUp},#{description},#{apkUrl},#{state},#{isDelate},#{code})
+    </insert>
+    
+    <update id="updateVersion" parameterType="UpdateStatePO">
+    	update XCR_APP_VERSION set
+    	VERSION_CODE=#{versionCode},IS_LIVE_UP=#{isLiveUp},DESCRIPTION=#{description},APK_URL=#{apkUrl},CODE=#{code}
+    	where ID=#{id}
+    </update>
+    
+    <select id="validateVersion" parameterType="VersionPO" resultMap="versionResultMap">	
+		select * from XCR_APP_VERSION where VERSION_CODE=#{versionCode} and STATE=1 and TYPE=#{type}
+	</select>
+	
+	<select id="findMaxVersion" parameterType="VersionPO" resultType="int">	
+		select max(CODE) from XCR_APP_VERSION where 
+		<if test="versionCode != null "> 
+			 VERSION_CODE=#{versionCode} and
+		</if>
+		 STATE=1 and TYPE=#{type}
+	</select>
+	
+</mapper>
+

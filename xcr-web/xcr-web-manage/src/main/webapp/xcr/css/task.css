@@ -1,0 +1,167 @@
+.container {
+	width: 96%;
+}
+
+.table {
+	margin-top: 20px;
+}
+
+.table thead tr {
+	background-color: #337AB7;
+	text-align: center;
+	border-color: #337AB7;
+	color: #FFFFFF;
+}
+
+.nav-mt {
+	margin-top: 20px;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+	color: #fff;
+	background-color: #337ab7;
+	border: 1px solid #337ab7;
+	border-bottom-color: #337ab7;
+}
+
+.nav-tabs {
+	border-bottom: 1px solid #337ab7;
+}
+
+.nav>li>a {
+	padding: 6px 30px;
+}
+
+.table-style {
+	width: 900px;
+	margin-left: 10px;
+	margin-top: 40px;
+}
+
+.table-style-a {
+	width: 500px;
+	font-family: "arial, helvetica, sans-serif";
+	font-size: 20px;
+}
+
+.table-style-a tbody tr {
+	height: 50px;
+}
+
+.table-style-td {
+	width: 160px;
+	text-align: right;
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+	border-top: none;
+	font-size: 18px;
+}
+
+.table-pr {
+	padding-right: 25px;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+	background-color: #F9FAFF;
+}
+
+.modal-left {
+	float: left;
+	border: 1px solid #e5e5e5;
+}
+
+.nav-stacked>li {
+	padding: 10px 0;
+	width: 100px;
+	border-bottom: 1px solid #ddd;
+	text-align: center;
+}
+
+.nav-stacked>li>a {
+	padding: 0;
+}
+
+.modal-body {
+	width: 496px;
+	float: left;
+	border: 1px solid #ddd;
+	border-collapse: collapse;
+	padding: 15px 0;
+}
+
+.modal-body input {
+	display: inline-block;
+	width: 190px;
+}
+
+.modal-body>p {
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 10px;
+	text-align: right;
+}
+
+.modal-content {
+	overflow: hidden;
+}
+
+.modal-header {
+	border-bottom: 0;
+}
+
+.modal-footer {
+	text-align: center;
+	overflow: hidden;
+}
+
+.modal-footer .btn-default,
+.modal-footer .btn-primary {
+	margin: 0 20px;
+}
+
+.list-inline ul {
+	list-style-type: none;
+	margin: 40px 0;
+}
+
+.list-inline ul li {
+	display: inline-block;
+	width: 19%;
+}
+
+.gopage {
+	text-align: right;
+	margin-right: 25px;
+}
+
+.gopage ul {
+	list-style-type: none;
+}
+
+.gopage ul li {
+	display: inline-block;
+	border: 1px solid #888;
+	padding: 3px 5px;
+}
+
+.gopage ul li:nth-child(4),
+.gopage ul li:nth-child(5) {
+	border: 0;
+	padding: 0;
+}
+
+.newteam {
+	width: 15px;
+}
+.modal-backdrop.in{
+	opacity: 0;
+}

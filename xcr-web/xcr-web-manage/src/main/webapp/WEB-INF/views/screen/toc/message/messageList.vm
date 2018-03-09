@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="/xcr/css/build.css">
+    <link rel="stylesheet" href="/xcr/plugins/jedate/skin/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="/xcr/plugins/window/window.css">
+    <script type="text/javascript" src="/xcr/plugins/jedate/jedate.js"></script>
+    <script type="text/javascript" src="/xcr/plugins/window/window.js"></script>
+    <style type="text/css">
+        .table tbody tr td {
+            vertical-align: middle;
+        }
+
+        .selectDateOnly {
+            width: 170px;
+            float: left;
+            border: 1px solid #d2d6de;
+            padding-left: 10px;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+        .jedatebox {
+            z-index: 99999999 !important;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div id="menu1">
+    <div class="container" style="width: 100%;">
+        <div style="margin-top: 10px;width: 100%;background-color: white">
+            <div style="width: 100%;height: 10px;"></div>
+            <div style="width: 100%;height: 50px;margin-top: 10px;">
+                <h5>&nbsp;&nbsp;<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;<strong>消息管理</strong>&nbsp;&nbsp;<i
+                        class="fa fa-chevron-right"></i>&nbsp;&nbsp;<a href="#"><strong>消息列表</strong></a></h5>
+            </div>
+            <div class="tab-content" style="margin-top: 10px;width: 100%;margin: 0 auto">
+                <div>
+                    <div id="loginLogTab" class="tab-pane">
+                        <div style="width: 100%;margin: 0 auto;">
+                            <table style="margin-top: 20px;width: 100%;height:120px;background-color: whitesmoke;margin: 0 auto;"
+                                   border="0">
+                                <tbody style="margin-top: 30px;">
+                                <tr style="margin-top: 20px;">
+                                    <td style="width: 20px;"></td>
+                                    <td style="width: 50px;">
+                                        <div style="margin-top: 5px;"><strong>消息主题:</strong></div>
+                                    </td>
+                                    <td style="width: 100px;">
+                                        <input id="messageTitle" name="messageTitle" style="width:70%;"/>
+                                    </td>
+                                    <td style="width: 50px;">
+                                        <div style="margin-top: 5px;"><strong>消息类型:</strong></div>
+                                    </td>
+                                    <td style="width: 100px;">
+                                        <select class="form-control" id="messageType" style="width:70%;">
+                                            <option value="0" selected="selected">全部</option>
+                                            <option value="1">系统消息</option>
+                                            <option value="2">活动消息</option>
+                                        </select>
+                                    </td>
+                                    <td style="width: 50px;">
+                                        <div style="margin-top: 5px;"><strong>发布时间:</strong></div>
+                                    </td>
+                                    <td style="width: 150px;">
+                                        <input class="datainp selectDateOnly wicon" id="startDay" type="text"
+                                               placeholder="请选择" readonly>
+                                        <label style="float: left;margin: 5px;"> 至 </label>
+                                        <input class="datainp selectDateOnly wicon" id="endDay" type="text"
+                                               placeholder="请选择" readonly>
+                                    </td>
+                                    <td style="width: 50px;"></td>
+                                    <td style="width: 50px;">
+                                        <button id="btn_add" type="button" class="btn btn-vk btn-sm rightSize"
+                                                style="width: 70%"
+                                                onclick="addMessage();">
+                                            <i class="fa fa-plus"></i>新增
+                                        </button>
+                                    </td>
+                                    <td style="width: 50px;">
+                                        <button id="btn_add" type="button" class="btn btn-vk btn-sm rightSize"
+                                                style="width: 70%"
+                                                onclick="resetInput();">
+                                            <i class="fa fa-repeat"></i>重置
+                                        </button>
+                                    </td>
+                                    <td style="width: 50px;">
+                                        <button id="btn_add" type="button" class="btn btn-vk btn-sm rightSize"
+                                                style="width: 70%"
+                                                onclick="searchResult();">
+                                            <i class="fa fa-search"></i>查询
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-responsive">
+                            <div id="toolbar" class="btn-group" style="float: left">
+
+                            </div>
+                            <table id="loginLog-table"></table>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+
+                    </script>
+                    <!-- 普通列表js -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">操作成功！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="fail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">操作失败！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="timeSearchError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">开始时间不能大于结束时间！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jeDate({
+        dateCell: "#startDay",
+        format: "YYYY-MM-DD hh:mm:ss",
+        festival: true, //是否显示节日
+        isinitVal: false,
+        isTime: true, //isClear:false,
+        minDate: "2010-01-01 00:00:00",
+        okfun: function (val) {
+        }
+    })
+    jeDate({
+        dateCell: "#endDay",
+        format: "YYYY-MM-DD hh:mm:ss",
+        festival: true, //是否显示节日
+        isinitVal: false,
+        isTime: true, //isClear:false,
+        minDate: "2010-01-01 00:00:00",
+        okfun: function (val) {
+        }
+    })
+
+
+    //重置
+    function resetInput() {
+        $("#menu1").empty();
+        $.ajax({
+            url: "/xcr/toc/message/list.htm",
+            type: "get",
+            success: function (data) {
+                console.log(data)
+                $("#menu1").html(data);
+            }
+        });
+    }
+    //新增
+    function addMessage() {
+        $("#menu1").empty();
+        $.ajax({
+            url: "/xcr/toc/message/add.htm",
+            type: "get",
+            success: function (data) {
+                console.log(data)
+                $("#menu1").html(data);
+            }
+        });
+    }
+
+    var messageTitle = $("#messageTitle").val();
+    var messageType = $("#messageType option:selected").val();
+    var startDay = $("#startDay").val();
+    var endDay = $("#endDay").val();
+
+    var queryParams = function (params) {
+        var messageTitle = $("#messageTitle").val();
+        var messageType = $("#messageType option:selected").val();
+        var startDay = $("#startDay").val();
+        var endDay = $("#endDay").val();
+
+        var param = {
+            pageIndex: params.offset,
+            pageSize: params.limit,
+            messageTitle: messageTitle,
+            messageType: messageType,
+            startDay: startDay,
+            endDay: endDay
+        };
+        return param;
+    };
+
+    var responseHandler = function (e) {
+        console.log(e);
+        if (e.data && e.data.length > 0) {
+            return {"rows": e.data, "total": e.total};
+        }
+        else {
+            return {"rows": [], "total": 0};
+        }
+
+    };
+    var actionFormatter = function (value, row, index) {//赋予的参数
+        var detailUrl = "/xcr/toc/message/" + row.messageId + "/detail.htm";
+        return [
+            '<a href="javascript:loadHtml(\'' + detailUrl + '\')" class="btn btn-vk btn-sm rightSize detailBtn" type="button"><i class="fa fa-search"></i> 查看</a>',
+        ].join('');
+    };
+
+    $('#loginLog-table').bootstrapTable({
+        url: "/xcr/toc/message/getList.htm",
+        method: "post",                     //使用post请求到服务器获取数据
+        dataType: "json",
+        contentType: 'application/json',
+        toolbar: "#toolbar",                //一个jQuery 选择器，指明自定义的toolbar 例如:#toolbar, .toolbar.
+        uniqueId: "id",                    //每一行的唯一标识，一般为主键列
+        cache: false,                       // 不缓存
+        height: 650,
+        striped: true,                      // 隔行加亮
+        queryParamsType: "limit",           //设置为"undefined",可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+                                            //设置为"limit",符合 RESTFul 格式的参数,可以获取limit, offset, search, sort, order
+        queryParams: queryParams,
+        sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+        pagination: true,                   //是否显示分页（*）
+        strictSearch: true,
+        showColumns: false,                  //是否显示所有的列
+        showRefresh: true,                  //是否显示刷新按钮
+        showToggle: true,                    //是否显示详细视图和列表视图
+        clickToSelect: true,                //是否启用点击选中行
+        minimumCountColumns: 2,          //最少允许的列数 clickToSelect: true, //是否启用点击选中行
+        pageNumber: 1,                   //初始化加载第一页，默认第一页
+        pageSize: 25,                    //每页的记录行数（*）
+        pageList: [10, 25, 50, 100],     //可供选择的每页的行数（*）
+        paginationPreText: "上一页",
+        paginationNextText: "下一页",
+        paginationFirstText: "First",
+        paginationLastText: "Last",
+        responseHandler: responseHandler,
+
+        columns: columns = [
+            {
+                field: 'messageId',
+                title: '消息ID',
+                align: 'center',
+                visible: false,
+                sortable: false
+            }, {
+                field: 'messageTitle',
+                title: '消息主题',
+                align: 'center',
+                sortable: false
+            }, {
+                field: 'messageType',
+                title: '消息类型',
+                align: 'center',
+                sortable: false   //本列不可以排序
+            }, {
+                field: 'releaseTime',
+                title: '发布时间',
+                align: 'center',
+                sortable: false
+            }, {
+                field: 'operate',
+                title: '操作',
+                align: 'center',
+                valign: 'middle',
+                formatter: actionFormatter //自定义方法，添加操作按钮
+            }],
+        onLoadSuccess: function (data) { //加载成功时执行
+            console.log(data);
+        },
+        onLoadError: function (res) { //加载失败时执行
+            console.log(res);
+        }
+    });
+
+    //查询
+    function searchResult() {
+        var messageTitle = $("#messageTitle").val();
+        var messageType = $("#messageType option:selected").val();
+        var startDay = $("#startDay").val();
+        var endDay = $("#endDay").val();
+
+        console.log("messageTitle:" + messageTitle);
+        console.log("messageType:" + messageType);
+        console.log("startDay:" + startDay);
+        console.log("endDay:" + endDay);
+
+        if (startDay != null && startDay != "" && endDay != null && endDay != "") {
+            if (startDay > endDay) {
+                $("#timeSearchError").modal("toggle");
+                $("#endDay").val(startDay);
+                return false;
+            }
+        }
+
+        var options = $('#loginLog-table').bootstrapTable('refresh', {
+            query: {
+                pageIndex: 0,
+                messageTitle: messageTitle,
+                messageType: messageType,
+                startDay: startDay,
+                endDay: endDay
+            }
+        });
+    }
+</script>
+</body>
+</html>

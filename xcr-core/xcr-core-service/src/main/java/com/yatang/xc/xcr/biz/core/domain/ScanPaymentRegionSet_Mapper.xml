@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yatang.xc.xcr.biz.core.dao.ScanPaymentRegionSetDao">
+
+    <select id="getIdByProvinceIdForIsShow" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT ID FROM XCR_SCANPAYMENT_REGION_SET WHERE PROVINCE_CODE = #{provinceId} AND is_SHOW = 1
+    </select>
+
+</mapper>
+

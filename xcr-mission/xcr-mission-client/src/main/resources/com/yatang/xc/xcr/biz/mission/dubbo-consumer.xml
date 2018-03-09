@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.mission.dubboservice.MissionDubboService" id="missionDubboService" version="${interface.version}" timeout="30000" group="${dubbo.group}"/>
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.mission.dubboservice.MissionExecuteDubboService" id="missionExecuteDubboService" version="${interface.version}" timeout="30000" group="${dubbo.group}"/>
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.mission.dubboservice.MissionClassroomDubboService" id="missionClassroomDubboService" version="${interface.version}" timeout="30000" group="${dubbo.group}"/>
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.mission.dubboservice.MissionBPMDubboService" id="missionBPMDubboService" version="${interface.version}" timeout="30000" group="${dubbo.group}"/>
+	<dubbo:reference interface="com.yatang.xc.xcr.biz.mission.dubboservice.StatisticsDubboService" id="statisticsDubboService" version="${interface.version}" timeout="30000" group="${dubbo.group}"/>
+
+</beans>

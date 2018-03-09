@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="/xcr/css/build.css">
+    <link rel="stylesheet" href="/xcr/plugins/jedate/skin/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="/xcr/plugins/window/window.css">
+    <script type="text/javascript" src="/xcr/plugins/jedate/jedate.js"></script>
+    <script type="text/javascript" src="/xcr/plugins/window/window.js"></script>
+    <script type="text/javascript" src="/xcr/js/toc/ToC_Common2.js"></script>
+    <style type="text/css">
+        .selectDateOnly {
+            width: 170px;
+            float: left;
+            border: 1px solid #d2d6de;
+            padding-left: 10px;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+        .jedatebox {
+            z-index: 99999999 !important;
+        }
+    </style>
+</head>
+<body class="gray-bg" style="overflow:auto ! important;">
+<div class="container" style="width: 100%;background-color: whitesmoke">
+    <div style="margin-top: 10px;width: 100%;">
+        <div style="width: 100%;height: 10px;"></div>
+        <div style="width: 100%;height: 50px;margin-top: 10px;">
+            <h5>
+                &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;<strong>消息管理</strong>
+                &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;<a
+                    href="javascript:loadHtml('/xcr/toc/message/list.htm')"><strong>消息列表</strong></a>
+                &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;<a href="#"><strong>新建信息</strong></a></h5>
+        </div>
+        <div class="tab-content" style="margin-top: 5px;width: 99%;margin: 0 auto">
+            <div id="detailTable" style="background-color: white;">
+                <div style="width: 100%;margin: 0 auto;">
+                    <div style="width: 80%;margin-left: 1%">
+
+                        <!------------------- 基本信息 ------------------->
+                        <div style="height: 20px;margin-top: 5px;">
+                        </div>
+                        <h4><i class="fa fa-edit" style="color: #00a0e9"></i> <strong>添加</strong>
+                        </h4>
+                        <hr/>
+                        <table style="width: 100%;height:400px;margin-left: 20%" cellspacing="0" cellpadding="0">
+                            <tbody style="margin-top: 30px;">
+                            <tr>
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>消 息 主 题:</strong><span style="color:#f00;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 40%;">
+                                    <input id="messageTitle" name="messageTitle" value="" maxlength="30"
+                                           style="height: 30px;width: 30%"/><span style="color:#f00;margin-left: 10px;">主题最大限制30个汉字</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>消 息 类 型:</strong><span style="color:#f00;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 35%;">
+                                    <select class="form-control" id="messageType" style="width:20%;">
+                                        <option value="1" selected="selected">系统消息</option>
+                                        <option value="2">活动消息</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>消 息 链 接:</strong><span style="color:#f00;"> </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 35%;">
+                                    <input id="messageUrl" name="messageUrl" value="" maxlength="50"
+                                           style="height: 30px;width: 30%"/><span style="color:#f00;margin-left: 10px;">链接最大限制50个字符</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 5%;text-align: right;color:black">
+                                    <strong>消 息 内 容:</strong><span style="color:#f00;">*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td style="width: 35%;">
+                                    <textarea id="messageContent" name="messageContent" value=""
+                                              style="height: 200px;width: 35%" maxlength="200"/><span
+                                        style="color:#f00;margin-left: 10px;">内容最大限制200个汉字</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <button id="mR" class="btn btn-primary" type="button"
+                                            style="margin-left: 40px;width: 100px;"
+                                            onclick="send()">确认发送
+                                    </button>
+                                    <button id="messageSave" class="btn btn-primary" type="button"
+                                            style="margin-left: 150px;width: 100px;" onclick="cancel()">
+                                        取消返回
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="sendSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">发送成功！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="fail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">发送失败,请稍后重试！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="titleNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">消息标题不能为空！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="contentNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">消息内容不能为空！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="urlError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">请输入正确的消息链接，以http/https开头！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="shareTitleError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">消息主题只能输入汉字！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //确认发送
+    function send() {
+        var messageTitle = $("#messageTitle").val();
+        var messageType = $("#messageType option:selected").val();
+        var messageUrl = $("#messageUrl").val();
+        var messageContent = $("#messageContent").val();
+        var param = {
+            "messageTitle": messageTitle,
+            "messageType": messageType,
+            "messageUrl": messageUrl,
+            "messageContent": messageContent
+        };
+
+        //校验
+        if (messageTitle == null || messageTitle == "") {
+            $("#titleNotNull").modal("toggle");
+            return false;
+        }
+        if (messageContent == null || messageContent == "") {
+            $("#contentNotNull").modal("toggle");
+            return false;
+        }
+        if (messageUrl != null && messageContent != "") {
+            if (!messageUrl.startsWith("http")) {
+                $("#urlError").modal("toggle");
+                return false;
+            }
+        }
+
+        if (!checkTitle(messageTitle)) {
+            $("#shareTitleError").modal("toggle");
+            return false;
+        }
+
+
+        win.confirm(' 发布确认', '发布后立即生效，确认发布消息吗？', function (r) {
+            if (r === true) {
+                $.ajax({
+                    url: "/xcr/toc/message/releaseMessage.htm",
+                    type: "POST",
+                    data: JSON.stringify(param),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        if (data) {
+                            $("#sendSuccess").modal("toggle");
+                            $('#sendSuccess').on('hidden.bs.modal', function () {
+                                javascript:loadHtml('/xcr/toc/message/list.htm');
+                            })
+                        } else {
+                            $("#fail").modal("toggle");
+                        }
+                    }
+                });
+            }
+        })
+    }
+    //取消返回
+    function cancel() {
+        javascript:loadHtml('/xcr/toc/message/list.htm');
+    }
+
+    //正则校验title
+    function checkTitle(s) {
+        var regu = /^[\u4e00-\u9fa5]*$/;
+        var re = new RegExp(regu);
+        if (re.test(s)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+</script>
+</body>
+</html>

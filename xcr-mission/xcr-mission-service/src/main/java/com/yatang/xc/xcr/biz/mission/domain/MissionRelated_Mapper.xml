@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yatang.xc.xcr.biz.mission.dao.MissionRelatedDAO" >
+<cache type="com.yatang.xc.xcr.biz.mission.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.yatang.xc.xcr.biz.mission.domain.MissionRelatedPO" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="misson_related_name" property="missonRelatedName" jdbcType="VARCHAR" />
+    <result column="misson_related_description" property="missonRelatedDescription" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, misson_related_name, misson_related_description, create_time, status, reason, 
+    type, last_modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from XCR_MISSION_RELATED
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="queryMissionRelated" resultMap="BaseResultMap" parameterType="com.yatang.xc.xcr.biz.mission.bo.MissionRelatedQuery" >
+    select 
+    <include refid="Base_Column_List" />
+    from XCR_MISSION_RELATED where 1 = 1
+    <if test="id != null" >
+		and id = #{id,jdbcType=BIGINT}
+	</if>
+	<if test="type != null" >
+		and type = #{type,jdbcType=VARCHAR}
+	</if>
+	<if test="status != null" >
+		and status = #{status,jdbcType=VARCHAR}
+	</if>
+	<if test="orderBy != null">
+		order by ${orderBy}
+	</if>	
+	<if test="startIndex != null" >
+		<if test="endIndex != null" >
+			limit #{startIndex,jdbcType=INTEGER},#{endIndex,jdbcType=INTEGER}
+		</if>
+	</if>
+  </select>    
+ 
+  <select id="queryMissionRelatedCount" resultType="int" parameterType="com.yatang.xc.xcr.biz.mission.bo.MissionRelatedQuery" >
+    select count(*)
+    from XCR_MISSION_RELATED where 1 = 1
+    <if test="id != null" >
+		and id = #{id,jdbcType=BIGINT}
+	</if>
+	<if test="type != null" >
+		and type = #{type,jdbcType=VARCHAR}
+	</if>
+	<if test="status != null" >
+		and status = #{status,jdbcType=VARCHAR}
+	</if>
+	<if test="orderBy != null">
+		order by ${orderBy}
+	</if>	
+  </select>
+  
+  
+  
+  <select id="countMissionByName" resultType="int" parameterType="String" >
+    select count(*) 
+    from XCR_MISSION_RELATED where misson_related_name = #{name,jdbcType=VARCHAR}
+  </select>      
+      
+  
+  <update id="updateStatus" parameterType="com.yatang.xc.xcr.biz.mission.bo.UpdateStatusQuery" >
+	  update XCR_MISSION_RELATED 
+	  <set >
+	      <if test="status != null" >
+	        status = #{status,jdbcType=VARCHAR},
+	      </if>
+	      <if test="reason != null" >
+	        reason = #{reason,jdbcType=VARCHAR},
+	      </if> 	      
+	      <if test="lastModifyTime != null" >
+	        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+	      </if>	      
+	  </set>
+	  where id = #{id,jdbcType=BIGINT} 
+	  <if test="oldStatus != null" > 
+	  and
+  		<foreach collection="oldStatus" open="(" close=")" index="index"  item="item" >  
+       	<if test="index!=0">
+        		or
+       	</if>
+       	status = #{item,jdbcType=VARCHAR}
+       </foreach>
+      </if>
+  </update>  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from XCR_MISSION_RELATED
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionRelatedPO" useGeneratedKeys="true" keyProperty="id">
+    insert into XCR_MISSION_RELATED ( misson_related_name, misson_related_description, 
+      create_time, status, reason, 
+      type, last_modify_time)
+    values ( #{missonRelatedName,jdbcType=VARCHAR}, #{missonRelatedDescription,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionRelatedPO" >
+    update XCR_MISSION_RELATED
+    <set >
+      <if test="missonRelatedName != null" >
+        misson_related_name = #{missonRelatedName,jdbcType=VARCHAR},
+      </if>
+      <if test="missonRelatedDescription != null" >
+        misson_related_description = #{missonRelatedDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null" >
+        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionRelatedPO" >
+    update XCR_MISSION_RELATED
+    set misson_related_name = #{missonRelatedName,jdbcType=VARCHAR},
+      misson_related_description = #{missonRelatedDescription,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

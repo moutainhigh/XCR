@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yatang.xc.xcr.biz.core.dao.UserSignDao">
+
+    <sql id="XCR_SIGN_INFO"> XCR_SIGN_INFO </sql>
+    <sql id="XCR_SIGN_SET"> XCR_SIGN_SET </sql>
+
+    <!-- 用户签到记录 -->
+    <resultMap id="userSignInfoMap" type="com.yatang.xc.xcr.biz.core.domain.UserSignPO">
+        <id column="ID" property="id"/>
+        <result column="USER_ID" property="userId" jdbcType="VARCHAR"/>
+        <result column="SHOP_CODE" property="shopCode" jdbcType="VARCHAR"/>
+        <result column="SCORE" property="score" jdbcType="VARCHAR"/>
+        <result column="CASH" property="cash" jdbcType="VARCHAR"/>
+        <result column="CONTINUE_DAY" property="continueDay" jdbcType="INTEGER"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="DATE"/>
+    </resultMap>
+
+    <!-- 签到奖励 -->
+    <resultMap id="userSignSetMap" type="com.yatang.xc.xcr.biz.core.domain.UserSignSetPO">
+        <id column="ID" property="id"/>
+        <result column="TYPE" property="type" jdbcType="INTEGER"/>
+        <result column="DATA" property="data" jdbcType="VARCHAR"/>
+        <result column="CONTENT" property="content" jdbcType="VARCHAR"/>
+        <result column="IS_DELETE" property="isDelete" jdbcType="INTEGER"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="sign_base_column">
+        USER_ID,SHOP_CODE,SCORE,CASH,CREATE_TIME
+    </sql>
+    <sql id="sign_set_base_column">
+        ID,TYPE,DATA,CONTENT,IS_DELETE,CREATE_TIME,UPDATE_TIME
+    </sql>
+
+    <insert id="insert" parameterType="com.yatang.xc.xcr.biz.core.domain.UserSignPO" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO
+        <include refid="XCR_SIGN_INFO"/>
+        (<include refid="sign_base_column"/>)
+        VALUES
+        (#{userId},#{shopCode},#{score},#{cash},#{createTime})
+    </insert>
+
+    <select id="getSignSet" resultMap="userSignSetMap">
+        select
+        ID,
+        <include refid="sign_set_base_column"/>
+        from
+        <include refid="XCR_SIGN_SET"/>
+        where IS_DELETE = 1 limit 1
+    </select>
+
+    <select id="getLastSignDayByShopCode" parameterType="java.lang.String" resultMap="userSignInfoMap">
+        SELECT USER_ID,SHOP_CODE,SCORE,CASH,CONTINUE_DAY,CREATE_TIME FROM XCR_SIGN_INFO WHERE SHOP_CODE = #{shopCode} ORDER BY CREATE_TIME DESC LIMIT 1
+    </select>
+
+    <select id="getLastSignDayByFranchiseeId" parameterType="java.lang.String" resultMap="userSignInfoMap">
+        SELECT USER_ID,SHOP_CODE,SCORE,CASH,CONTINUE_DAY,CREATE_TIME FROM XCR_SIGN_INFO WHERE USER_ID = #{franchiseeId} ORDER BY CREATE_TIME DESC LIMIT 1
+    </select>
+
+    <update id="updateContinueDayToAdd">
+        UPDATE XCR_SIGN_INFO SET CONTINUE_DAY = #{continueDay,jdbcType=VARCHAR} WHERE USER_ID = #{franchiseeId,jdbcType=VARCHAR} AND CREATE_TIME = #{day,jdbcType=INTEGER};
+    </update>
+
+    <update id="updateContinueDayToStart" parameterType="java.lang.String">
+        UPDATE XCR_SIGN_INFO SET CONTINUE_DAY = 1 WHERE USER_ID = #{franchiseeId};
+    </update>
+
+    <select id="getSignArray" resultMap="userSignInfoMap">
+        SELECT ID,USER_ID,SHOP_CODE,SCORE,CASH,CONTINUE_DAY,CREATE_TIME FROM XCR_SIGN_INFO
+        WHERE SHOP_CODE = #{shopCode}
+        AND CREATE_TIME BETWEEN #{startDay} AND #{endDay};
+    </select>
+
+    <select id="getAwardTotal" parameterType="java.lang.String" resultType="java.lang.Double">
+        SELECT IF(SUM(CASH)=NULL,0.0,SUM(CASH)) FROM XCR_SIGN_INFO WHERE SHOP_CODE = #{shopCode};
+    </select>
+
+    <select id="getAwardTotalByShopCodeList" parameterType="java.util.ArrayList" resultType="java.lang.Double">
+        SELECT SUM(SIGN_SCORE_TOTAL) FROM `XCR_AWARD_COLLECT` WHERE shop_code IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="getScoreAwardTotal" parameterType="java.lang.String" resultType="java.lang.Double">
+        SELECT SIGN_SCORE_TOTAL FROM  XCR_AWARD_COLLECT WHERE shop_code = #{shopCode}
+    </select>
+
+    <update id="updateUserSignSet" parameterType="com.yatang.xc.xcr.biz.core.domain.UserSignSetPO">
+        UPDATE XCR_SIGN_SET SET TYPE = #{type},DATA=#{data},CONTENT=#{content},IS_DELETE = 0 ,UPDATE_TIME = NOW() WHERE IS_DELETE = 1;;
+    </update>
+
+    <insert id="addUserSignSet" parameterType="com.yatang.xc.xcr.biz.core.domain.UserSignSetPO">
+        insert into XCR_SIGN_SET (TYPE,DATA,CONTENT,IS_DELETE,CREATE_TIME,UPDATE_TIME) VALUES (#{type},#{data},#{content},1,now(),now());
+    </insert>
+
+    <insert id="saveAward" parameterType="com.yatang.xc.xcr.biz.core.domain.UserAwardCollectPO">
+       INSERT INTO XCR_AWARD_COLLECT
+        (SIGN_SCORE_TOTAL,MISSION_SCORE_TOTAL,SIGN_CASH_TOTAL,MISSION_CASH_TOTAL,SHOP_CODE,CREATE_TIME,UPDATE_TIME)
+      VALUES
+        (#{signScoreTotal},#{messionScoreTotal},#{signCashTotal},#{messionCashTotal},#{shopCode},NOW(),NOW())
+      ON DUPLICATE KEY UPDATE
+         SIGN_SCORE_TOTAL=SIGN_SCORE_TOTAL+#{signScoreTotal},
+         MISSION_SCORE_TOTAL=MISSION_SCORE_TOTAL+#{messionScoreTotal},
+         SIGN_CASH_TOTAL=SIGN_CASH_TOTAL+#{signCashTotal},
+         MISSION_CASH_TOTAL=MISSION_CASH_TOTAL+#{messionCashTotal},
+         UPDATE_TIME = NOW();
+    </insert>
+
+    <select id="getMostAwardedShopCode" parameterType="java.util.ArrayList" resultType="String">
+        SELECT SHOP_CODE FROM `XCR_AWARD_COLLECT` WHERE shop_code IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        ORDER BY SIGN_SCORE_TOTAL DESC LIMIT 1
+    </select>
+
+</mapper>
+

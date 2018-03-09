@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 注解扫描器 -->
+    <context:component-scan base-package="com.yatang.xc.xcr.biz.mission"/>
+
+    <!--<context:property-placeholder ignore-unresolvable="true" location="classpath*:*.properties"/>-->
+
+    <task:executor id="createMissionExecuteTaskExecutor" pool-size="1-10" queue-capacity="1000"
+                   rejection-policy="CALLER_RUNS"/>
+
+    <task:executor id="auditMissionTaskExecutor" pool-size="10-10" queue-capacity="1000"
+                   rejection-policy="CALLER_RUNS"/>
+
+    <!--普通的发送者-->
+    <bean id="defaultProducer" class="com.alibaba.rocketmq.client.producer.DefaultMQProducer" init-method="start"
+          destroy-method="shutdown">
+        <property name="producerGroup" value="xcr-mission-group"></property>
+        <property name="namesrvAddr" value="${mq.rocketmq.url}"></property>
+        <property name="instanceName" value="xcr-mission"></property>
+    </bean>
+    <import resource="classpath*:com/yatang/xc/oc/**/dubbo-consumer.xml"/>
+
+    <bean id="xxlJobExecutor" class="com.xxl.job.core.executor.XxlJobExecutor" init-method="start"
+          destroy-method="destroy">
+        <property name="appName" value="xcr-mission-schedule-job"/>
+        <property name="port" value="${xxl.job.executor.port}"/>
+        <property name="adminAddresses" value="${xxl.job.admin.addresses}"/>
+        <property name="logPath" value="${xxl.job.executor.logpath}"/>
+    </bean>
+    
+    <!-- Dubbo config -->
+	<dubbo:application name="${dubbo.application.name}" owner="${dubbo.application.owner}"/>
+	<dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}" />
+	<dubbo:consumer check="${dubbo.consumer.check}" />
+	<dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" payload="${dubbo.protocol.payload}"/>
+    
+
+</beans>

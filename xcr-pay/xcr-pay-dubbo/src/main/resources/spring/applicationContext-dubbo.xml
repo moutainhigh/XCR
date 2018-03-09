@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 注解扫描器 -->
+    <context:component-scan base-package="com.yatang.xc.xcr.biz.pay"/>
+
+    <!-- 引入client工程中定义的 dubbo consumer配置 -->
+    <import resource="classpath*:com/yatang/xc/mbd/biz/org/dubboservice/dubbo-consumer.xml"/>
+    <import resource="classpath*:com/yatang/xc/oles/biz/business/dubboservice/dubbo-consumer.xml"/>
+
+    <!-- load properties file -->
+    <!--<context:property-placeholder ignore-unresolvable="true" location="classpath*:*.properties"/>-->
+
+    <!-- 威富通支付配置 -->
+    <bean id="swiftpassConfig" class="com.yatang.xc.xcr.biz.pay.config.SwiftpassConfig" scope="prototype">
+        <property name="service" value="${swiftpass.pay.service}"/>
+        <property name="req_url" value="${swiftpass.pay.req_url}"/>
+        <property name="notify_url" value="${swiftpass.pay.notify_url}"/>
+        <property name="appid" value="${swiftpass.pay.appid}"/>
+    </bean>
+
+</beans>

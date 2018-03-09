@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+</head>
+<body class="gray-bg">
+<div id="menu1">
+    <div class="container" style="width: 100%;">
+        <div style="margin-top: 10px;width: 100%;background-color: white">
+            <div style="width: 100%;height: 10px;"></div>
+            <div style="width: 100%;height: 50px;margin-top: 10px;">
+                <h5>&nbsp;&nbsp;<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;<span>活动管理</span>&nbsp;&nbsp;<i
+                        class="fa fa-chevron-right"></i>&nbsp;&nbsp;<a href="javascript:loadHtml('/xcr/fullS/fullSList.htm')">订单满送红包活动列表</a>&nbsp;&nbsp;<i
+                        class="fa fa-chevron-right"></i>&nbsp;&nbsp;查看抽奖记录（<label
+                         id="actName" class="fa">
+                        </label>）</h5>
+            </div>
+            <div class="tab-content" style="margin-top: 10px;width: 100%;margin: 0 auto">
+                <div>
+                    <div id="loginLogTab" class="tab-pane">
+                        <div style="width: 100%;margin: 0 auto;">
+                            <table style="margin-top: 20px;width: 100%;height:120px;background-color: whitesmoke;margin: 0 auto;"
+                                   border="0">
+                                <tbody style="margin-top: 30px;">
+                                <tr style="margin-top: 20px;">
+                                   
+                                    <td style="width: 70px;">
+                                        <div style="margin-top: 5px;">是否中奖:</div>
+                                    </td>
+                                    <td style="width: 150px;">
+                                        <select class="form-control" id="isWin" style="width:80%;">
+                                            <option>全部</option>
+                                            <option value="1">是</option>
+                                            <option value="0">否</option>
+                                        </select>
+                                    </td>
+                                    <td style="width: 70px;">
+										<td style="width: 70px;">
+                                    </td>
+                                    <td style="width: 150px;">
+                                    </td>
+                                    <td style="width: 40%;" colspan="5"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 20px;"></td>
+                                    <td style="width: 70px;">
+                                    </td>
+                                    <td style="width: 150px;">
+                                    </td>
+                                    <td style="width: 70px;">
+                                    </td>
+                                    <td style="width: 200px; margin-left: -100px;" colspan="3">
+                                    </td>
+                                    <td style="width: 8%;">
+                                    </td>
+									 <td style="width: 8%;">
+                                    </td>
+                                    <td style="width: 8%;">
+                                    </td>
+                                    <td style="width: 8%;">
+                                    </td>
+                                    <td style="width: 8%;">
+                                        <button id="btn_add" type="button" class="btn btn-vk btn-sm rightSize"
+                                                style="width: 90%;margin-top: 5px;"
+                                                onclick="searchResult();">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                                        </button>
+                                    </td>                                  
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-responsive">
+                            <div id="toolbar" class="btn-group" style="float: left">
+
+                            </div>
+                            <table id="loginLog-table"></table>
+                        </div>
+                    </div>
+                    <!-- 普通列表js -->
+                    <script type="text/javascript" src="/xcr/js/toc/winningHistoryList.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

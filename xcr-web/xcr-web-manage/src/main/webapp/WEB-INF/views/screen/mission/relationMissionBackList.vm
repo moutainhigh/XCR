@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="/xcr/uploadify/uploadify.css">
+    <link rel="stylesheet" href="/xcr/plugins/window/window.css">
+    <script type="text/javascript" src="/xcr/uploadify/notRefreshFilesUpload.js"></script>
+    <script type="text/javascript" src="/xcr/artDialog/artDialog.js?skin=default"></script>
+    <script type="text/javascript" src="/xcr/plugins/window/window.js"></script>
+    <style>
+        .Validform_checktip {
+            font-size: 12px;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        .Validform_wrong {
+            color: #f00;
+        }
+
+        .Validform_right {
+            color: #38B119;
+        }
+
+        #awardCash, #awardScore {
+            display: none;
+        }
+    </style>
+    <script type="text/javascript">
+        //获取普通任务列表
+        function missionList() {
+            $("#menu1").empty();
+            $.ajax({
+                url: "/xcr/normalMissionList.htm",
+                type: "get",
+                success: function (data) {
+                    console.log(data)
+                    $("#menu1").html(data);
+                }
+            });
+        }
+
+        //获取关联任务列表
+        function missionRelList() {
+            $("#menu1").empty();
+            $.ajax({
+                url: "/xcr/relationMissionList.htm",
+                type: "GET",
+                success: function (data) {
+                    $("#menu1").html(data);
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript" src="/xcr/js/mission.js"></script>
+</head>
+<body class="gray-bg">
+<div class="container" style="width: 100%;">
+    <div style="margin-top: 10px;width: 100%;background-color: white">
+        <ul class="nav nav-tabs nav-mt" style="text-align:center">
+            <li id="missionList" class="" style="width: 50%;">
+                <a data-toggle="tab" href="#" onclick="missionList();">
+                    <h4><i class="fa fa-briefcase"></i> 普通任务</h4>
+                </a>
+            </li>
+
+            <li id="missionRelList" href="#" class="active" style="width: 50%">
+                <a data-toggle="tab" onclick="missionRelList();">
+                    <h4><i class=" fa fa-briefcase"></i> 关联任务</h4>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content" style="margin-top: 10px;width: 95%;margin: 0 auto">
+            <div id="menu1">
+                <div id="socketOutputTab" class="tab-pane">
+                    <div class="table-responsive">
+                        <div id="toolbar" class="btn-group" style="float: left">
+                            <button id="btn_add" type="button" class="btn btn-success btn-xs rightSize"
+                                    style="width: 100px;"
+                                    onclick="relationMissionAdd();">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>创建任务组
+                            </button>
+                        </div>
+                        <table id="sockctOutput-table"></table>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    //获取关联任务添加页面
+                    function relationMissionAdd() {
+                        window.customData = null;
+                        $("#socketOutputTab").empty();
+                        $.ajax({
+                            url: "/xcr/missionRelAdd.htm",
+                            type: "get",
+                            success: function (data) {
+                                $("#socketOutputTab").html(data);
+                            }
+                        });
+                    }
+                </script>
+                <!-- 关联列表js -->
+                <script type="text/javascript" src="/xcr/js/missionRelList.js"></script>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 提示 -->
+<div class="modal" id="success">
+    <div class="modal-dialog" style="width: 280px;padding-top:200px;">
+        <div class="modal-content">
+            <div class="modal-body" style="padding:30px 0;font-size:18px;width:280px;text-align:center;">
+                操作成功
+            </div>
+            <div class="modal-footer" style="padding: 5px 20px;">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal" id="fail">
+    <div class="modal-dialog" style="width: 280px;padding-top:200px;">
+        <div class="modal-content">
+            <div class="modal-body" style="padding:30px 0;font-size:18px;width:280px;text-align:center;">
+                操作失败
+            </div>
+            <div class="modal-footer" style="padding: 5px 20px;">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal" id="cancel">
+    <div class="modal-dialog" style="width: 280px;padding-top:200px;">
+        <div class="modal-content">
+            <div class="modal-body" style="font-size:16px;width:280px;">
+                <p style="width:276px;border-bottom:none;padding-right:95px;">取消删除成功</p>
+            </div>
+            <div class="modal-footer" style="padding: 5px 20px;">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal" id="dataJudge">
+    <div class="modal-dialog" style="width: 280px;padding-top:200px;">
+        <div class="modal-content">
+            <div class="modal-body" style="padding: 20px 100px;font-size:16px;width:280px;">
+                <p style="width:276px;border-bottom:none;margin-left:-107px;">现金/积分数据格式不正确</p>
+            </div>
+            <div class="modal-footer" style="padding: 5px 20px;">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal" id="titleJudge">
+    <div class="modal-dialog" style="width: 280px;padding-top:200px;">
+        <div class="modal-content">
+            <div class="modal-body" style="padding: 20px 100px;font-size:16px;width:280px;">
+                <p style="width:276px;border-bottom:none;margin-left:-65px;">任务名称重复，请修改名称</p>
+            </div>
+            <div class="modal-footer" style="padding: 5px 20px;">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal" id="relLevelJudge">
+    <div class="modal-dialog" style="width: 280px;padding-top:200px;">
+        <div class="modal-content">
+            <div class="modal-body" style="padding: 20px 100px;font-size:16px;width:280px;">
+                <p style="width:276px;border-bottom:none;margin-left:-98px;text-align:center;">
+                    未选择关联任务，或者未设置关联任务等级，请检查...</p>
+            </div>
+            <div class="modal-footer" style="padding: 5px 20px;">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal" id="serverFail">
+    <div class="modal-dialog" style="width: 280px;padding-top:200px;">
+        <div class="modal-content">
+            <div class="modal-body" style="padding: 20px 94px;font-size:16px;width:280px;">
+                <p style="width:276px;border-bottom:none;margin-left:-107px;">服务器连接失败...</p>
+            </div>
+            <div class="modal-footer" style="padding: 5px 20px;">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal" id="imgTag">
+    <div class="modal-dialog" style="width: 280px;padding-top:200px;">
+        <div class="modal-content">
+            <div class="modal-body" style="padding: 20px 94px;font-size:16px;width:280px;">
+                <p style="width:276px;border-bottom:none;margin-left:-10px;font-size: 20px;padding-bottom: 0px;">
+                    图标不能为空</p>
+            </div>
+            <div class="modal-footer" style="padding: 5px 20px;">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal" id="imgdataJudge2">
+    <div class="modal-dialog" style="width: 280px;padding-top:200px;">
+        <div class="modal-content">
+            <div class="modal-body" style="padding: 20px 94px;font-size:16px;width:280px;">
+                <p style="width:276px;border-bottom:none;margin-left:-94px;text-align:center;">图片太大，不能超过2MB</p>
+            </div>
+            <div class="modal-footer" style="padding: 5px 20px;">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-right: -10px;">关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</body>
+</html>

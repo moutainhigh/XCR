@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:metrics="http://www.ryantenney.com/schema/metrics"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://code.alibabatech.com/schema/dubbo 
+           http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+           http://www.ryantenney.com/schema/metrics
+           http://www.ryantenney.com/schema/metrics/metrics.xsd
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <aop:aspectj-autoproxy/>
+    <context:component-scan
+            base-package="com.yatang.xc.xcr.web;com.yatang.xc.xcr.service"/>
+
+    <!-- Dubbo config -->
+    <dubbo:application name="${dubbo.application}"/>
+    <dubbo:registry protocol="zookeeper" address="${dubbo.zookeeper.host}" default="true"/>
+    <dubbo:protocol name="dubbo" port="${dubbo.protocol.port}"/>
+    <dubbo:monitor protocol="${dubbo.monitor}"/>
+    <dubbo:consumer check="${dubbo.consumer.check}"/>
+
+    <import resource="classpath*:com/yatang/xc/xcr/biz/**/dubbo-consumer.xml"/>
+    <import resource="classpath*:com/yatang/xc/mbd/biz/**/dubbo-consumer.xml"/>
+	<import resource="classpath*:com/yatang/xc/oles/biz/**/dubbo-consumer.xml"/>
+    <!--缓存服务-->
+</beans>

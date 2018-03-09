@@ -1,0 +1,142 @@
+<div id="loginLogTab" class="tab-pane">
+    <div style="width: 100%;margin: 0 auto;">
+        <table style="margin-top: 20px;width: 100%;height:120px;background-color: whitesmoke;margin: 0 auto;"
+               border="0">
+            <tbody style="margin-top: 30px;">
+            <tr style="margin-top: 20px;">
+                <td style="width: 20px;"></td>
+                <td style="width: 70px;">
+                    <div style="margin-top: 5px;">订单状态:</div>
+                </td>
+                <td style="width: 150px;">
+                    <select class="form-control" id="orderState" style="width:80%;" disabled>
+                        <option value="4" selected="selected" disabled>已完成</option>
+                    </select>
+                </td>
+                <td style="width: 70px;">
+                    <div style="margin-top: 5px;">支付渠道:</div>
+                </td>
+                <td style="width: 150px;">
+                    <select class="form-control" id="payChannel" name="payChannel" style="width:80%;">
+                        <option value="0">全部</option>
+                        <option value="10">支付宝</option>
+                        <option value="11">微信</option>
+                    </select>
+                </td>
+                <td style="width: 70px;">
+                    <div style="margin-top: 5px;">订单编号:</div>
+                </td>
+                <td style="width: 300px;" colspan="3">
+                    <div style="display:inline-block;">
+                        <input id="orderNum" name="orderNum" style="width:200px;"/></div>
+                    <div style="display:inline-block;margin-left: 45px;">配送方式:</div>
+                    <div style="display:inline-block;margin-left: 25px;">
+                        <select class="form-control" id="shippingWay" name="shippingWay" style="width:190px;">
+                            <option value="0">全部</option>
+                            <option value="101">商家配送</option>
+                            <option value="102">用户自提</option>
+                            <option value="103">蜂鸟配送</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 20px;"></td>
+                <td style="width: 70px;">
+                    <div style="margin-top: 5px;">门店编号:</div>
+                </td>
+                <td style="width: 150px;">
+                    <input id="shopCode" name="shopCode" style="width:80%;"/>
+                </td>
+                <td style="width: 70px;">
+                    <div style="margin-top: 5px;">所属子公司:</div>
+                </td>
+                <td style="width: 150px;">
+                    <input id="subCompany" name="subCompany" style="width:80%"/>
+                </td>
+                <td style="width: 70px;">
+                    <div style="margin-top: 5px;">下单时间:</div>
+                </td>
+                <td style="width: 300px;">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <input type="text" style="width: 100%;" name="date" id="startDay" value=""/>
+                            </td>
+                            <td>
+                                <strong>&nbsp;&nbsp;-&nbsp;&nbsp;</strong>
+                            </td>
+                            <td>
+                                <input type="text" style="width: 100%;" name="date" id="endDay" value=""/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td style="width: 30%">
+                    <div style="margin-left: 30px;display:inline-block;">
+                        <a href="#" onclick="orderExport();"><h4><i class="fa fa-print"></i>导出订单</h4></a>
+                    </div>
+
+                    <div style="display:inline-block;margin-left: 30px;">
+                        <button id="btn_add" type="button" class="btn btn-vk btn-sm rightSize"
+                                style="width: 100px;"
+                                onclick="resetInput();">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>重置
+                        </button>
+                    </div>
+                    <div style="display:inline-block;margin-left: 30px;">
+                        <button id="btn_add" type="button" class="btn btn-vk btn-sm rightSize"
+                                style="width: 100px;"
+                                onclick="searchResult();">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive">
+        <div id="toolbar" class="btn-group" style="float: left">
+
+        </div>
+        <table id="loginLog-table"></table>
+    </div>
+</div>
+<div class="modal fade" id="timeSearchError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">结束时间不能大于开始时间</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function resetInput() {
+        $("#menu1").empty();
+        $.ajax({
+            url: "/xcr/doneOrderList.htm",
+            type: "get",
+            success: function (data) {
+                console.log(data)
+                $("#menu1").html(data);
+            }
+        });
+    }
+    $('#startDay').date_input();
+    $('#endDay').date_input();
+</script>
+<!-- 普通列表js -->
+<script type="text/javascript" src="/xcr/js/toc/tocOrderList.js"></script>
+

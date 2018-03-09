@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<!--————————————————————————————————————business向外提供dubbo此处开始————————————————————————————————————-->
+	<dubbo:service interface="com.yatang.xc.xcr.biz.core.dubboservice.MsgDubboService" ref="msgDubboService" version="${interface.version}" group="${dubbo.group}"/>
+	<dubbo:service interface="com.yatang.xc.xcr.biz.core.dubboservice.MsgQueryDubboService" ref="msgQueryDubboService" version="${interface.version}" group="${dubbo.group}"/>
+	<dubbo:service interface="com.yatang.xc.xcr.biz.core.dubboservice.UserSignDubboService" ref="userSignDubboService" version="${interface.version}" group="${dubbo.group}"/>
+	<dubbo:service interface="com.yatang.xc.xcr.biz.core.dubboservice.AdvertisementDubboService" ref="advertisementDubboService" version="${interface.version}" group="${dubbo.group}"/>
+	<dubbo:service interface="com.yatang.xc.xcr.biz.core.dubboservice.ActivityDubboService" ref="activityDubboService" version="${interface.version}" group="${dubbo.group}"/>
+	<dubbo:service interface="com.yatang.xc.xcr.biz.core.dubboservice.VersionDubboService" ref="versionDubboService" version="${interface.version}" group="${dubbo.group}"/>
+	<dubbo:service interface="com.yatang.xc.xcr.biz.core.dubboservice.BranchBankListDubboService" ref="branchBankListDubboService" version="${interface.version}" group="${dubbo.group}"/>
+	<dubbo:service interface="com.yatang.xc.xcr.biz.core.dubboservice.XcAdvertisementDubboService" ref="xcAdvertisementDubboService" version="${interface.version}" group="${dubbo.group}"/>
+	<dubbo:service interface="com.yatang.xc.xcr.biz.core.dubboservice.SupplyChainAdvertisementDubboService" ref="supplyChainAdvertisementDubboService" version="${interface.version}" group="${dubbo.group}"/>
+	<dubbo:service interface="com.yatang.xc.xcr.biz.core.dubboservice.F5WhiteListDubboService" ref="f5WhiteListDubboService" version="${interface.version}" group="${dubbo.group}" />
+	<dubbo:service interface="com.yatang.xc.xcr.biz.core.dubboservice.PermissionDubboService" ref="permissionDubboService" version="${interface.version}" group="${dubbo.group}" />
+	<dubbo:service interface="com.yatang.xc.xcr.biz.core.dubboservice.ScanPaymentRegionSetDubboService" ref="scanPaymentRegionSetDubboService" version="${interface.version}" group="${dubbo.group}" />
+
+</beans>	

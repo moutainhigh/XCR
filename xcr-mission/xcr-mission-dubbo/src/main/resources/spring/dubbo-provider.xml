@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<!--————————————————————————————————————business向外提供dubbo此处开始——————————————————————————————
+	<dubbo:service interface="com.yatang.xc.oles.biz.business.dubboservice.HelloWorldDubboService" ref="helloWorldDubboService" version="1.0"/>
+	——————-->
+	<dubbo:service interface="com.yatang.xc.xcr.biz.mission.dubboservice.MissionDubboService" ref="missionDubboService" version="${interface.version}" group="${dubbo.group}"/>
+	<dubbo:service interface="com.yatang.xc.xcr.biz.mission.dubboservice.MissionExecuteDubboService" ref="missionExecuteDubboService" version="${interface.version}" group="${dubbo.group}"/>
+	<dubbo:service interface="com.yatang.xc.xcr.biz.mission.dubboservice.MissionClassroomDubboService" ref="missionClassroomDubboService" version="${interface.version}" group="${dubbo.group}"/>
+	<dubbo:service interface="com.yatang.xc.xcr.biz.mission.dubboservice.MissionBPMDubboService" ref="missionBPMDubboService" version="${interface.version}" group="${dubbo.group}"/>
+	<dubbo:service interface="com.yatang.xc.xcr.biz.mission.dubboservice.StatisticsDubboService" ref="statisticsDubboService" version="${interface.version}" group="${dubbo.group}"/>
+
+</beans>	

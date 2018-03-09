@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>合作协议</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<script src="../xcr/plugins/jquery.js" type="text/javascript"></script>
+		<script src="../xcr/js/annualCommon.js" type="text/javascript"></script>
+			<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				background: #efeff4;
+				width: 100%;
+			}
+			
+			.yaxc {
+				max-width: 750px;
+				border-bottom:1px solid #e5e5e9;
+				background-color:#ffffff;
+			}
+			.yaxc img{
+				width: 80%;
+    			float: left;
+			}
+			
+			.yaxc a {
+				text-decoration:none;
+				float:left;
+    			margin-left: 10px;
+    			font-size:18px;
+    			font-weight:500;
+    			width:100%;
+    			-webkit-tap-highlight-color: #fff;
+			}
+			.yaxc a:link {color:#030303;} /*未访问颜色*/
+			.yaxc a:visited {color:#030303;} /*已访问颜色*/
+			.yaxc a:hover {color:#030303;background:#ffffff;} /*悬浮（鼠标经过）时颜色*/
+			.yaxc a:active {color:#030303;background:#ffffff;} /*点击时的颜色*/
+			
+			.yaxc table tr{
+				height:70px;
+			}
+		</style>
+		<script type="text/javascript">
+		$(document).ready(function() {
+			var MarketNo=getQueryString("MarketNo");
+			var srcPath=projectPath;
+			if(projectPath.indexOf("/html")>0){
+				srcPath=localhostPaht;
+			}
+			$.ajax({
+		        url:srcPath+"/System/getContractList",
+		        type:"post",
+		        data:"MarketNo="+MarketNo,
+		        success:function(data){
+		        	var jsonARR =  JSON.parse(data);
+		        	console.log(jsonARR);
+		        	if(jsonARR.length==0){
+		        		Toast("您的店铺是线下纸质合同签约，无电子合同",3000);
+		        	}else{
+		        		for (var i = 0; i < jsonARR.length; i++) {
+			        		var html='<div class="yaxc"><table><tr><td><a href="'+jsonARR[i].url+'" class="contract">'+jsonARR[i].name+'</a></td><td  style="width:18%;"><a href="'+jsonARR[i].url+'" class="contract"><img src="'+srcPath+'/xcr/img/tag.gif"/></a></td></tr></table></div>';
+			        		$("#body").append(html);
+						}
+		        	}
+		        },
+		        error:function(data){
+		        	 alert("系统繁忙，请稍后重试..."); 
+		        }
+		    }); 
+		});
+		
+		function Toast(msg,duration){
+		    duration=isNaN(duration)?3000:duration;
+		    var m = document.createElement('div');
+		    m.innerHTML = msg;
+		    m.style.cssText="width: 70%;min-width: 180px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 90%;left: 15%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";
+		    document.body.appendChild(m);
+		    setTimeout(function() {
+		        var d = 0.5;
+		        m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+		        m.style.opacity = '0';
+		        setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+		    }, duration);
+		}
+		</script>
+	</head>
+	<body id="body"></body>
+</html>

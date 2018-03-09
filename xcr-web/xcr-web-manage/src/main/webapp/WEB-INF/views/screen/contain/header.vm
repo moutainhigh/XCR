@@ -1,0 +1,322 @@
+<header class="main-header">
+    <!-- Logo -->
+    <a href="${link.contextPath}/main.htm" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span class="logo-mini">小超</span> <!-- logo for regular state and mobile devices --> <span class="logo-lg">小超运营中心管理系统</span> </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> </a>
+        
+        <!--iframe-tabs-->
+					<div class="navbar-iframe-tabs ">
+						<ul class="nav navbar-nav">
+						 #foreach($MVO in $topMenuVO)
+							<li class="topMenu #if($!velocityCount==1)active#end" id="${MVO.authorityId}">
+								 <a href="javascript:activeMenu('${MVO.authorityId}','${MVO.authorityCode}')"><i class="fa fa-square"></i>&nbsp;${MVO.displayName}</a>
+							</li>
+						 #end
+						</ul>
+					</div>
+					
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="javascript:loadHtml('/oles/notice/html/noticelist.htm')" id="showNotice" style="height: 50px;">
+                        <i class="fa fa-envelope-o" id="showNoticeI" style="margin-top: 4px;"></i>
+                    </a>
+                </li>
+            	<li>
+                    <a id="" href="#" onclick="updatePassword()"><i class="glyphicon"></i>修改密码</a>
+                </li>
+                <li>
+                    <a href="javascript:loginOut()">登出</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="modal fade" id="updatePasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"aria-hidden="true">×</button>
+				<h4 class="modal-title" id="updatePasswordModalLabel"></h4>
+			</div>
+			<div class="modal-body">
+				<!-- form start -->
+				<form class="form-horizontal" id="saveadmin_form" name="form-horizontal">
+					<input type="hidden" id="adminid" />
+					<div class="box-body">
+						<dl class="dl-horizontal">
+							<div class="form-group">
+								<div class="col-sm-10">
+									<dt>原始密码：</dt>
+									<dd>
+										<input type="password" class="form-control" id="oldPassword" name="oldPassword">
+									</dd>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-10">
+									<dt>新密码：</dt>
+									<dd>
+										<input type="password" class="form-control" name="newPassword" placeholder="6-20位,字母、数字或下划线"
+										 id="newPassword">
+									</dd>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-10">
+									<dt>确认密码：</dt>
+									<dd>
+										<input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="6-20位,字母、数字或下划线">
+									</dd>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-10"></div>
+								<span  id="returnedResult" style="color: red ;font-size: 12px;display:inner-block;margin-left:195px;" ></span>
+							</div>
+						</dl>
+					</div>
+					<!-- /.box-body -->
+					<div class="modal-footer">
+						<!-- <button type="button" onclick="saveAdmin()" class="btn btn-default">保存</button> -->
+						<button onclick="saveAdmin()" type="button"
+							class="btn btn-primary">
+							<i class="fa fa-check"></i> 确定
+						</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">
+							<i class="fa fa-times"></i> 关闭
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--提示模态框-->
+<div class="modal fade" id="tips" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					提示
+				</h4>
+			</div>
+			<div id="showError" class="modal-body">
+				 &nbsp;
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+
+
+
+<div id="loading" style='display:none;z-index:9002;width:100%;height:100%;float: left;padding:1px;position: absolute;left:0px;top:0px;background:white;filter:alpha(opacity=80); -moz-opacity:0.8; -khtml-opacity: 0.8; opacity: 0.8; '>
+                  <CENTER style="margin-top:25%;">
+                    <p><b>正在转向中...</b></p>
+                    <img src="${link.contextPath}/images/loading.gif"/>
+ </CENTER> </div>
+ 
+ <!--提示模态框-->
+<div class="modal fade" id="zcgDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="zcgDialog_title">
+                                                      
+                </h4>
+            </div>
+            <div id="zcgDialog_body" class="modal-body">
+                 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+ 
+<!-- 展示 详情信息模板1  表格 -->              
+<script id="tp_table_detail" type="text/html">
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header" style="text-align:center;">
+                    <table border="0" class="mainDetailTable" align="center">
+                         {{each dataList value index}}
+                             <tr  {{if dashShow==true}}style="border:1px dashed #8DB6CD;"{{/if}}> 
+                                <td width="150" style="width:150px;word-break:break-all;">{{value.displayName}}:</td> 
+                                <td id="{{value.key}}" style="word-break:break-all;">{{value.displayData}}</td> 
+                             </tr>
+                         {{/each}}
+                         {{if returnShow==true}}
+                             <tr> 
+                                <td colspan="2" style="text-align:center;">
+                                    <a id="returnbutton" class="btn btn-warning glyphicon glyphicon-repeat"> 返回上级</a>
+                                </td> 
+                            </tr>
+                          {{/if}}
+                    </table>
+                </div><!-- /.box-header -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section><!-- /.content -->
+</script>
+
+<script id="tp_dspan_bg" type="text/html">
+<section class="content">
+    <div class="row">
+        <div class="box">
+            <div id="groupContent" class="box-header">
+                 <div class="header-bd">
+                   {{each groupList group}}
+                           <p class="dpxx">{{group.groupName}}</p>
+                           <ul>
+                                {{each group.dataList value index}}
+                                    <li><span>{{value.displayName}}:</span><b id="{{value.key}}">{{value.displayData}}</b></li>
+                                {{/each}}
+                           </ul>
+                   {{/each}}
+                 </div>    
+            </div>
+        </div>
+    </div>
+</section>
+</script>
+
+<script type="text/javascript">
+	var isActive=0;
+
+	//设置当前活动项
+	 $(function (){
+		activeMenu("$!{menuId}","$!{domainCode}");
+	 })
+	 
+    function loginOut() {
+	     window.location = '${link.contextPath}/logout.htm';
+	     localStorage.clear();
+    }
+	 function checkURL(URL){
+		 var str=URL;
+		 //判断URL地址的正则表达式为:http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?
+		 //下面的代码中应用了转义字符"\"输出一个字符"/"
+		 var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+		 var objExp=new RegExp(Expression);
+		 if(objExp.test(str)==true){
+			     return true;
+		 } 
+		 
+		 return false;
+	 }     
+	function activeMenu(id,aucode){
+		 if(checkURL(aucode)){
+			 $('body').css("overflow","hidden")
+			 $("#loading").show();
+			 setTimeout(function(){
+				 window.location = aucode;
+			 }, 500 )
+			
+			 return;
+		 }
+		 $(".topMenu").each(function(index, element) {
+		  	    $(this).removeClass("active");
+		 });
+		 if(id=="")
+		    $("#"+id).addClass("active");
+		 else
+		    $("#"+id).addClass("active");
+		
+		 $(".leftSubMenu").each(function(index, element) {
+		  	 $(this).css("display","none");
+		 });
+		//子菜单
+		if(aucode!=null&&aucode!=""){ //有多个子菜单
+			var auArr = aucode.split(",");
+			for(var i=0;i<auArr.length;i++){
+				$("#"+auArr[i]+"_sub").css("display","block");
+			}
+			$("#"+auArr[0]+"_sub").addClass("active");
+		 }else{
+		 	$("#"+id+"_sub").css("display","block");
+		 	$("#"+id+"_sub").addClass("active");
+		 }
+
+        isActive=1;
+	}
+	
+	
+	function updatePassword() {
+		$('#updatePasswordModal').modal({
+			backdrop: 'static',
+			keyboard:false,
+	    })
+	}
+
+    $(function () {
+        $.get("${link.contextPath}/oles/notice/sum.htm",function (data) {
+            if(data.resultObject != 0){
+                $("#showNotice").append($('<span class="label badge bg-aqua" style="margin-top: 4px;background-color:lightcoral !important;">'+data.resultObject+'</span>'));
+            }
+        })
+    })
+	//保存
+	function saveAdmin() {
+	   var pwdReg = /^(\w){6,20}$/;
+	   if ($("#newPassword").val().trim() == "") {
+			returnedResult.innerHTML = "密码不能为空";
+			return false;
+		} else if ($("#newPassword").val().trim().length < 6||$("#newPassword").val().trim().length >20) {
+			returnedResult.innerHTML = "密码长度6-20位";
+			return false;
+		} else if ($("#newPassword").val() != $("#confirmPassword").val()) {
+			returnedResult.innerHTML = "两次输入密码不一致";
+			return false;
+		}else if(!pwdReg.exec($("#newPassword").val())){
+		     returnedResult.innerHTML = "密码只能包含字母、数字和下划线";
+		     return false;
+		}
+		
+	 
+	   // else if ($("#newPassword").val() != '/[\w\.]/ig') {
+       //     returnedResult.innerHTML = "密码只能包含字母、数字、小数点和下划线";
+       //     return false;
+       // }
+		$.ajax({
+			type : "POST",
+			dataType : 'json',
+			url : "${link.contextPath}/system/user/updatepassword.htm",
+			data : {
+				loginName : "$!{sessionInfo.loginName}",
+				oldPassword : $("#oldPassword").val(),
+				newPassword : $("#newPassword").val(),
+				confirmPassword : $("#confirmPassword").val()
+			},
+			success : function(data) {
+				var returnedResult = document.getElementById("returnedResult");
+				returnedResult.innerHTML = "";
+				if (data.success == true) {
+					$('#updatePasswordModal').modal("hide");
+					$('#successModal').modal("show");
+				} else {
+					returnedResult.innerHTML = data.errorMessage;
+				}
+			}
+		});
+	}
+
+</script>

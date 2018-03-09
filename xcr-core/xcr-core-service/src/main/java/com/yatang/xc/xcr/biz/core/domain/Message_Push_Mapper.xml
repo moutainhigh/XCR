@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yatang.xc.xcr.biz.core.dao.MessagePushDao">
+
+	<sql id="msg_push"> YT_XCR_MSG_APUSH </sql>
+	
+	<resultMap id="baseMap" type="com.yatang.xc.xcr.biz.core.domain.MessagePushPO">
+		<id column="ID" property="id" />
+		<result column="TITLE" property="title" jdbcType="VARCHAR"/>
+		<result column="IMAGE_URL" property="imageUrl" jdbcType="VARCHAR"/>
+		<result column="MSG_URL" property="msgUrl" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="VARCHAR"/>
+		<result column="TYPE" property="type" jdbcType="VARCHAR"/>
+		<result column="CREATE_UID" property="createUid" jdbcType="INTEGER" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="MODIFY_UID" property="modifyUid" jdbcType="INTEGER" />
+		<result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+		<result column="RELEASES_TIME" property="releasesTime" jdbcType="TIMESTAMP" />
+		<result column="PUSH_TYPE" property="pushType" jdbcType="VARCHAR" />
+		<result column="PUSH_TO" property="pushTo" jdbcType="VARCHAR" />
+		<result column="AREA_STR" property="areaStr" jdbcType="VARCHAR" />
+		<result column="MSG_CONTENT" property="contentHtml" jdbcType="VARCHAR" />
+		<result column="MSG_CONTENT_TYPE" property="contentFrom" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="query_base_column">
+	     TITLE,IMAGE_URL,MSG_URL,STATUS,TYPE,CREATE_UID,CREATE_TIME,MODIFY_UID,MODIFY_TIME,RELEASES_TIME,PUSH_TYPE,PUSH_TO,AREA_STR,MSG_CONTENT,MSG_CONTENT_TYPE
+	</sql>
+	
+	<insert id="insert" parameterType="com.yatang.xc.xcr.biz.core.domain.MessagePushPO" useGeneratedKeys="true" keyProperty="id">
+		insert into <include refid="msg_push"/> (
+		<include refid="query_base_column" />
+		) 
+		values (#{title},#{imageUrl},#{msgUrl},#{status},#{type},#{createUid},#{createTime},#{modifyUid},#{modifyTime},#{releasesTime},#{pushType},#{pushTo},#{areaStr},#{contentHtml},#{contentFrom})
+	</insert>
+	
+	<delete id="deleteById" parameterType="com.yatang.xc.xcr.biz.core.domain.MessagePushPO" >
+		delete from <include refid="msg_push"/> where id = #{id}
+	</delete>
+	
+	<update id="update" parameterType="com.yatang.xc.xcr.biz.core.domain.MessagePushPO" >
+		update <include refid="msg_push"/> set modify_time = #{modifyTime}
+		<if test="title != null and title != '' ">,title = #{title}</if>
+		<if test="imageUrl != null and imageUrl != '' ">,image_url = #{imageUrl}</if>
+		<if test="msgUrl != null and msgUrl != '' ">,msg_url = #{msgUrl}</if>
+		<if test="status != null ">,status = #{status} </if>
+		<if test="modifyUid != null ">,modify_uid = #{modifyUid} </if>
+		<if test="releasesTime != null">,releases_time = #{releasesTime} </if>
+		<if test="pushType != null">,PUSH_TYPE = #{pushType} </if>
+		<if test="pushTo != null">,PUSH_TO = #{pushTo} </if>
+		<if test="areaStr != null">,AREA_STR = #{areaStr} </if>
+		<if test="contentHtml != null">,MSG_CONTENT = #{contentHtml} </if>
+		<if test="contentFrom != null">,MSG_CONTENT_TYPE = #{contentFrom} </if>
+		where id = #{id} 
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="baseMap">
+		select id,<include refid="query_base_column" /> from <include refid="msg_push"/>   where id = #{id} 
+	</select>
+	
+	<select id="listPageCount" parameterType="java.util.Map" resultType="java.lang.Long">
+		select count(1) from <include refid="msg_push"/> 
+		<where>
+		    1=1 
+		    <if test="map.status != null "> and status = #{map.status} </if>
+		</where>
+	</select>
+	
+	<select id="listBy" parameterType="java.util.Map" resultMap="baseMap">
+		select id,<include refid="query_base_column" />  from <include refid="msg_push"/> 
+		<where>
+		    1=1 
+		    <if test="status != null "> and status = #{status} </if>
+			and PUSH_TYPE = 0
+		</where>
+		UNION
+		select id,<include refid="query_base_column" />  from <include refid="msg_push"/>
+		<where>
+			1=1
+			<if test="status != null "> and status = #{status} </if>
+			and PUSH_TYPE = 1
+			and PUSH_TO = #{shopCode}
+		</where>
+		UNION
+		select id,<include refid="query_base_column" />  from <include refid="msg_push"/>
+		<where>
+			1=1
+			<if test="status != null "> and status = #{status} </if>
+			and PUSH_TYPE = 2
+			and AREA_STR LIKE CONCAT('%','${provinceId}','%')
+		</where>
+		order by modify_time desc
+	</select>
+
+	<select id="listByForBack" parameterType="java.util.Map" resultMap="baseMap">
+		select id,<include refid="query_base_column" />  from <include refid="msg_push"/>
+		<where>
+			1=1
+			<if test="status != null "> and status = #{status} </if>
+			AND TYPE = 0
+		</where>
+		order by modify_time desc
+	</select>
+	
+	<select id="getNewMsgCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(ID) from <include refid="msg_push"/> where status = 1
+	</select>
+	
+	<select id="checkTitleExist" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(ID) from <include refid="msg_push"/> where title = #{title}
+	</select>
+</mapper>
+

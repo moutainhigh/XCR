@@ -1,0 +1,23 @@
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for XCR_ACTIVITY_INFO
+-- ----------------------------
+DROP TABLE IF EXISTS `XCR_ACTIVITY_INFO`;
+CREATE TABLE `XCR_ACTIVITY_INFO` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `PROVINCE` varchar(20) DEFAULT NULL COMMENT '省份',
+  `CITY` varchar(50) DEFAULT NULL COMMENT '城市',
+  `USERID` varchar(20) NOT NULL COMMENT '加盟商账号',
+  `STORENO` varchar(20) NOT NULL COMMENT '门店编号',
+  `USERNAME` varchar(20) DEFAULT NULL COMMENT '法人姓名',
+  `PHONE` varchar(11) DEFAULT NULL COMMENT '联系方式',
+  `BRANCH_COMPANY` varchar(100) DEFAULT '' COMMENT '加盟商所属分公司',
+  `USERPHOTO` varchar(500) DEFAULT NULL COMMENT '本人照片',
+  `STOREPHOTO` varchar(500) DEFAULT NULL COMMENT '营业执照',
+  `TYPE` varchar(10) NOT NULL DEFAULT '' COMMENT '活动（1：年会）',
+  `CREATE_TIME` datetime DEFAULT NULL COMMENT '创建时间',
+  `UPDATE_TIME` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;

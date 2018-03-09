@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+           
+   	<!-- <context:component-scan base-package="com.yatang.xc.xcr.web;com.yatang.xc.mbd.web" />   -->
+    <context:property-placeholder location="classpath*:server.properties" />
+	
+	<!-- Dubbo config -->
+	<dubbo:application name="xcr-web-manage" />
+	<dubbo:registry protocol="zookeeper" address="172.30.11.20:31703,172.30.11.20:31056,172.30.11.20:31061"  default="true"/>
+	<dubbo:registry protocol="zookeeper" address="172.16.16.111:20181,172.16.16.110:20181,172.16.16.109:20181" default="false" id="smzk" />
+	<dubbo:protocol name="dubbo" port="-1" />
+	<dubbo:monitor protocol="prd.zk1.com:7070" />
+	<dubbo:consumer check="false" />
+
+	<import resource="classpath*:com/yatang/xc/**/biz/**/dubbo-consumer.xml" />
+	<!-- 订单 -->
+	<dubbo:reference check="false" registry="smzk" interface="com.yatang.xcsm.remote.api.dubboxservice.PushOrderDubboxService" id="pushOrderDubboxService" timeout="30000" version="1.0" />
+
+
+</beans>

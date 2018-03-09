@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yatang.xc.xcr.biz.core.dao.XcrWhiteListDao">
+
+  <insert id="insert" parameterType="com.yatang.xc.xcr.biz.core.domain.XcrWhiteListPO">
+    insert into XCR_WHITE_LIST (user_account) values (#{userAccount,jdbcType=VARCHAR})
+  </insert>
+        
+  <sql id="baseColumns">
+    user_account as userAccount
+  </sql>
+        
+  <update id="update" parameterType="java.util.Map">
+    UPDATE  XCR_WHITE_LIST	<trim prefix="SET" suffixOverrides=",">
+      <if test="userAccount != null and userAccount != ''">	user_account=#{userAccount , jdbcType=VARCHAR},</if>
+	</trim>WHERE id=#{id}
+  </update>
+        
+  <select id="list" parameterType="java.util.Map" resultType="com.yatang.xc.xcr.biz.core.domain.XcrWhiteListPO">
+    SELECT  <include refid="baseColumns"/>  FROM  XCR_WHITE_LIST
+	<where>
+	<trim suffixOverrides="," prefixOverrides="AND |OR ">
+			<if test="userAccount != null and userAccount != ''">AND	user_account=#{userAccount , jdbcType=VARCHAR}</if>
+		</trim>
+	</where>
+  </select>
+        
+  <select id="one" parameterType="java.util.Map" resultType="com.yatang.xc.xcr.biz.core.domain.XcrWhiteListPO">
+    SELECT  <include refid="baseColumns"/>  FROM  XCR_WHITE_LIST
+	<where>
+	<trim suffixOverrides="," prefixOverrides="AND |OR ">
+			<if test="userAccount != null and userAccount != ''">AND	user_account=#{userAccount , jdbcType=VARCHAR}</if>
+		</trim>
+	</where>
+  </select>
+        
+  <delete id="delete" parameterType="java.util.Map">
+     DELETE FROM XCR_WHITE_LIST
+	<where>
+	<trim  prefixOverrides="AND |OR ">
+			<if test="userAccount != null and userAccount != ''">AND	user_account=#{userAccount , jdbcType=VARCHAR}</if>
+		</trim>
+	</where>
+  </delete>
+        
+</mapper>

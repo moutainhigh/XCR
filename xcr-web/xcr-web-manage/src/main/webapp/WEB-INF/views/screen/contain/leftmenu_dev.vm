@@ -1,0 +1,249 @@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left">
+                <i class="fa fa-user" style="font-size:38px;color:#ffffff"> </i>
+            </div>
+            <div class="pull-left info">
+                <p>
+                    你好！xcr
+                </p>
+                <a><i class="fa fa-circle text-success"> </i>$!{sessionInfo.realName}</a>
+            </div>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="treeview " id="191_sub" style="display: block;">
+                <a href="#"><i class="fa fa-square"></i><span>推荐商品管理</span>
+                    <iclass
+                    ="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="javascript:loadHtml('xcr/sc/scGroup.htm')"><i class="fa fa-circle-o"></i>&nbsp;供应链推荐商品管理</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview" id="185_sub" style="display: block;">
+                <a href="#"><i class="fa fa-square"></i><span>数据统计</span><i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="javascript:loadHtml('xcr/count/statistics.htm')"><i class="fa fa-circle-o"></i>&nbsp;操作统计</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview" id="34_sub" style="display: block;">
+                <a href="#"><i class="fa fa-square"></i><span>发布管理</span><i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="javascript:loadHtml('/xcr/train.htm')"><i class="fa fa-circle-o"></i>&nbsp;小超课堂</a>
+                    </li>
+                    <li>
+                        <a href="javascript:loadHtml('/xcr/msg.htm')"><i class="fa fa-circle-o"></i>&nbsp;消息发布</a>
+                    </li>
+                    <li>
+                        <a href="javascript:loadHtml('/xcr/mission.htm')"><i class="fa fa-circle-o"></i>&nbsp;任务管理</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="treeview" id="34_sub" style="display: block;">
+                <a href="#"><i class="fa fa-square"></i><span>广告配置</span><i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="javascript:loadHtml('/xcr/launchP/launchP.htm')"><i class="fa fa-circle-o"></i>&nbsp;启动页</a>
+                    </li>
+                    <li>
+                        <a href="javascript:loadHtml('/xcr/advertise.htm')"><i class="fa fa-circle-o"></i>&nbsp;轮播图</a>
+                    </li>
+                    <li>
+                        <a href="javascript:loadHtml('/xcr/sc/scGroup.htm')"><i
+                                class="fa fa-circle-o"></i>&nbsp;首页商品</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="treeview" id="150_sub" style="display: block;">
+                <a href="#"><i class="fa fa-square"></i><span>签到管理</span><i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="javascript:loadHtml('/xcr/signAward.htm')"><i class="fa fa-circle-o"></i>&nbsp;签到奖励</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview" id="194_sub" style="display: block;">
+                <a href="#"><i class="fa fa-square"></i><span>版本管理</span><i
+                        class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="javascript:loadHtml('xcr/versionManage.htm')"><i class="fa fa-circle-o"></i>&nbsp;版本管理列表</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">提示框</h4>
+            </div>
+            <div class="modal-body">
+                操作提交成功
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="queding" data-dismiss="modal">
+                    确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">提示框</h4>
+            </div>
+            <div class="modal-body">
+                操作提交失败
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="queding" data-dismiss="modal">
+                    确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">提示框</h4>
+            </div>
+            <div class="modal-body">
+                确定删除吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    取消
+                </button>
+                <button type="button" class="btn btn-primary" id="shanchu">
+                    确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="position: absolute;top: 0px;left: 0px;z-index: 9999;background:rgba(0,0,0,.0);width: 100%;height: 100%;display: none"
+     id="noticeZZ">
+    <div id="noticeMb" style="background: white;position: absolute;z-index: 10000;width: 320px;padding-top: 12px;">
+        <div style="font-size: 2rem;font-weight: bold;padding-left: 12px;padding-right: 12px;padding-bottom: 12px;">
+            审批消息列表
+        </div>
+        <div style="padding-left: 12px;padding-right: 12px;padding-bottom: 12px;border-bottom: 1px solid rgba(0,0,0,.1);">
+            <form action="http://localhost:8080/notice/message/list.htm" class="form-inline" id="noticeForm">
+                <div class="form-group">
+                    <select class="form-control" id="selectNotice" name="paramType">
+                        <option value="name">任务名字</option>
+                        <option value="orgName">发起人</option>
+                        <option value="type">类型</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="textNotice" name="paramValue">
+                </div>
+            </form>
+        </div>
+        <div style="height: 600px;" id="srollDiv">
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modifyPasswordModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">提示框(修改密码)</h4>
+            </div>
+            <div class="modal-body">
+                <span>输入密码：</span>
+                <input type="password" class="form-control" placeholder="6-20位,只能输入字母、数字或下划线" maxlength="20"
+                       id="employeePassword">
+                <span id="employeePasswordResult" style="color: red ;font-size: 12px"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="modifyPasswordBtn">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var height = 480;
+    var currentSelected;
+    var currentSelectParent;
+
+    $(function () {
+
+        function activeNoticeList() {
+            if (currentSelected) {
+                $(currentSelected).removeClass("active");
+            }
+            currentSelected = $("#noticeListLi");
+            $(currentSelected).addClass("active");
+            currentSelectParent = $(currentSelected).parent().parent();
+            loadHtml("${link.contextURL}/notice/html/noticelist.htm");
+        }
+
+//
+//        $("#srollDiv").slimScroll({
+//            height: height + 'px',
+//            size: '3px', //组件宽度
+//            opacity: .3 //滚动条透明度
+//        });
+        //加载主页
+//        loadHtml("pages/system/user.html");
+
+        $(".treeview-menu li").on('click', function () {
+            if (currentSelected) {
+                $(currentSelected).removeClass("active");
+            }
+            currentSelected = this;
+            $(this).addClass("active");
+            currentSelectParent = $(this).parent().parent();
+        });
+
+        $("#showNotice").on('click', function (e) {
+            var parent = $("#noticeListParent");
+            if (!parent.hasClass("active")) {
+                parent.children("a").click();
+                //由于菜单的特殊性，只有写这种兼容性代码了
+                setTimeout(activeNoticeList, 550)
+            } else {
+                activeNoticeList();
+            }
+        })
+    });
+</script>

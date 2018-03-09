@@ -1,0 +1,133 @@
+<head>
+</head>
+<script type="text/javascript" src="/xcr/uploadify/notRefreshFilesUpload.js">
+</script>
+<style>
+    .form-control-reWrite {
+        width: 85%;
+        display: inline;
+        height: 28px;
+        border-radius: 3px;
+        padding: 2px 5px;
+        margin-left: 15px;
+    }
+</style>
+<div class="container" style="width: 100%;">
+    <div style="margin-top: 10px;width: 100%;background-color: white">
+        <div class="tab-content" style="margin-top: 10px;width: 100%;margin: 0 auto">
+            <div>
+                <div class="table-style" id="loginLogTab">
+                    <form class="demoform">
+                        <table class="table" style="margin-top: 20px;background-color: whitesmoke;" border="0">
+                            <tbody>
+                            <input type="hidden" id="type" class="form-control" value=""/>
+                            <input type="hidden" name="totalflag" id="totalflag" value=""/>
+                            <input type="hidden" name="adverflag" id="adverflag" value=""/>
+                            <input type="hidden" name="editFlag" id="editFlag" value=""/>
+                            <input type="hidden" name="versionId" id="versionId" value=""/>
+                            <tr>
+                                <td class="table-style-td">
+                                    <div style="width:160px;text-align:right"><span style="color:#f00;"></span></div>
+                                </td>
+                                <td>
+                                    <input type="hidden" id="advertiseId" class="form-control" type="text" value=""
+                                           maxlength="20" style="width:40%;"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-style-td">
+                                    <div style="width:160px;text-align:right">版本号(模块Id):<span style="color:#f00;">*</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input id="versionCode" onblur="recommendCode(this)" class="form-control" type="text" value="" maxlength="20"
+                                           style="width:40%;" placeholder="最多20个字"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="table-style-td">
+                                    <div style="width:160px;text-align:right">发布序号:<span style="color:#f00;">*</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input id="code" class="form-control" type="text" value="" maxlength="20"
+                                           style="width:40%;" placeholder="最多20个字"/>
+                                </td>
+                            </tr>
+
+                            <tr id="anzhuangbao">
+                                <td class="table-style-td">
+                                    <div style="width:160px;text-align:right">安装包管理:<span style="color:#f00;">*</span>
+                                    </div>
+                                </td>
+                                <td class="table-style-td">
+                                    <div style="width:400px;text-align:right">
+                                        <input id="file"  class="form-control" type="text" value="" style="width:100%;" />
+									</div>
+                                </td>
+                            </tr>
+                            <tr class="advertiseUrlClass">
+                                <td class="table-style-td">
+                                    <div style="width:160px;text-align:right">强制升级:<span style="color:#f00;">*</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <label><input name="isLiveUp" type="radio" value="1"/>是 </label>
+                                    <label><input name="isLiveUp" type="radio" value="0"/>否 </label>
+                                </td>
+                            </tr>
+                            <tr border="0">
+                                <td class="table-style-td">
+                                    <div style="width:160px;text-align:right">版本说明:<span style="color:#f00;">*</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <table style="width: 610px;">
+                                        <tr>
+                                            <td class="form-group">
+
+                                                <textarea id="description" class="form-control" rows="10"
+                                                          placeholder="最多可以输入200个字符" maxlength="200"
+                                                          style="width:83%;"></textarea>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-style-td">
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button id="saveTask" type="button" class="ladda-button"
+                                            onclick="saveVersion()" data-style="contract-overlay" style="z-index: 10; width: 80px;height: 70px;">保存
+                                    </button>
+                                    <button id="cancleTask" type="button" class="ladda-button"
+                                            onclick="resetInput()" data-style="contract-overlay" style="z-index: 10;margin-left: 100px;width: 80px;height: 70px;">取消
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/xcr/js/versionList.js"></script>

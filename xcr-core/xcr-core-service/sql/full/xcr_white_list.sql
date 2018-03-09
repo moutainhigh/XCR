@@ -1,0 +1,5 @@
+-- F5 对接白名单
+DROP TABLE IF EXISTS `XCR_WHITE_LIST`;
+CREATE TABLE `XCR_WHITE_LIST` (
+  `user_account` varchar(20) NOT NULL COMMENT '权限控制账户'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

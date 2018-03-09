@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        background: #fff;
+        width: 100%;
+    }
+    
+    .yaxc-box {
+        max-width: 750px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    .yaxc-box img {
+        display: block;
+        width: 100%;
+    }
+    
+    .yaxc-box1 {
+        position: fixed;
+        width: 100%;
+        text-align: center;
+        bottom: 0;
+        height: 50px;
+    }
+    
+    .yaxc-btn {
+        width: 100%;
+        max-width: 750px;
+        display: inline-block;
+        border: 0;
+        background: #E51C26;
+        font-size: 16px;
+        color: #fff;
+        line-height: 50px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+</style></head>
+
+
+<body>
+    <div class="yaxc-box">
+        <img src="../xcr/img/20171016ytxc_top.gif">
+    </div>
+    <div class="yaxc-box">
+        <img src="../xcr/img/20171016ytxc_down.gif" id="button">
+    </div>
+    <div class="yaxc-box">
+        <img src="../xcr/img/20171016ytxc_bottom.gif">
+    </div>
+    <div class="yaxc-box1" style="display:none;">
+        <div class="yaxc-btn" id="button2">立即下载
+    </div>
+    <script>
+    function detectOS() { 
+
+    	var sUserAgent = navigator.userAgent; 
+
+    	var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows"); 
+    	var isMac = (navigator.platform == "Mac68K") || (navigator.platform == "MacPPC") || (navigator.platform == "Macintosh") || (navigator.platform == "MacIntel"); 
+    	if (isMac) return "Mac"; 
+    	var isUnix = (navigator.platform == "X11") && !isWin && !isMac; 
+    	if (isUnix) return "Unix"; 
+    	var isLinux = (String(navigator.platform).indexOf("Linux") > -1); 
+    	var isIos=sUserAgent.indexOf('iPhone') > -1 ||sUserAgent.indexOf('iPad') > -1;
+    	if(isIos) return "ios";
+    	var bIsAndroid = sUserAgent.toLowerCase().match(/android/i) == "android";
+    	if (isLinux) {
+    	if(bIsAndroid) return "Android";
+    	else return "Linux"; 
+    	}
+    	if (isWin) { 
+    	var isWin2K = sUserAgent.indexOf("Windows NT 5.0") > -1 || sUserAgent.indexOf("Windows 2000") > -1; 
+    	if (isWin2K) return "Win2000"; 
+    	var isWinXP = sUserAgent.indexOf("Windows NT 5.1") > -1 || 
+    	sUserAgent.indexOf("Windows XP") > -1; 
+    	if (isWinXP) return "WinXP"; 
+    	var isWin2003 = sUserAgent.indexOf("Windows NT 5.2") > -1 || sUserAgent.indexOf("Windows 2003") > -1; 
+    	if (isWin2003) return "Win2003"; 
+    	var isWinVista= sUserAgent.indexOf("Windows NT 6.0") > -1 || sUserAgent.indexOf("Windows Vista") > -1; 
+    	if (isWinVista) return "WinVista"; 
+    	var isWin7 = sUserAgent.indexOf("Windows NT 6.1") > -1 || sUserAgent.indexOf("Windows 7") > -1; 
+    	if (isWin7) return "Win7"; 
+    	} 
+    	return "other"; 
+    } 
+
+    function downLoad(){
+        var which=detectOS();
+        if(which=="Linux"||which=="Android"){   
+        	console.log("Android");
+			location.href="http://a.app.qq.com/o/simple.jsp?pkgname=com.yatang.xc.xcr";//雅堂小超商家版
+        }else if(which=="ios"){    
+        	console.log("ios");
+            location.href="https://itunes.apple.com/app/id1238637962?mt=8";
+        }else if(which=="Win7"){
+        	console.log("Win7");
+            location.href="http://a.app.qq.com/o/simple.jsp?pkgname=com.yatang.xc.xcr";//雅堂小超商家版
+        }else{
+        	console.log("else");
+        }
+    }
+    var button = document.getElementById('button')
+    button.addEventListener('click', downLoad)
+    </script>
+</div>
+</body>
+</html>

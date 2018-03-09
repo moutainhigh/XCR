@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<link href="/xcr/css/lyz.calendar.css" rel="stylesheet" type="text/css" />
+		<link href="/xcr/css/statistics.css" rel="stylesheet" type="text/css" />
+		<link href="/xcr/css/bootstrap.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="/xcr/plugins/window/window.css" />
+		<script src="/xcr/scripts/Jquery1.4.4/jquery.min.js"></script> 
+		<script src="/xcr/scripts/lyz.calendar.min.js" type="text/javascript"></script>
+		<script src="/xcr/js/statistics.js" type="text/javascript"></script>
+		<script src="/xcr/scripts/bootstrap.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/xcr/plugins/window/window.js"></script>
+		<title>任务统计</title>
+		<script type="text/javascript">
+			$(function() {
+				$("#txtEndDate1").calendar();
+				$("#txtEndDate2").calendar();
+				$("#txtEndDate1").val(getDay(0));
+				$("#txtEndDate2").val(getDay(0));
+			});
+		</script>
+	</head>
+	<body>
+		<div style="margin-top:10px;margin-left: 10px;min-width:940px">
+			<div style="border:1px solid #ccc;width:99.5%;">
+				<div class="titleStyle"><img src="/xcr/img/tag_goods.gif" class="img_style" style="height: 50px;"/>
+					<label class="label_style">商品统计</label>
+					<div style="padding-top: 10px;margin-left: 200px;">
+						<input id="txtEndDate1" style="width:100px;padding:4px 10px;border:1px solid #ccc;border-radius:5px" placeholder="开始日期..." />
+						<label> - </label>
+						<input id="txtEndDate2" style="width:100px;padding:4px 10px;border:1px solid #ccc;border-radius:5px" placeholder="结束日期..." />
+						<input type="button" value="筛选" style="margin-left:20px;padding:5px 12px;background-color: #099fb8;border-radius:3px;color: #FFFFFF;border: none;" onclick="onChangeLi(this)"/>
+						<ul class="ulStyle"> 
+                            <li><input type="button" id="today" value="今日" class="tabChange"  onclick="onChangeLi(this)" style="color:#099fb8;"/></li>
+							<li><input type="button" id="yestoday" value="昨天" class="tabChange" onclick="onChangeLi(this)"/></li>
+							<li><input type="button" id="dayBeforeSeven" value="近7天" class="tabChange" onclick="onChangeLi(this)"/></li>
+							<li><input type="button" id="dayBefore30Day" value="近30天" class="tabChange" onclick="onChangeLi(this)"/></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="content">
+				<iframe id="statisticsOperateContent" src="statisticsOperate.htm" width="100%" height="800px" scrolling="no" frameborder="no">
+				
+				</iframe>
+            </div>
+		</div>
+	</body>
+</html>

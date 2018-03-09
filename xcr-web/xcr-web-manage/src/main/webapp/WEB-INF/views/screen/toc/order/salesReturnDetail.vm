@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+</head>
+<body class="gray-bg">
+<div class="container" style="width: 100%;background-color: whitesmoke">
+    <div style="margin-top: 10px;width: 100%;">
+        <div style="width: 100%;height: 10px;"></div>
+        <div style="width: 100%;height: 50px;margin-top: 10px;">
+            <h5>&nbsp;&nbsp;<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;<a
+                    href="javascript:loadHtml('xcr/toc/orderlist.htm')">外送订单管理</a>&nbsp;&nbsp;<i
+                    class="fa fa-chevron-right"></i>&nbsp;&nbsp;<a href="javascript:loadHtml('xcr/toc/orderlist.htm')">外送订单列表</a>&nbsp;&nbsp;<i
+                    class="fa fa-chevron-right"></i>&nbsp;&nbsp;<a href="#">退单详情</a></h5>
+        </div>
+        <div class="tab-content" style="margin-top: 5px;width: 99%;margin: 0 auto">
+            <div id="detailTable" style="background-color: white;">
+                <div style="width: 100%;margin: 0 auto;">
+                    <div style="width: 70%;margin-left: 4%">
+
+                        <!------------------- 订单基本信息 ------------------->
+                        <div style="height: 20px;margin-top: 5px;">
+                        </div>
+                        <h5><i class="fa fa-jpy"></i> 订单基本信息</h5>
+                        <table style="width: 100%;height:250px;margin: 0 auto;border-style: solid;border-color: gainsboro;"
+                               border="1">
+                            <tbody style="margin-top: 30px;">
+                            <tr>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                    退单编号
+                                </td>
+                                <td style="width: 35%;">
+                                    &nbsp;&nbsp;#if($pushCancelOrderDTO.cancelId) $pushCancelOrderDTO.cancelId #else
+                                    无 #end
+                                </td>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                    原订单号
+                                </td>
+                                <td style="width: 35%;">
+                                    &nbsp;&nbsp;#if($pushCancelOrderDTO.historyOrderNo) $pushCancelOrderDTO.historyOrderNo #else
+                                    无 #end
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                    所属子公司
+                                </td>
+                                <td style="width: 35%;">
+                                    &nbsp;&nbsp;#if($pushCancelOrderDTO.companyName) $pushCancelOrderDTO.companyName #else
+                                    无 #end
+                                </td>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                    门店编号
+                                </td>
+                                <td style="width: 35%;">
+                                    &nbsp;&nbsp;#if($pushCancelOrderDTO.shopId) $pushCancelOrderDTO.shopId #else 无 #end
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                    退单时间
+                                </td>
+                                <td style="width: 35%;">
+                                    &nbsp;&nbsp;#if($createTimeStr) $createTimeStr #else 无 #end
+                                </td>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                    订单状态
+                                </td>
+                                <td style="width: 35%;">
+                                    &nbsp;&nbsp;#if($stateStr) $stateStr #else 无 #end
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                    退单总金额
+                                </td>
+                                <td style="width: 35%;">
+                                    &nbsp;&nbsp;￥#if($pushCancelOrderDTO.cancelAmount) $pushCancelOrderDTO.cancelAmount #else
+                                    0.00 #end
+                                </td>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                </td>
+                                <td style="width: 35%;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                    支付渠道
+                                </td>
+                                <td style="width: 35%;">
+                                    &nbsp;&nbsp;#if($pushCancelOrderDTO.payway == 10)
+                                    支付宝 #elseif($pushCancelOrderDTO.payway == 11)
+                                    微信 #else 无 #end
+                                </td>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                    付款时间
+                                </td>
+                                <td style="width: 35%;">
+                                    &nbsp;&nbsp;#if($paytime) $paytime #else
+                                    无 #end
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                    退款方式
+                                </td>
+                                <td style="width: 35%;">
+                                    &nbsp;&nbsp;#if($pushCancelOrderDTO.refundMethod == 1) 原支付方式退回 #else - #end
+                                </td>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                    退款时间
+                                </td>
+                                <td style="width: 35%;">
+                                    &nbsp;&nbsp;#if($updateTime) $updateTime #else
+                                    无 #end
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                    问题描述
+                                </td>
+                                <td style="width: 35%;" colspan="3">
+                                    &nbsp;&nbsp;#if($pushCancelOrderDTO.cancelReason) $pushCancelOrderDTO.cancelReason #else 无 #end
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <!--------------------- 买家信息 ---------------------->
+                        <div style="height: 20px;margin-top: 5px;">
+                        </div>
+                        <h5><i class="fa fa-user"></i> 买家信息</h5>
+                        <table style="width: 100%;height:60px;margin: 0 auto;border-style: solid;border-color: gainsboro;"
+                               border="1">
+                            <tbody style="margin-top: 30px;">
+                            <tr>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                    退货人
+                                </td>
+                                <td style="width: 35%;">
+                                    &nbsp;&nbsp;#if($pushCancelOrderDTO.consignee) $pushCancelOrderDTO.consignee #else
+                                    无 #end
+                                </td>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                    退货人手机号
+                                </td>
+                                <td style="width: 35%;">
+                                    &nbsp;&nbsp;#if($pushCancelOrderDTO.consigneeTel) $pushCancelOrderDTO.consigneeTel #else
+                                    无 #end
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 15%;text-align: center;color:darkgrey">
+                                    收货地址
+                                </td>
+                                <td style="width: 35%;" colspan="3">
+                                    &nbsp;&nbsp;#if($pushCancelOrderDTO.address) $pushCancelOrderDTO.address #else
+                                    无 #end
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <!----------------------------- 商品信息 ----------------------------->
+                        <div style="height: 20px;margin-top: 5px;">
+                        </div>
+                        <h5><i class="fa fa-shopping-cart"></i> 商品信息</h5>
+                        <table style="width: 100%;margin: 0 auto;border-style: solid;border-color: gainsboro;"
+                               border="1">
+                            <tbody style="margin-top: 30px;">
+                            <tr style="background-color: lightgray;height: 40px;">
+                                <td style="width: 20%;text-align: center;">
+                                    商品图片
+                                </td>
+                                <td style="width: 40%;text-align: center;">
+                                    商品名称
+                                </td>
+                                <td style="width: 5%;text-align: center;">
+                                    数量
+                                </td>
+                                <td style="width: 10%;text-align: center;">
+                                    单价
+                                </td>
+                                <td style="width: 10%;text-align: center;">
+                                    销售单位
+                                </td>
+                                <td style="width: 15%;text-align: center;">
+                                    商品金额
+                                </td>
+                            </tr>
+
+                                #foreach ( $CommerceItemDTO in  $pushCancelOrderDTO.items)
+                                <tr style="background-color: white;height: 120px;">
+                                    <td style="width: 20%;text-align: center;">
+                                        <img style="width: 100px;height: 100px;"
+                                             src="$CommerceItemDTO.goodsImgUrl">
+                                    </td>
+                                    <td style="width: 40%;text-align: center;">
+                                        #if($CommerceItemDTO.goodsName) $CommerceItemDTO.goodsName #else 无 #end
+                                    </td>
+                                    <td style="width: 5%;text-align: center;">
+                                        #if($CommerceItemDTO.number) $CommerceItemDTO.number #else 0 #end
+                                    </td>
+                                    <td style="width: 10%;text-align: center;">
+                                        ￥#if($CommerceItemDTO.basePrice) $CommerceItemDTO.basePrice #else 无 #end
+                                    </td>
+                                    <td style="width: 10%;text-align: center;">
+                                        #if($CommerceItemDTO.price) $CommerceItemDTO.price #else 0.00 #end
+                                    </td>
+                                    <td style="width: 15%;text-align: center;">
+                                        #set($totalPrice=$CommerceItemDTO.price * $CommerceItemDTO.number)
+                                        ￥$number.format("#0.00", $totalPrice)
+                                    </td>
+                                </tr>
+                                #end
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div style="height: 20px;"></div>
+                <div class="table-responsive">
+                    <div id="toolbar" class="btn-group" style="float: left">
+
+                    </div>
+                    <table id="loginLog-table"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="getReason" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5
+                        style="text-align: center">#if($orderDetail.refuseReason) $orderDetail.refuseReason #else
+                    没有填写原因 #end</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //查看原因
+    function getReason() {
+        $('#getReason').modal('toggle')
+    }
+    $(".pika-single").remove();
+</script>
+</body>
+</html>

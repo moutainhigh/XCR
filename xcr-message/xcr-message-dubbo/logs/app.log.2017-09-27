@@ -1,0 +1,662 @@
+2017-09-27 11:12:19,204 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2017-09-27 11:12:19,219 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@545b2144, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2ae522a0, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@29444c60, org.springframework.test.context.support.DirtiesContextTestExecutionListener@42f247ca, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3047411c, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1603ae07]
+2017-09-27 11:12:19,281 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-dubbo/target/test-classes/test/applicationContext-test.xml]
+2017-09-27 11:12:19,393 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from file [D:\workspace\backend\trunk\xcr-message\xcr-message-dubbo\target\classes\spring\applicationContext-dubbo.xml]
+2017-09-27 11:12:19,504 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from file [D:\workspace\backend\trunk\xcr-message\xcr-message-service\target\classes\spring\applicationContext-redis.xml]
+2017-09-27 11:12:19,538 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from file [D:\workspace\backend\trunk\xcr-message\xcr-message-service\target\classes\spring\applicationContext.xml]
+2017-09-27 11:12:19,604 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [jar:file:/D:/maven/self_repository/com/busi/mongo/busi-mongo/dev-SNAPSHOT/busi-mongo-dev-20170926.023658-34.jar!/spring/applicationContext.xml]
+2017-09-27 11:12:19,636 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-dubbo/target/classes/spring/applicationContext-dubbo.xml]
+2017-09-27 11:12:19,675 INFO [org.springframework.context.support.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@77ed2fe7: startup date [Wed Sep 27 11:12:19 CST 2017]; root of context hierarchy
+2017-09-27 11:12:19,867 WARN [org.mybatis.spring.mapper.ClassPathMapperScanner] - No MyBatis mapper was found in '[com.yatang.xc.xcr.biz.mission.dao]' package. Please check your configuration.
+2017-09-27 11:12:20,044 ERROR [com.alibaba.druid.filter.FilterManager] - load filter error, filter not found : logback
+2017-09-27 11:12:20,255 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2017-09-27 11:12:20,293 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-09-27 11:12:20,312 INFO [com.busi.mongo.MongoTools] - MongoDB Client initialize...
+2017-09-27 11:12:20,312 INFO [com.busi.mongo.MongoTools] - server address : sit.mongodb1.com:27019;sit.mongodb2.com:27019;sit.mongodb3.com:27019
+2017-09-27 11:12:20,512 INFO [org.mongodb.driver.cluster] - Cluster created with settings {hosts=[sit.mongodb1.com:27019, sit.mongodb2.com:27019, sit.mongodb3.com:27019], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2017-09-27 11:12:20,512 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb1.com:27019 to client view of cluster
+2017-09-27 11:12:20,553 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb2.com:27019 to client view of cluster
+2017-09-27 11:12:20,554 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb3.com:27019 to client view of cluster
+2017-09-27 11:12:20,556 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=UNKNOWN, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 11:12:20,578 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:1}] to sit.mongodb1.com:27019
+2017-09-27 11:12:20,578 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:3}] to sit.mongodb3.com:27019
+2017-09-27 11:12:20,578 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:2}] to sit.mongodb2.com:27019
+2017-09-27 11:12:20,578 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb3.com:27019
+2017-09-27 11:12:20,578 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb1.com:27019
+2017-09-27 11:12:20,578 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb2.com:27019
+2017-09-27 11:12:20,580 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb2.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1051300}
+2017-09-27 11:12:20,580 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb1.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1090960}
+2017-09-27 11:12:20,580 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1091561}
+2017-09-27 11:12:20,581 INFO [org.mongodb.driver.cluster] - Discovered cluster type of SHARDED
+2017-09-27 11:12:20,582 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}]
+2017-09-27 11:12:20,582 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}]
+2017-09-27 11:12:20,582 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}]
+2017-09-27 11:12:20,816 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VFS
+2017-09-27 11:12:20,816 DEBUG [org.apache.ibatis.io.JBoss6VFS] - JBoss 6 VFS API is not available in this environment.
+2017-09-27 11:12:20,817 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VirtualFile
+2017-09-27 11:12:20,817 DEBUG [org.apache.ibatis.io.VFS] - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2017-09-27 11:12:20,817 DEBUG [org.apache.ibatis.io.VFS] - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2017-09-27 11:12:20,820 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2017-09-27 11:12:20,823 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed configuration file: 'class path resource [mybatis/sqlMapConfig.xml]'
+2017-09-27 11:12:20,823 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Property 'mapperLocations' was not specified or no matching resources found
+2017-09-27 11:12:20,953 INFO [com.yatang.xc.xcr.biz.message.dubboservice.impl.SwiftPassDubboServiceImpl] - saveStreamAndSendMessage -> scanPaymentMessageDto:{"haveShopCode":1,"mch_id":"102512398716","openid":"123123123","out_trade_no":"sdasdasdasdasdsa","time_end":"2091212121212","total_fee":1235,"trade_type":"pay"}
+2017-09-27 11:12:20,960 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] - Setting default value: false
+2017-09-27 11:12:20,960 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] - Converting 'Boolean' value 'false' to type 'Boolean'
+2017-09-27 11:12:20,960 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] -     No conversion required, value is already a Boolean
+2017-09-27 11:12:20,962 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] - Setting default value: 0
+2017-09-27 11:12:20,962 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] - Converting 'Integer' value '0' to type 'Byte'
+2017-09-27 11:12:20,962 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] -     Converted to Byte value '0'
+2017-09-27 11:12:20,962 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] - Setting default value:  
+2017-09-27 11:12:20,962 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] - Converting 'Character' value ' ' to type 'Character'
+2017-09-27 11:12:20,962 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] -     No conversion required, value is already a Character
+2017-09-27 11:12:20,963 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] - Setting default value: 0
+2017-09-27 11:12:20,963 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] - Converting 'Integer' value '0' to type 'Double'
+2017-09-27 11:12:20,963 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] -     Converted to Double value '0.0'
+2017-09-27 11:12:20,963 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] - Setting default value: 0
+2017-09-27 11:12:20,963 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] - Converting 'Integer' value '0' to type 'Float'
+2017-09-27 11:12:20,963 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] -     Converted to Float value '0.0'
+2017-09-27 11:12:20,964 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Setting default value: 0
+2017-09-27 11:12:20,964 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Converting 'Integer' value '0' to type 'Integer'
+2017-09-27 11:12:20,964 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] -     No conversion required, value is already a Integer
+2017-09-27 11:12:20,964 DEBUG [org.apache.commons.beanutils.converters.LongConverter] - Setting default value: 0
+2017-09-27 11:12:20,964 DEBUG [org.apache.commons.beanutils.converters.LongConverter] - Converting 'Integer' value '0' to type 'Long'
+2017-09-27 11:12:20,964 DEBUG [org.apache.commons.beanutils.converters.LongConverter] -     Converted to Long value '0'
+2017-09-27 11:12:20,965 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] - Setting default value: 0
+2017-09-27 11:12:20,965 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] - Converting 'Integer' value '0' to type 'Short'
+2017-09-27 11:12:20,965 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] -     Converted to Short value '0'
+2017-09-27 11:12:20,965 DEBUG [org.apache.commons.beanutils.converters.BigDecimalConverter] - Setting default value: 0.0
+2017-09-27 11:12:20,965 DEBUG [org.apache.commons.beanutils.converters.BigDecimalConverter] - Converting 'BigDecimal' value '0.0' to type 'BigDecimal'
+2017-09-27 11:12:20,965 DEBUG [org.apache.commons.beanutils.converters.BigDecimalConverter] -     No conversion required, value is already a BigDecimal
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.BigIntegerConverter] - Setting default value: 0
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.BigIntegerConverter] - Converting 'BigInteger' value '0' to type 'BigInteger'
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.BigIntegerConverter] -     No conversion required, value is already a BigInteger
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] - Setting default value: false
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] - Converting 'Boolean' value 'false' to type 'Boolean'
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] -     No conversion required, value is already a Boolean
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] - Setting default value: 0
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] - Converting 'Integer' value '0' to type 'Byte'
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] -     Converted to Byte value '0'
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] - Setting default value:  
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] - Converting 'Character' value ' ' to type 'Character'
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] -     No conversion required, value is already a Character
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] - Setting default value: 0
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] - Converting 'Integer' value '0' to type 'Double'
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] -     Converted to Double value '0.0'
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] - Setting default value: 0
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] - Converting 'Integer' value '0' to type 'Float'
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] -     Converted to Float value '0.0'
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Setting default value: 0
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Converting 'Integer' value '0' to type 'Integer'
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] -     No conversion required, value is already a Integer
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.LongConverter] - Setting default value: 0
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.LongConverter] - Converting 'Integer' value '0' to type 'Long'
+2017-09-27 11:12:20,966 DEBUG [org.apache.commons.beanutils.converters.LongConverter] -     Converted to Long value '0'
+2017-09-27 11:12:20,967 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] - Setting default value: 0
+2017-09-27 11:12:20,967 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] - Converting 'Integer' value '0' to type 'Short'
+2017-09-27 11:12:20,967 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] -     Converted to Short value '0'
+2017-09-27 11:12:20,967 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Setting default value: 
+2017-09-27 11:12:20,967 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value '' to type 'String'
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Z@4dc68a20
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'boolean[]' value '[Z@4dc68a20' to type 'boolean[]'
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a boolean[]
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [B@259662c4
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'byte[]' value '[B@259662c4' to type 'byte[]'
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a byte[]
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [C@342e4523
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'char[]' value '[C@342e4523' to type 'char[]'
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a char[]
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [D@49bd1798
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'double[]' value '[D@49bd1798' to type 'double[]'
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a double[]
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [F@1d5821fa
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'float[]' value '[F@1d5821fa' to type 'float[]'
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a float[]
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [I@51eb323
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'int[]' value '[I@51eb323' to type 'int[]'
+2017-09-27 11:12:20,971 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a int[]
+2017-09-27 11:12:20,972 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [J@2282c175
+2017-09-27 11:12:20,972 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'long[]' value '[J@2282c175' to type 'long[]'
+2017-09-27 11:12:20,972 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a long[]
+2017-09-27 11:12:20,972 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [S@366afa06
+2017-09-27 11:12:20,972 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'short[]' value '[S@366afa06' to type 'short[]'
+2017-09-27 11:12:20,972 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a short[]
+2017-09-27 11:12:20,972 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.math.BigDecimal;@2944bbd3
+2017-09-27 11:12:20,972 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'BigDecimal[]' value '[Ljava.math.BigDecimal;@2944bbd3' to type 'BigDecimal[]'
+2017-09-27 11:12:20,972 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a BigDecimal[]
+2017-09-27 11:12:20,972 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.math.BigInteger;@24124908
+2017-09-27 11:12:20,972 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'BigInteger[]' value '[Ljava.math.BigInteger;@24124908' to type 'BigInteger[]'
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a BigInteger[]
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Boolean;@2b3138d7
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Boolean[]' value '[Ljava.lang.Boolean;@2b3138d7' to type 'Boolean[]'
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Boolean[]
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Byte;@499fa9b0
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Byte[]' value '[Ljava.lang.Byte;@499fa9b0' to type 'Byte[]'
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Byte[]
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Character;@113d8793
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Character[]' value '[Ljava.lang.Character;@113d8793' to type 'Character[]'
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Character[]
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Double;@32ca7b24
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Double[]' value '[Ljava.lang.Double;@32ca7b24' to type 'Double[]'
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Double[]
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Float;@674a6631
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Float[]' value '[Ljava.lang.Float;@674a6631' to type 'Float[]'
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Float[]
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Integer;@22bd7ada
+2017-09-27 11:12:20,974 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Integer[]' value '[Ljava.lang.Integer;@22bd7ada' to type 'Integer[]'
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Integer[]
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Long;@7903df5d
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Long[]' value '[Ljava.lang.Long;@7903df5d' to type 'Long[]'
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Long[]
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Short;@64e95eab
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Short[]' value '[Ljava.lang.Short;@64e95eab' to type 'Short[]'
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Short[]
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.String;@3f5ced72
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'String[]' value '[Ljava.lang.String;@3f5ced72' to type 'String[]'
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a String[]
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Class;@6de8f7dd
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Class[]' value '[Ljava.lang.Class;@6de8f7dd' to type 'Class[]'
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Class[]
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.util.Date;@59e9068a
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Date[]' value '[Ljava.util.Date;@59e9068a' to type 'Date[]'
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Date[]
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.util.Calendar;@77810c72
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Calendar[]' value '[Ljava.util.Calendar;@77810c72' to type 'Calendar[]'
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Calendar[]
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.io.File;@5452afa8
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'java.io.File[]' value '[Ljava.io.File;@5452afa8' to type 'java.io.File[]'
+2017-09-27 11:12:20,975 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a java.io.File[]
+2017-09-27 11:12:20,976 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.sql.Date;@58eac93b
+2017-09-27 11:12:20,976 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'java.sql.Date[]' value '[Ljava.sql.Date;@58eac93b' to type 'java.sql.Date[]'
+2017-09-27 11:12:20,976 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a java.sql.Date[]
+2017-09-27 11:12:20,976 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.sql.Time;@5a94e5ad
+2017-09-27 11:12:20,976 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'java.sql.Time[]' value '[Ljava.sql.Time;@5a94e5ad' to type 'java.sql.Time[]'
+2017-09-27 11:12:20,976 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a java.sql.Time[]
+2017-09-27 11:12:20,976 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.sql.Timestamp;@25a39319
+2017-09-27 11:12:20,976 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'java.sql.Timestamp[]' value '[Ljava.sql.Timestamp;@25a39319' to type 'java.sql.Timestamp[]'
+2017-09-27 11:12:20,976 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a java.sql.Timestamp[]
+2017-09-27 11:12:20,976 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.net.URL;@a2a95bb
+2017-09-27 11:12:20,976 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'java.net.URL[]' value '[Ljava.net.URL;@a2a95bb' to type 'java.net.URL[]'
+2017-09-27 11:12:20,976 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a java.net.URL[]
+2017-09-27 11:12:20,980 DEBUG [org.apache.commons.beanutils.BeanUtils] - BeanUtils.copyProperties(com.yatang.xc.xcr.biz.message.dto.SwiftPassMessage@304a547f, com.yatang.xc.xcr.biz.message.dto.SwiftPassReturnDto@60313ace)
+2017-09-27 11:12:20,984 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Converting 'Integer' value '1' to type 'Integer'
+2017-09-27 11:12:20,984 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] -     No conversion required, value is already a Integer
+2017-09-27 11:12:20,984 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value '102512398716' to type 'String'
+2017-09-27 11:12:20,984 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value '123123123' to type 'String'
+2017-09-27 11:12:20,984 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value 'sdasdasdasdasdsa' to type 'String'
+2017-09-27 11:12:20,984 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value '2091212121212' to type 'String'
+2017-09-27 11:12:20,984 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Converting 'Integer' value '1235' to type 'Integer'
+2017-09-27 11:12:20,984 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] -     No conversion required, value is already a Integer
+2017-09-27 11:12:20,984 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value 'pay' to type 'String'
+2017-09-27 11:12:20,987 INFO [com.yatang.xc.xcr.biz.message.dubboservice.impl.SwiftPassDubboServiceImpl] - BeanUtils.copyProperties(scanPaymentMessage, scanPaymentMessageDto) -> scanPaymentMessage:{"haveShopCode":1,"mch_id":"102512398716","openid":"123123123","out_trade_no":"sdasdasdasdasdsa","time_end":"2091212121212","total_fee":1235,"trade_type":"pay"}
+2017-09-27 11:12:21,018 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:4}] to sit.mongodb2.com:27019
+2017-09-27 11:12:21,022 DEBUG [org.mongodb.driver.protocol.command] - Sending command {count : BsonString{value='scan_turnover'}} to database xcr on connection [connectionId{localValue:4}] to server sit.mongodb2.com:27019
+2017-09-27 11:12:21,050 DEBUG [org.mongodb.driver.protocol.command] - Command execution completed
+2017-09-27 11:12:21,069 DEBUG [org.mongodb.driver.protocol.insert] - Inserting 1 documents into namespace xcr.scan_turnover on connection [connectionId{localValue:4}] to server sit.mongodb2.com:27019
+2017-09-27 11:12:21,074 DEBUG [org.mongodb.driver.protocol.insert] - Insert completed
+2017-09-27 11:12:21,078 INFO [com.yatang.xc.xcr.biz.message.dubboservice.impl.SwiftPassDubboServiceImpl] - scanPaymentMessageService.saveScanPaymentMessage(scanPaymentMessage) -> success:true
+2017-09-27 11:12:21,079 INFO [com.yatang.xc.xcr.biz.message.dubboservice.impl.SwiftPassDubboServiceImpl] - getMqMessage(scanPaymentMessage); -> messageBody:{"amount":12.35,"shopCode":"102512398716","transId":"123123123","type":8,"orderId":"sdasdasdasdasdsa"}
+2017-09-27 11:12:21,148 DEBUG [io.netty.util.internal.logging.InternalLoggerFactory] - Using SLF4J as the default logging framework
+2017-09-27 11:12:21,153 DEBUG [io.netty.channel.MultithreadEventLoopGroup] - -Dio.netty.eventLoopThreads: 16
+2017-09-27 11:12:21,159 DEBUG [io.netty.util.internal.PlatformDependent0] - java.nio.Buffer.address: available
+2017-09-27 11:12:21,159 DEBUG [io.netty.util.internal.PlatformDependent0] - sun.misc.Unsafe.theUnsafe: available
+2017-09-27 11:12:21,159 DEBUG [io.netty.util.internal.PlatformDependent0] - sun.misc.Unsafe.copyMemory: available
+2017-09-27 11:12:21,159 DEBUG [io.netty.util.internal.PlatformDependent0] - java.nio.Bits.unaligned: true
+2017-09-27 11:12:21,160 DEBUG [io.netty.util.internal.PlatformDependent] - Platform: Windows
+2017-09-27 11:12:21,160 DEBUG [io.netty.util.internal.PlatformDependent] - Java version: 7
+2017-09-27 11:12:21,160 DEBUG [io.netty.util.internal.PlatformDependent] - -Dio.netty.noUnsafe: false
+2017-09-27 11:12:21,160 DEBUG [io.netty.util.internal.PlatformDependent] - sun.misc.Unsafe: available
+2017-09-27 11:12:21,160 DEBUG [io.netty.util.internal.PlatformDependent] - -Dio.netty.noJavassist: false
+2017-09-27 11:12:21,217 DEBUG [io.netty.util.internal.PlatformDependent] - Javassist: available
+2017-09-27 11:12:21,217 DEBUG [io.netty.util.internal.PlatformDependent] - -Dio.netty.tmpdir: C:\Users\wangyang\AppData\Local\Temp (java.io.tmpdir)
+2017-09-27 11:12:21,217 DEBUG [io.netty.util.internal.PlatformDependent] - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2017-09-27 11:12:21,217 DEBUG [io.netty.util.internal.PlatformDependent] - -Dio.netty.noPreferDirect: false
+2017-09-27 11:12:21,235 DEBUG [io.netty.channel.nio.NioEventLoop] - -Dio.netty.noKeySetOptimization: false
+2017-09-27 11:12:21,235 DEBUG [io.netty.channel.nio.NioEventLoop] - -Dio.netty.selectorAutoRebuildThreshold: 512
+2017-09-27 11:12:21,313 DEBUG [io.netty.util.internal.ThreadLocalRandom] - -Dio.netty.initialSeedUniquifier: 0xd8994ba6756785ad (took 2 ms)
+2017-09-27 11:12:21,332 DEBUG [io.netty.buffer.ByteBufUtil] - -Dio.netty.allocator.type: unpooled
+2017-09-27 11:12:21,332 DEBUG [io.netty.buffer.ByteBufUtil] - -Dio.netty.threadLocalDirectBufferSize: 65536
+2017-09-27 11:12:21,338 DEBUG [io.netty.util.internal.JavassistTypeParameterMatcherGenerator] - Generated: io.netty.util.internal.__matchers__.com.alibaba.rocketmq.remoting.protocol.RemotingCommandMatcher
+2017-09-27 11:12:21,351 DEBUG [io.netty.util.Recycler] - -Dio.netty.recycler.maxCapacity.default: 262144
+2017-09-27 11:12:21,357 DEBUG [io.netty.util.ResourceLeakDetector] - -Dio.netty.leakDetectionLevel: simple
+2017-09-27 11:12:21,367 DEBUG [io.netty.util.internal.Cleaner0] - java.nio.ByteBuffer.cleaner(): available
+2017-09-27 11:12:21,409 INFO [com.yatang.xc.xcr.biz.message.dubboservice.impl.SwiftPassDubboServiceImpl] - sendMqMessage(messageBody) -> result:{"messageQueue":{"brokerName":"xc-rocketmq","queueId":0,"topic":"corder"},"msgId":"AC1E0A6800002A9F0000000007B70D13","queueOffset":799,"sendStatus":"SEND_OK"}
+2017-09-27 11:12:21,411 INFO [org.springframework.context.support.GenericApplicationContext] - Closing org.springframework.context.support.GenericApplicationContext@77ed2fe7: startup date [Wed Sep 27 11:12:19 CST 2017]; root of context hierarchy
+2017-09-27 11:12:21,413 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:3}
+2017-09-27 11:12:21,414 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:1}
+2017-09-27 11:12:21,414 INFO [org.mongodb.driver.connection] - Closed connection [connectionId{localValue:4}] to sit.mongodb2.com:27019 because the pool has been closed.
+2017-09-27 11:12:21,414 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:4}
+2017-09-27 11:12:21,414 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:2}
+2017-09-27 11:12:21,417 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed
+2017-09-27 11:12:39,995 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2017-09-27 11:12:40,013 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@13707ac, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@43d8add3, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@467c1a71, org.springframework.test.context.support.DirtiesContextTestExecutionListener@7dac14dd, org.springframework.test.context.transaction.TransactionalTestExecutionListener@2c8df9a0, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1cff8e3a]
+2017-09-27 11:12:40,088 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-dubbo/target/test-classes/test/applicationContext-test.xml]
+2017-09-27 11:12:40,219 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from file [D:\workspace\backend\trunk\xcr-message\xcr-message-dubbo\target\classes\spring\applicationContext-dubbo.xml]
+2017-09-27 11:12:40,347 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from file [D:\workspace\backend\trunk\xcr-message\xcr-message-service\target\classes\spring\applicationContext-redis.xml]
+2017-09-27 11:12:40,374 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from file [D:\workspace\backend\trunk\xcr-message\xcr-message-service\target\classes\spring\applicationContext.xml]
+2017-09-27 11:12:40,448 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [jar:file:/D:/maven/self_repository/com/busi/mongo/busi-mongo/dev-SNAPSHOT/busi-mongo-dev-20170926.023658-34.jar!/spring/applicationContext.xml]
+2017-09-27 11:12:40,482 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-dubbo/target/classes/spring/applicationContext-dubbo.xml]
+2017-09-27 11:12:40,527 INFO [org.springframework.context.support.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@da62f80: startup date [Wed Sep 27 11:12:40 CST 2017]; root of context hierarchy
+2017-09-27 11:12:40,682 WARN [org.mybatis.spring.mapper.ClassPathMapperScanner] - No MyBatis mapper was found in '[com.yatang.xc.xcr.biz.mission.dao]' package. Please check your configuration.
+2017-09-27 11:12:40,852 ERROR [com.alibaba.druid.filter.FilterManager] - load filter error, filter not found : logback
+2017-09-27 11:12:41,069 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2017-09-27 11:12:41,099 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-09-27 11:12:41,113 INFO [com.busi.mongo.MongoTools] - MongoDB Client initialize...
+2017-09-27 11:12:41,113 INFO [com.busi.mongo.MongoTools] - server address : sit.mongodb1.com:27019;sit.mongodb2.com:27019;sit.mongodb3.com:27019
+2017-09-27 11:12:41,340 INFO [org.mongodb.driver.cluster] - Cluster created with settings {hosts=[sit.mongodb1.com:27019, sit.mongodb2.com:27019, sit.mongodb3.com:27019], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2017-09-27 11:12:41,340 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb1.com:27019 to client view of cluster
+2017-09-27 11:12:41,380 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb2.com:27019 to client view of cluster
+2017-09-27 11:12:41,381 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb3.com:27019 to client view of cluster
+2017-09-27 11:12:41,383 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=UNKNOWN, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 11:12:41,404 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:2}] to sit.mongodb3.com:27019
+2017-09-27 11:12:41,404 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:3}] to sit.mongodb1.com:27019
+2017-09-27 11:12:41,404 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb3.com:27019
+2017-09-27 11:12:41,404 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:1}] to sit.mongodb2.com:27019
+2017-09-27 11:12:41,404 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb1.com:27019
+2017-09-27 11:12:41,404 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb2.com:27019
+2017-09-27 11:12:41,407 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1228269}
+2017-09-27 11:12:41,407 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb1.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1231274}
+2017-09-27 11:12:41,407 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb2.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1227969}
+2017-09-27 11:12:41,407 INFO [org.mongodb.driver.cluster] - Discovered cluster type of SHARDED
+2017-09-27 11:12:41,408 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.2 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 11:12:41,409 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.2 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.2 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 11:12:41,409 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.2 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.2 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.2 ms, state=CONNECTED}]
+2017-09-27 11:12:41,742 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VFS
+2017-09-27 11:12:41,743 DEBUG [org.apache.ibatis.io.JBoss6VFS] - JBoss 6 VFS API is not available in this environment.
+2017-09-27 11:12:41,743 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VirtualFile
+2017-09-27 11:12:41,743 DEBUG [org.apache.ibatis.io.VFS] - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2017-09-27 11:12:41,744 DEBUG [org.apache.ibatis.io.VFS] - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2017-09-27 11:12:41,747 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2017-09-27 11:12:41,749 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed configuration file: 'class path resource [mybatis/sqlMapConfig.xml]'
+2017-09-27 11:12:41,749 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Property 'mapperLocations' was not specified or no matching resources found
+2017-09-27 11:12:41,893 INFO [com.yatang.xc.xcr.biz.message.dubboservice.impl.SwiftPassDubboServiceImpl] - saveStreamAndSendMessage -> scanPaymentMessageDto:{"haveShopCode":1,"mch_id":"102512398716","openid":"123123123","out_trade_no":"sdasdasdasdasdsa","time_end":"2091212121212","total_fee":1235,"trade_type":"pay"}
+2017-09-27 11:12:41,901 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] - Setting default value: false
+2017-09-27 11:12:41,901 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] - Converting 'Boolean' value 'false' to type 'Boolean'
+2017-09-27 11:12:41,901 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] -     No conversion required, value is already a Boolean
+2017-09-27 11:12:41,902 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] - Setting default value: 0
+2017-09-27 11:12:41,902 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] - Converting 'Integer' value '0' to type 'Byte'
+2017-09-27 11:12:41,902 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] -     Converted to Byte value '0'
+2017-09-27 11:12:41,903 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] - Setting default value:  
+2017-09-27 11:12:41,903 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] - Converting 'Character' value ' ' to type 'Character'
+2017-09-27 11:12:41,903 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] -     No conversion required, value is already a Character
+2017-09-27 11:12:41,903 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] - Setting default value: 0
+2017-09-27 11:12:41,903 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] - Converting 'Integer' value '0' to type 'Double'
+2017-09-27 11:12:41,903 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] -     Converted to Double value '0.0'
+2017-09-27 11:12:41,904 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] - Setting default value: 0
+2017-09-27 11:12:41,904 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] - Converting 'Integer' value '0' to type 'Float'
+2017-09-27 11:12:41,904 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] -     Converted to Float value '0.0'
+2017-09-27 11:12:41,904 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Setting default value: 0
+2017-09-27 11:12:41,904 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Converting 'Integer' value '0' to type 'Integer'
+2017-09-27 11:12:41,904 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] -     No conversion required, value is already a Integer
+2017-09-27 11:12:41,905 DEBUG [org.apache.commons.beanutils.converters.LongConverter] - Setting default value: 0
+2017-09-27 11:12:41,905 DEBUG [org.apache.commons.beanutils.converters.LongConverter] - Converting 'Integer' value '0' to type 'Long'
+2017-09-27 11:12:41,905 DEBUG [org.apache.commons.beanutils.converters.LongConverter] -     Converted to Long value '0'
+2017-09-27 11:12:41,905 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] - Setting default value: 0
+2017-09-27 11:12:41,905 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] - Converting 'Integer' value '0' to type 'Short'
+2017-09-27 11:12:41,905 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] -     Converted to Short value '0'
+2017-09-27 11:12:41,906 DEBUG [org.apache.commons.beanutils.converters.BigDecimalConverter] - Setting default value: 0.0
+2017-09-27 11:12:41,906 DEBUG [org.apache.commons.beanutils.converters.BigDecimalConverter] - Converting 'BigDecimal' value '0.0' to type 'BigDecimal'
+2017-09-27 11:12:41,906 DEBUG [org.apache.commons.beanutils.converters.BigDecimalConverter] -     No conversion required, value is already a BigDecimal
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.BigIntegerConverter] - Setting default value: 0
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.BigIntegerConverter] - Converting 'BigInteger' value '0' to type 'BigInteger'
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.BigIntegerConverter] -     No conversion required, value is already a BigInteger
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] - Setting default value: false
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] - Converting 'Boolean' value 'false' to type 'Boolean'
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] -     No conversion required, value is already a Boolean
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] - Setting default value: 0
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] - Converting 'Integer' value '0' to type 'Byte'
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] -     Converted to Byte value '0'
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] - Setting default value:  
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] - Converting 'Character' value ' ' to type 'Character'
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] -     No conversion required, value is already a Character
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] - Setting default value: 0
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] - Converting 'Integer' value '0' to type 'Double'
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] -     Converted to Double value '0.0'
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] - Setting default value: 0
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] - Converting 'Integer' value '0' to type 'Float'
+2017-09-27 11:12:41,907 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] -     Converted to Float value '0.0'
+2017-09-27 11:12:41,908 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Setting default value: 0
+2017-09-27 11:12:41,908 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Converting 'Integer' value '0' to type 'Integer'
+2017-09-27 11:12:41,908 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] -     No conversion required, value is already a Integer
+2017-09-27 11:12:41,908 DEBUG [org.apache.commons.beanutils.converters.LongConverter] - Setting default value: 0
+2017-09-27 11:12:41,908 DEBUG [org.apache.commons.beanutils.converters.LongConverter] - Converting 'Integer' value '0' to type 'Long'
+2017-09-27 11:12:41,908 DEBUG [org.apache.commons.beanutils.converters.LongConverter] -     Converted to Long value '0'
+2017-09-27 11:12:41,908 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] - Setting default value: 0
+2017-09-27 11:12:41,908 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] - Converting 'Integer' value '0' to type 'Short'
+2017-09-27 11:12:41,908 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] -     Converted to Short value '0'
+2017-09-27 11:12:41,908 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Setting default value: 
+2017-09-27 11:12:41,908 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value '' to type 'String'
+2017-09-27 11:12:41,913 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Z@64b24f1
+2017-09-27 11:12:41,913 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'boolean[]' value '[Z@64b24f1' to type 'boolean[]'
+2017-09-27 11:12:41,913 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a boolean[]
+2017-09-27 11:12:41,913 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [B@2f664d71
+2017-09-27 11:12:41,913 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'byte[]' value '[B@2f664d71' to type 'byte[]'
+2017-09-27 11:12:41,913 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a byte[]
+2017-09-27 11:12:41,913 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [C@65664e06
+2017-09-27 11:12:41,913 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'char[]' value '[C@65664e06' to type 'char[]'
+2017-09-27 11:12:41,913 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a char[]
+2017-09-27 11:12:41,913 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [D@1f8c9fec
+2017-09-27 11:12:41,913 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'double[]' value '[D@1f8c9fec' to type 'double[]'
+2017-09-27 11:12:41,913 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a double[]
+2017-09-27 11:12:41,913 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [F@49574f22
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'float[]' value '[F@49574f22' to type 'float[]'
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a float[]
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [I@30c66cc
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'int[]' value '[I@30c66cc' to type 'int[]'
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a int[]
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [J@2330dca4
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'long[]' value '[J@2330dca4' to type 'long[]'
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a long[]
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [S@5ce5a508
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'short[]' value '[S@5ce5a508' to type 'short[]'
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a short[]
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.math.BigDecimal;@68b5dfdd
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'BigDecimal[]' value '[Ljava.math.BigDecimal;@68b5dfdd' to type 'BigDecimal[]'
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a BigDecimal[]
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.math.BigInteger;@7c7c5bdf
+2017-09-27 11:12:41,914 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'BigInteger[]' value '[Ljava.math.BigInteger;@7c7c5bdf' to type 'BigInteger[]'
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a BigInteger[]
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Boolean;@4873cd52
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Boolean[]' value '[Ljava.lang.Boolean;@4873cd52' to type 'Boolean[]'
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Boolean[]
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Byte;@2aace7a7
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Byte[]' value '[Ljava.lang.Byte;@2aace7a7' to type 'Byte[]'
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Byte[]
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Character;@3d9c9ad4
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Character[]' value '[Ljava.lang.Character;@3d9c9ad4' to type 'Character[]'
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Character[]
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Double;@7478f3e5
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Double[]' value '[Ljava.lang.Double;@7478f3e5' to type 'Double[]'
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Double[]
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Float;@30d47b20
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Float[]' value '[Ljava.lang.Float;@30d47b20' to type 'Float[]'
+2017-09-27 11:12:41,915 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Float[]
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Integer;@4ddf8aeb
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Integer[]' value '[Ljava.lang.Integer;@4ddf8aeb' to type 'Integer[]'
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Integer[]
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Long;@f19723e
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Long[]' value '[Ljava.lang.Long;@f19723e' to type 'Long[]'
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Long[]
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Short;@4f9b4c30
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Short[]' value '[Ljava.lang.Short;@4f9b4c30' to type 'Short[]'
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Short[]
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.String;@5ca70c24
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'String[]' value '[Ljava.lang.String;@5ca70c24' to type 'String[]'
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a String[]
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Class;@5b0e3f01
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Class[]' value '[Ljava.lang.Class;@5b0e3f01' to type 'Class[]'
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Class[]
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.util.Date;@44a895b
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Date[]' value '[Ljava.util.Date;@44a895b' to type 'Date[]'
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Date[]
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.util.Calendar;@ac2a183
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Calendar[]' value '[Ljava.util.Calendar;@ac2a183' to type 'Calendar[]'
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Calendar[]
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.io.File;@6ebe10dd
+2017-09-27 11:12:41,916 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'java.io.File[]' value '[Ljava.io.File;@6ebe10dd' to type 'java.io.File[]'
+2017-09-27 11:12:41,917 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a java.io.File[]
+2017-09-27 11:12:41,917 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.sql.Date;@480f0ceb
+2017-09-27 11:12:41,917 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'java.sql.Date[]' value '[Ljava.sql.Date;@480f0ceb' to type 'java.sql.Date[]'
+2017-09-27 11:12:41,917 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a java.sql.Date[]
+2017-09-27 11:12:41,917 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.sql.Time;@43df87b6
+2017-09-27 11:12:41,917 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'java.sql.Time[]' value '[Ljava.sql.Time;@43df87b6' to type 'java.sql.Time[]'
+2017-09-27 11:12:41,917 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a java.sql.Time[]
+2017-09-27 11:12:41,917 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.sql.Timestamp;@2e0b5c4a
+2017-09-27 11:12:41,917 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'java.sql.Timestamp[]' value '[Ljava.sql.Timestamp;@2e0b5c4a' to type 'java.sql.Timestamp[]'
+2017-09-27 11:12:41,917 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a java.sql.Timestamp[]
+2017-09-27 11:12:41,917 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.net.URL;@37852165
+2017-09-27 11:12:41,917 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'java.net.URL[]' value '[Ljava.net.URL;@37852165' to type 'java.net.URL[]'
+2017-09-27 11:12:41,917 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a java.net.URL[]
+2017-09-27 11:12:41,922 DEBUG [org.apache.commons.beanutils.BeanUtils] - BeanUtils.copyProperties(com.yatang.xc.xcr.biz.message.dto.SwiftPassMessage@728a289f, com.yatang.xc.xcr.biz.message.dto.SwiftPassReturnDto@44c35441)
+2017-09-27 11:12:41,926 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Converting 'Integer' value '1' to type 'Integer'
+2017-09-27 11:12:41,926 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] -     No conversion required, value is already a Integer
+2017-09-27 11:12:41,926 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value '102512398716' to type 'String'
+2017-09-27 11:12:41,926 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value '123123123' to type 'String'
+2017-09-27 11:12:41,926 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value 'sdasdasdasdasdsa' to type 'String'
+2017-09-27 11:12:41,927 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value '2091212121212' to type 'String'
+2017-09-27 11:12:41,927 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Converting 'Integer' value '1235' to type 'Integer'
+2017-09-27 11:12:41,927 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] -     No conversion required, value is already a Integer
+2017-09-27 11:12:41,927 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value 'pay' to type 'String'
+2017-09-27 11:12:41,930 INFO [com.yatang.xc.xcr.biz.message.dubboservice.impl.SwiftPassDubboServiceImpl] - BeanUtils.copyProperties(scanPaymentMessage, scanPaymentMessageDto) -> scanPaymentMessage:{"haveShopCode":1,"mch_id":"102512398716","openid":"123123123","out_trade_no":"sdasdasdasdasdsa","time_end":"2091212121212","total_fee":1235,"trade_type":"pay"}
+2017-09-27 11:12:41,982 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:4}] to sit.mongodb3.com:27019
+2017-09-27 11:12:41,991 DEBUG [org.mongodb.driver.protocol.command] - Sending command {count : BsonString{value='scan_turnover'}} to database xcr on connection [connectionId{localValue:4}] to server sit.mongodb3.com:27019
+2017-09-27 11:12:42,021 DEBUG [org.mongodb.driver.protocol.command] - Command execution completed
+2017-09-27 11:12:42,026 INFO [com.yatang.xc.xcr.biz.message.dubboservice.impl.SwiftPassDubboServiceImpl] - scanPaymentMessageService.saveScanPaymentMessage(scanPaymentMessage) -> success:false
+2017-09-27 11:12:42,028 INFO [org.springframework.context.support.GenericApplicationContext] - Closing org.springframework.context.support.GenericApplicationContext@da62f80: startup date [Wed Sep 27 11:12:40 CST 2017]; root of context hierarchy
+2017-09-27 11:12:42,031 INFO [org.mongodb.driver.connection] - Closed connection [connectionId{localValue:4}] to sit.mongodb3.com:27019 because the pool has been closed.
+2017-09-27 11:12:42,031 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:4}
+2017-09-27 11:12:42,032 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:2}
+2017-09-27 11:12:42,033 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:3}
+2017-09-27 11:12:42,033 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:1}
+2017-09-27 11:12:42,037 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed
+2017-09-27 11:13:44,434 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2017-09-27 11:13:44,450 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@545b2144, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2ae522a0, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@29444c60, org.springframework.test.context.support.DirtiesContextTestExecutionListener@42f247ca, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3047411c, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1603ae07]
+2017-09-27 11:13:44,502 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-dubbo/target/test-classes/test/applicationContext-test.xml]
+2017-09-27 11:13:44,596 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from file [D:\workspace\backend\trunk\xcr-message\xcr-message-dubbo\target\classes\spring\applicationContext-dubbo.xml]
+2017-09-27 11:13:44,692 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from file [D:\workspace\backend\trunk\xcr-message\xcr-message-service\target\classes\spring\applicationContext-redis.xml]
+2017-09-27 11:13:44,721 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from file [D:\workspace\backend\trunk\xcr-message\xcr-message-service\target\classes\spring\applicationContext.xml]
+2017-09-27 11:13:44,789 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [jar:file:/D:/maven/self_repository/com/busi/mongo/busi-mongo/dev-SNAPSHOT/busi-mongo-dev-20170926.023658-34.jar!/spring/applicationContext.xml]
+2017-09-27 11:13:44,818 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:/D:/workspace/backend/trunk/xcr-message/xcr-message-dubbo/target/classes/spring/applicationContext-dubbo.xml]
+2017-09-27 11:13:44,859 INFO [org.springframework.context.support.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@77ed2fe7: startup date [Wed Sep 27 11:13:44 CST 2017]; root of context hierarchy
+2017-09-27 11:13:45,047 WARN [org.mybatis.spring.mapper.ClassPathMapperScanner] - No MyBatis mapper was found in '[com.yatang.xc.xcr.biz.mission.dao]' package. Please check your configuration.
+2017-09-27 11:13:45,226 ERROR [com.alibaba.druid.filter.FilterManager] - load filter error, filter not found : logback
+2017-09-27 11:13:45,454 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2017-09-27 11:13:45,488 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-09-27 11:13:45,503 INFO [com.busi.mongo.MongoTools] - MongoDB Client initialize...
+2017-09-27 11:13:45,503 INFO [com.busi.mongo.MongoTools] - server address : sit.mongodb1.com:27019;sit.mongodb2.com:27019;sit.mongodb3.com:27019
+2017-09-27 11:13:45,709 INFO [org.mongodb.driver.cluster] - Cluster created with settings {hosts=[sit.mongodb1.com:27019, sit.mongodb2.com:27019, sit.mongodb3.com:27019], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2017-09-27 11:13:45,709 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb1.com:27019 to client view of cluster
+2017-09-27 11:13:45,735 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb2.com:27019 to client view of cluster
+2017-09-27 11:13:45,736 INFO [org.mongodb.driver.cluster] - Adding discovered server sit.mongodb3.com:27019 to client view of cluster
+2017-09-27 11:13:45,747 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=UNKNOWN, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 11:13:45,767 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:3}] to sit.mongodb3.com:27019
+2017-09-27 11:13:45,767 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:1}] to sit.mongodb1.com:27019
+2017-09-27 11:13:45,767 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:2}] to sit.mongodb2.com:27019
+2017-09-27 11:13:45,768 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb1.com:27019
+2017-09-27 11:13:45,768 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb3.com:27019
+2017-09-27 11:13:45,768 DEBUG [org.mongodb.driver.cluster] - Checking status of sit.mongodb2.com:27019
+2017-09-27 11:13:45,770 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb1.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1111392}
+2017-09-27 11:13:45,770 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb2.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1092161}
+2017-09-27 11:13:45,770 INFO [org.mongodb.driver.cluster] - Monitor thread successfully connected to server with description ServerDescription{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1034775}
+2017-09-27 11:13:45,771 INFO [org.mongodb.driver.cluster] - Discovered cluster type of SHARDED
+2017-09-27 11:13:45,771 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=UNKNOWN, state=CONNECTING}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 11:13:45,772 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.0 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=UNKNOWN, state=CONNECTING}]
+2017-09-27 11:13:45,772 DEBUG [org.mongodb.driver.cluster] - Updating cluster description to  {type=SHARDED, servers=[{address=sit.mongodb3.com:27019, type=SHARD_ROUTER, roundTripTime=1.0 ms, state=CONNECTED}, {address=sit.mongodb1.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}, {address=sit.mongodb2.com:27019, type=SHARD_ROUTER, roundTripTime=1.1 ms, state=CONNECTED}]
+2017-09-27 11:13:46,005 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VFS
+2017-09-27 11:13:46,006 DEBUG [org.apache.ibatis.io.JBoss6VFS] - JBoss 6 VFS API is not available in this environment.
+2017-09-27 11:13:46,006 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VirtualFile
+2017-09-27 11:13:46,006 DEBUG [org.apache.ibatis.io.VFS] - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2017-09-27 11:13:46,007 DEBUG [org.apache.ibatis.io.VFS] - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2017-09-27 11:13:46,009 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2017-09-27 11:13:46,012 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed configuration file: 'class path resource [mybatis/sqlMapConfig.xml]'
+2017-09-27 11:13:46,012 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Property 'mapperLocations' was not specified or no matching resources found
+2017-09-27 11:13:46,139 INFO [com.yatang.xc.xcr.biz.message.dubboservice.impl.SwiftPassDubboServiceImpl] - saveStreamAndSendMessage -> scanPaymentMessageDto:{"haveShopCode":1,"mch_id":"102512398716","openid":"123123123asdasdasdasd","out_trade_no":"sdasdasdasdasdsa","time_end":"2091212121212","total_fee":1235,"trade_type":"pay"}
+2017-09-27 11:13:46,145 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] - Setting default value: false
+2017-09-27 11:13:46,145 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] - Converting 'Boolean' value 'false' to type 'Boolean'
+2017-09-27 11:13:46,145 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] -     No conversion required, value is already a Boolean
+2017-09-27 11:13:46,147 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] - Setting default value: 0
+2017-09-27 11:13:46,147 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] - Converting 'Integer' value '0' to type 'Byte'
+2017-09-27 11:13:46,147 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] -     Converted to Byte value '0'
+2017-09-27 11:13:46,147 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] - Setting default value:  
+2017-09-27 11:13:46,147 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] - Converting 'Character' value ' ' to type 'Character'
+2017-09-27 11:13:46,147 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] -     No conversion required, value is already a Character
+2017-09-27 11:13:46,148 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] - Setting default value: 0
+2017-09-27 11:13:46,148 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] - Converting 'Integer' value '0' to type 'Double'
+2017-09-27 11:13:46,148 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] -     Converted to Double value '0.0'
+2017-09-27 11:13:46,148 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] - Setting default value: 0
+2017-09-27 11:13:46,148 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] - Converting 'Integer' value '0' to type 'Float'
+2017-09-27 11:13:46,148 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] -     Converted to Float value '0.0'
+2017-09-27 11:13:46,149 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Setting default value: 0
+2017-09-27 11:13:46,149 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Converting 'Integer' value '0' to type 'Integer'
+2017-09-27 11:13:46,149 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] -     No conversion required, value is already a Integer
+2017-09-27 11:13:46,149 DEBUG [org.apache.commons.beanutils.converters.LongConverter] - Setting default value: 0
+2017-09-27 11:13:46,149 DEBUG [org.apache.commons.beanutils.converters.LongConverter] - Converting 'Integer' value '0' to type 'Long'
+2017-09-27 11:13:46,149 DEBUG [org.apache.commons.beanutils.converters.LongConverter] -     Converted to Long value '0'
+2017-09-27 11:13:46,149 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] - Setting default value: 0
+2017-09-27 11:13:46,149 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] - Converting 'Integer' value '0' to type 'Short'
+2017-09-27 11:13:46,150 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] -     Converted to Short value '0'
+2017-09-27 11:13:46,150 DEBUG [org.apache.commons.beanutils.converters.BigDecimalConverter] - Setting default value: 0.0
+2017-09-27 11:13:46,150 DEBUG [org.apache.commons.beanutils.converters.BigDecimalConverter] - Converting 'BigDecimal' value '0.0' to type 'BigDecimal'
+2017-09-27 11:13:46,150 DEBUG [org.apache.commons.beanutils.converters.BigDecimalConverter] -     No conversion required, value is already a BigDecimal
+2017-09-27 11:13:46,150 DEBUG [org.apache.commons.beanutils.converters.BigIntegerConverter] - Setting default value: 0
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.BigIntegerConverter] - Converting 'BigInteger' value '0' to type 'BigInteger'
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.BigIntegerConverter] -     No conversion required, value is already a BigInteger
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] - Setting default value: false
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] - Converting 'Boolean' value 'false' to type 'Boolean'
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.BooleanConverter] -     No conversion required, value is already a Boolean
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] - Setting default value: 0
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] - Converting 'Integer' value '0' to type 'Byte'
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.ByteConverter] -     Converted to Byte value '0'
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] - Setting default value:  
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] - Converting 'Character' value ' ' to type 'Character'
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.CharacterConverter] -     No conversion required, value is already a Character
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] - Setting default value: 0
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] - Converting 'Integer' value '0' to type 'Double'
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.DoubleConverter] -     Converted to Double value '0.0'
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] - Setting default value: 0
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] - Converting 'Integer' value '0' to type 'Float'
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.FloatConverter] -     Converted to Float value '0.0'
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Setting default value: 0
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Converting 'Integer' value '0' to type 'Integer'
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] -     No conversion required, value is already a Integer
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.LongConverter] - Setting default value: 0
+2017-09-27 11:13:46,151 DEBUG [org.apache.commons.beanutils.converters.LongConverter] - Converting 'Integer' value '0' to type 'Long'
+2017-09-27 11:13:46,152 DEBUG [org.apache.commons.beanutils.converters.LongConverter] -     Converted to Long value '0'
+2017-09-27 11:13:46,152 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] - Setting default value: 0
+2017-09-27 11:13:46,152 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] - Converting 'Integer' value '0' to type 'Short'
+2017-09-27 11:13:46,152 DEBUG [org.apache.commons.beanutils.converters.ShortConverter] -     Converted to Short value '0'
+2017-09-27 11:13:46,152 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Setting default value: 
+2017-09-27 11:13:46,152 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value '' to type 'String'
+2017-09-27 11:13:46,156 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Z@4dc68a20
+2017-09-27 11:13:46,156 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'boolean[]' value '[Z@4dc68a20' to type 'boolean[]'
+2017-09-27 11:13:46,156 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a boolean[]
+2017-09-27 11:13:46,156 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [B@259662c4
+2017-09-27 11:13:46,156 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'byte[]' value '[B@259662c4' to type 'byte[]'
+2017-09-27 11:13:46,156 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a byte[]
+2017-09-27 11:13:46,156 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [C@342e4523
+2017-09-27 11:13:46,156 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'char[]' value '[C@342e4523' to type 'char[]'
+2017-09-27 11:13:46,156 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a char[]
+2017-09-27 11:13:46,156 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [D@49bd1798
+2017-09-27 11:13:46,156 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'double[]' value '[D@49bd1798' to type 'double[]'
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a double[]
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [F@1d5821fa
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'float[]' value '[F@1d5821fa' to type 'float[]'
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a float[]
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [I@51eb323
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'int[]' value '[I@51eb323' to type 'int[]'
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a int[]
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [J@2282c175
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'long[]' value '[J@2282c175' to type 'long[]'
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a long[]
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [S@366afa06
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'short[]' value '[S@366afa06' to type 'short[]'
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a short[]
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.math.BigDecimal;@2944bbd3
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'BigDecimal[]' value '[Ljava.math.BigDecimal;@2944bbd3' to type 'BigDecimal[]'
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a BigDecimal[]
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.math.BigInteger;@24124908
+2017-09-27 11:13:46,157 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'BigInteger[]' value '[Ljava.math.BigInteger;@24124908' to type 'BigInteger[]'
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a BigInteger[]
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Boolean;@2b3138d7
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Boolean[]' value '[Ljava.lang.Boolean;@2b3138d7' to type 'Boolean[]'
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Boolean[]
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Byte;@499fa9b0
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Byte[]' value '[Ljava.lang.Byte;@499fa9b0' to type 'Byte[]'
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Byte[]
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Character;@113d8793
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Character[]' value '[Ljava.lang.Character;@113d8793' to type 'Character[]'
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Character[]
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Double;@32ca7b24
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Double[]' value '[Ljava.lang.Double;@32ca7b24' to type 'Double[]'
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Double[]
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Float;@674a6631
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Float[]' value '[Ljava.lang.Float;@674a6631' to type 'Float[]'
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Float[]
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Integer;@22bd7ada
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Integer[]' value '[Ljava.lang.Integer;@22bd7ada' to type 'Integer[]'
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Integer[]
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Long;@7903df5d
+2017-09-27 11:13:46,159 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Long[]' value '[Ljava.lang.Long;@7903df5d' to type 'Long[]'
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Long[]
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Short;@64e95eab
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Short[]' value '[Ljava.lang.Short;@64e95eab' to type 'Short[]'
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Short[]
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.String;@3f5ced72
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'String[]' value '[Ljava.lang.String;@3f5ced72' to type 'String[]'
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a String[]
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.lang.Class;@6de8f7dd
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Class[]' value '[Ljava.lang.Class;@6de8f7dd' to type 'Class[]'
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Class[]
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.util.Date;@59e9068a
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Date[]' value '[Ljava.util.Date;@59e9068a' to type 'Date[]'
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Date[]
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.util.Calendar;@77810c72
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'Calendar[]' value '[Ljava.util.Calendar;@77810c72' to type 'Calendar[]'
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a Calendar[]
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.io.File;@5452afa8
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'java.io.File[]' value '[Ljava.io.File;@5452afa8' to type 'java.io.File[]'
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a java.io.File[]
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.sql.Date;@58eac93b
+2017-09-27 11:13:46,160 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'java.sql.Date[]' value '[Ljava.sql.Date;@58eac93b' to type 'java.sql.Date[]'
+2017-09-27 11:13:46,161 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a java.sql.Date[]
+2017-09-27 11:13:46,161 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.sql.Time;@5a94e5ad
+2017-09-27 11:13:46,161 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'java.sql.Time[]' value '[Ljava.sql.Time;@5a94e5ad' to type 'java.sql.Time[]'
+2017-09-27 11:13:46,161 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a java.sql.Time[]
+2017-09-27 11:13:46,161 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.sql.Timestamp;@25a39319
+2017-09-27 11:13:46,161 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'java.sql.Timestamp[]' value '[Ljava.sql.Timestamp;@25a39319' to type 'java.sql.Timestamp[]'
+2017-09-27 11:13:46,161 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a java.sql.Timestamp[]
+2017-09-27 11:13:46,161 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Setting default value: [Ljava.net.URL;@a2a95bb
+2017-09-27 11:13:46,161 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] - Converting 'java.net.URL[]' value '[Ljava.net.URL;@a2a95bb' to type 'java.net.URL[]'
+2017-09-27 11:13:46,161 DEBUG [org.apache.commons.beanutils.converters.ArrayConverter] -     No conversion required, value is already a java.net.URL[]
+2017-09-27 11:13:46,165 DEBUG [org.apache.commons.beanutils.BeanUtils] - BeanUtils.copyProperties(com.yatang.xc.xcr.biz.message.dto.SwiftPassMessage@304a547f, com.yatang.xc.xcr.biz.message.dto.SwiftPassReturnDto@60313ace)
+2017-09-27 11:13:46,169 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Converting 'Integer' value '1' to type 'Integer'
+2017-09-27 11:13:46,169 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] -     No conversion required, value is already a Integer
+2017-09-27 11:13:46,169 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value '102512398716' to type 'String'
+2017-09-27 11:13:46,169 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value '123123123asdasdasdasd' to type 'String'
+2017-09-27 11:13:46,169 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value 'sdasdasdasdasdsa' to type 'String'
+2017-09-27 11:13:46,169 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value '2091212121212' to type 'String'
+2017-09-27 11:13:46,169 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] - Converting 'Integer' value '1235' to type 'Integer'
+2017-09-27 11:13:46,169 DEBUG [org.apache.commons.beanutils.converters.IntegerConverter] -     No conversion required, value is already a Integer
+2017-09-27 11:13:46,170 DEBUG [org.apache.commons.beanutils.converters.StringConverter] - Converting 'String' value 'pay' to type 'String'
+2017-09-27 11:13:46,173 INFO [com.yatang.xc.xcr.biz.message.dubboservice.impl.SwiftPassDubboServiceImpl] - BeanUtils.copyProperties(scanPaymentMessage, scanPaymentMessageDto) -> scanPaymentMessage:{"haveShopCode":1,"mch_id":"102512398716","openid":"123123123asdasdasdasd","out_trade_no":"sdasdasdasdasdsa","time_end":"2091212121212","total_fee":1235,"trade_type":"pay"}
+2017-09-27 11:13:46,204 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:4}] to sit.mongodb2.com:27019
+2017-09-27 11:13:46,209 DEBUG [org.mongodb.driver.protocol.command] - Sending command {count : BsonString{value='scan_turnover'}} to database xcr on connection [connectionId{localValue:4}] to server sit.mongodb2.com:27019
+2017-09-27 11:13:46,217 DEBUG [org.mongodb.driver.protocol.command] - Command execution completed
+2017-09-27 11:13:46,239 INFO [org.mongodb.driver.connection] - Opened connection [connectionId{localValue:5}] to sit.mongodb3.com:27019
+2017-09-27 11:13:46,247 DEBUG [org.mongodb.driver.protocol.insert] - Inserting 1 documents into namespace xcr.scan_turnover on connection [connectionId{localValue:5}] to server sit.mongodb3.com:27019
+2017-09-27 11:13:46,252 DEBUG [org.mongodb.driver.protocol.insert] - Insert completed
+2017-09-27 11:13:46,256 INFO [com.yatang.xc.xcr.biz.message.dubboservice.impl.SwiftPassDubboServiceImpl] - scanPaymentMessageService.saveScanPaymentMessage(scanPaymentMessage) -> success:true
+2017-09-27 11:13:46,257 INFO [com.yatang.xc.xcr.biz.message.dubboservice.impl.SwiftPassDubboServiceImpl] - getMqMessage(scanPaymentMessage); -> messageBody:{"amount":12.35,"shopCode":"102512398716","transId":"123123123asdasdasdasd","type":8,"orderId":"sdasdasdasdasdsa"}
+2017-09-27 11:13:46,336 DEBUG [io.netty.util.internal.logging.InternalLoggerFactory] - Using SLF4J as the default logging framework
+2017-09-27 11:13:46,340 DEBUG [io.netty.channel.MultithreadEventLoopGroup] - -Dio.netty.eventLoopThreads: 16
+2017-09-27 11:13:46,346 DEBUG [io.netty.util.internal.PlatformDependent0] - java.nio.Buffer.address: available
+2017-09-27 11:13:46,346 DEBUG [io.netty.util.internal.PlatformDependent0] - sun.misc.Unsafe.theUnsafe: available
+2017-09-27 11:13:46,346 DEBUG [io.netty.util.internal.PlatformDependent0] - sun.misc.Unsafe.copyMemory: available
+2017-09-27 11:13:46,346 DEBUG [io.netty.util.internal.PlatformDependent0] - java.nio.Bits.unaligned: true
+2017-09-27 11:13:46,346 DEBUG [io.netty.util.internal.PlatformDependent] - Platform: Windows
+2017-09-27 11:13:46,347 DEBUG [io.netty.util.internal.PlatformDependent] - Java version: 7
+2017-09-27 11:13:46,347 DEBUG [io.netty.util.internal.PlatformDependent] - -Dio.netty.noUnsafe: false
+2017-09-27 11:13:46,347 DEBUG [io.netty.util.internal.PlatformDependent] - sun.misc.Unsafe: available
+2017-09-27 11:13:46,347 DEBUG [io.netty.util.internal.PlatformDependent] - -Dio.netty.noJavassist: false
+2017-09-27 11:13:46,403 DEBUG [io.netty.util.internal.PlatformDependent] - Javassist: available
+2017-09-27 11:13:46,403 DEBUG [io.netty.util.internal.PlatformDependent] - -Dio.netty.tmpdir: C:\Users\wangyang\AppData\Local\Temp (java.io.tmpdir)
+2017-09-27 11:13:46,403 DEBUG [io.netty.util.internal.PlatformDependent] - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2017-09-27 11:13:46,403 DEBUG [io.netty.util.internal.PlatformDependent] - -Dio.netty.noPreferDirect: false
+2017-09-27 11:13:46,420 DEBUG [io.netty.channel.nio.NioEventLoop] - -Dio.netty.noKeySetOptimization: false
+2017-09-27 11:13:46,420 DEBUG [io.netty.channel.nio.NioEventLoop] - -Dio.netty.selectorAutoRebuildThreshold: 512
+2017-09-27 11:13:46,498 DEBUG [io.netty.util.internal.ThreadLocalRandom] - -Dio.netty.initialSeedUniquifier: 0x84aa5185491a68fe (took 1 ms)
+2017-09-27 11:13:46,517 DEBUG [io.netty.buffer.ByteBufUtil] - -Dio.netty.allocator.type: unpooled
+2017-09-27 11:13:46,517 DEBUG [io.netty.buffer.ByteBufUtil] - -Dio.netty.threadLocalDirectBufferSize: 65536
+2017-09-27 11:13:46,522 DEBUG [io.netty.util.internal.JavassistTypeParameterMatcherGenerator] - Generated: io.netty.util.internal.__matchers__.com.alibaba.rocketmq.remoting.protocol.RemotingCommandMatcher
+2017-09-27 11:13:46,534 DEBUG [io.netty.util.Recycler] - -Dio.netty.recycler.maxCapacity.default: 262144
+2017-09-27 11:13:46,539 DEBUG [io.netty.util.ResourceLeakDetector] - -Dio.netty.leakDetectionLevel: simple
+2017-09-27 11:13:46,550 DEBUG [io.netty.util.internal.Cleaner0] - java.nio.ByteBuffer.cleaner(): available
+2017-09-27 11:13:46,593 INFO [com.yatang.xc.xcr.biz.message.dubboservice.impl.SwiftPassDubboServiceImpl] - sendMqMessage(messageBody) -> result:{"messageQueue":{"brokerName":"xc-rocketmq","queueId":0,"topic":"corder"},"msgId":"AC1E0A6800002A9F0000000007B70DF6","queueOffset":800,"sendStatus":"SEND_OK"}
+2017-09-27 11:13:46,595 INFO [org.springframework.context.support.GenericApplicationContext] - Closing org.springframework.context.support.GenericApplicationContext@77ed2fe7: startup date [Wed Sep 27 11:13:44 CST 2017]; root of context hierarchy
+2017-09-27 11:13:46,597 INFO [org.mongodb.driver.connection] - Closed connection [connectionId{localValue:5}] to sit.mongodb3.com:27019 because the pool has been closed.
+2017-09-27 11:13:46,597 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:5}
+2017-09-27 11:13:46,598 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:3}
+2017-09-27 11:13:46,598 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:1}
+2017-09-27 11:13:46,598 INFO [org.mongodb.driver.connection] - Closed connection [connectionId{localValue:4}] to sit.mongodb2.com:27019 because the pool has been closed.
+2017-09-27 11:13:46,598 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:4}
+2017-09-27 11:13:46,599 DEBUG [org.mongodb.driver.connection] - Closing connection connectionId{localValue:2}
+2017-09-27 11:13:46,601 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed

@@ -1,0 +1,22 @@
+2017-12-25 11:16:25 [com.xxl.job.core.thread.JobThread]-[run]-[117]-[Thread-13] <br>----------- xxl-job job execute start -----------<br>----------- Params:null
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[43]-[Thread-13] 【收钱码流水无门店编号数据修复任务】 ...start .
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[51]-[Thread-13] 正在修复数据 ...outTradeNo：102513761628201709274228294271  开始 -------------------->
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[getShopCodeByMchId]-[84]-[Thread-13] 根据商户号获取门店编号 -> mch_id:102513761628
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[getShopCodeByMchId]-[87]-[Thread-13] 根据商户号获取门店编号 -> 返回结果 -> mch_id:102513761628  storeSettlementInfoDubboService.queryStoreSettlementInfoByBusinessNumber(mch_id) > response :com.busi.common.resp.Response@46f0f40a
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[59]-[Thread-13] 根据商户号获取的门店信息 - > mchId:102513761628  shopCode:null
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[61]-[Thread-13] 根据商户号获取门店编号失败 - > mchId:102513761628  shopCode:null
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[62]-[Thread-13] 修复数据 ...outTradeNo：102513761628201709274228294271  结束 -------------------->
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[51]-[Thread-13] 正在修复数据 ...outTradeNo：10255224311416229117483068611  开始 -------------------->
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[getShopCodeByMchId]-[84]-[Thread-13] 根据商户号获取门店编号 -> mch_id:102552243114
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[getShopCodeByMchId]-[87]-[Thread-13] 根据商户号获取门店编号 -> 返回结果 -> mch_id:102552243114  storeSettlementInfoDubboService.queryStoreSettlementInfoByBusinessNumber(mch_id) > response :com.busi.common.resp.Response@6ef617ca
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[59]-[Thread-13] 根据商户号获取的门店信息 - > mchId:102552243114  shopCode:null
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[61]-[Thread-13] 根据商户号获取门店编号失败 - > mchId:102552243114  shopCode:null
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[62]-[Thread-13] 修复数据 ...outTradeNo：10255224311416229117483068611  结束 -------------------->
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[51]-[Thread-13] 正在修复数据 ...outTradeNo：10257298476532547002451457855  开始 -------------------->
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[getShopCodeByMchId]-[84]-[Thread-13] 根据商户号获取门店编号 -> mch_id:102572984765
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[getShopCodeByMchId]-[96]-[Thread-13] 根据商户号获取门店编号 -> 返回结果 -> storeCode:A901004
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[59]-[Thread-13] 根据商户号获取的门店信息 - > mchId:102572984765  shopCode:A901004
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[70]-[Thread-13] 数据修复成功 -> 102572984765  shopCode:A901004
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[71]-[Thread-13] 修复数据 ...outTradeNo：10257298476532547002451457855  结束 -------------------->
+2017-12-25 11:16:25 [com.yatang.xc.xcr.biz.message.schedule.ScanPaymentMsgDataRepairJobHandler]-[execute]-[73]-[Thread-13] 【收钱码流水无门店编号数据修复任务】 ...end .
+2017-12-25 11:16:25 [com.xxl.job.core.thread.JobThread]-[run]-[124]-[Thread-13] <br>----------- xxl-job job execute end(finish) -----------<br>----------- ReturnT:ReturnT [code=200, msg=null, content=null]

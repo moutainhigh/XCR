@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css"
+    <script type="text/javascript" src="/xcr/plugins/window/window.js"></script>
+
+</head>
+<body class="gray-bg">
+<div class="container" style="width: 100%;background-color: white">
+    <div style="border-bottom:2px solid grey;margin-top: 20px;"><strong>签到管理/签到奖励</strong></div>
+    <div class="tab-content" style="margin-top: 10px;width: 95%;margin: 0 auto">
+        <div style="width: 100%;height: 10px;"></div>
+        <div id="dateSearch" style="background-color: gainsboro;height: 30px;">
+        <span style="height: 30px;line-height: 30px;"><strong><h5 style="line-height: 30px;margin-left: 10px;"><i
+                class="fa fa-pencil"></i> <strong>签到设置</strong></h5></strong></span>
+        </div>
+
+        <table class="table" style="margin-top: 20px;background-color: whitesmoke;" border="0">
+            <tbody>
+            <tr>
+                <td><input id="id" class="form-control clean" type="hidden" value=""/></td>
+            </tr>
+
+            <tr>
+                <td class="table-style-td">
+                    <div style="text-align:right;margin-top: 5px;"><strong>奖励类型:</strong></div>
+                </td>
+                <td class="table-style-td" style="width: 80%">
+                    <select class="form-control" id="type" name="type"
+                            style="width: 300px;border:0;border-bottom:1px solid gainsboro;background:whitesmoke;padding: 0 10%;">
+                        <option value="2" #if($userSignSetDTO.type == 2) selected #end style="text-align: center">积分
+                        </option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="table-style-td">
+                    <div style="text-align:right;margin-top: 5px;"><strong>单次奖励数额:</strong></div>
+                </td>
+                <td class="table-style-td">
+                    <input type="number"
+                           style="width: 300px;border:0;border-bottom:1px solid gainsboro;background:whitesmoke;text-align: center"
+                           id="cash" name="data" value="$userSignSetDTO.data"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-style-td">
+                    <div style="text-align:right;margin-top: 5px;"><strong>奖励说明:</strong></div>
+                </td>
+
+                <td class="table-style-td">
+                    <textarea class="form-control" rows="6" id="description" name="content"
+                              placeholder="$!userSignSetDTO.content"
+                              maxlength="300" style="width: 400px;border:0;border-bottom:1px solid gainsboro;background:snow;">$!userSignSetDTO.content</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <div style="background-color: gainsboro;height: 50px;">
+            <button id="savetrain" class="btn btn-default btn-sm" type="button"
+                    style="margin-left: 30%;margin-top: 10px;width: 150px;"
+                    onclick="saveAward(this);"><strong><li class="fa fa-save"></li> 保存修改</strong>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="successModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">操作成功！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="notNumber" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">请输入正确的单次奖励数额！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="notNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">请输入正确的单次奖励数额！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    //保存
+    function saveAward() {
+        console.log("in sureReleaseTrain() ... )")
+
+        var type = $("#type").val();
+        var cash = $("#cash").val().trim();
+        var content = $("#description").val().trim();
+        console.log("type:" + type + "  cash:" + cash + "  content:" + content);
+
+        if (!chkinput()) {
+            return false;
+        }
+        $.ajax({
+            url: "/xcr/sign/updateSet.htm",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify({
+                "type": type,
+                "data": cash,
+                "content": content
+            }),
+            success: function (data) {
+                console.log("data:" + data)
+                $("#successModel").modal("toggle");
+                $('#successModel').on('hidden.bs.modal', function () {
+                    javascript:loadHtml('/xcr/signAward.htm');
+                })
+
+            }
+        });
+    }
+
+
+    //  验证文本框
+    //js前台验证代码
+    function chkinput() {
+        var reg = /^[1-9]\d*$/; //积分只能是正整数
+        if ($('#cash').val().trim() == "") {
+            $("#notNull").modal("toggle");
+            return false;
+        }
+        if (!(reg.test($('#cash').val().trim()))) {
+            $("#notNumber").modal("toggle");
+            return false;
+        }
+        return true;
+    }
+</script>
+</html>
+
+
+

@@ -1,0 +1,108 @@
+2018-01-22 09:49:43,971 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2018-01-22 09:49:44,001 INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@8830993, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@52e99642, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@6587f194, org.springframework.test.context.support.DirtiesContextTestExecutionListener@40055f9f, org.springframework.test.context.transaction.TransactionalTestExecutionListener@20c8e08f, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@640edd19]
+2018-01-22 09:49:44,077 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from class path resource [test/applicationContext-test.xml]
+2018-01-22 09:49:44,245 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from file [D:\workspace\backend\trunk\xcr-pay\xcr-pay-dubbo\target\classes\spring\applicationContext-dubbo.xml]
+2018-01-22 09:49:44,375 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [jar:file:/D:/maven/self_repository/com/yatang/xc/oc/core/org/core-org-client/dev-SNAPSHOT/core-org-client-dev-20180118.091823-317.jar!/com/yatang/xc/mbd/biz/org/dubboservice/dubbo-consumer.xml]
+2018-01-22 09:49:44,426 INFO [com.alibaba.dubbo.common.logger.LoggerFactory] - using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+2018-01-22 09:49:44,478 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [jar:file:/D:/maven/self_repository/com/yatang/xc/oc/oles/business/oles-business-client/dev-SNAPSHOT/oles-business-client-dev-20180115.070617-629.jar!/com/yatang/xc/oles/biz/business/dubboservice/dubbo-consumer.xml]
+2018-01-22 09:49:44,572 INFO [org.springframework.beans.factory.support.DefaultListableBeanFactory] - Overriding bean definition for bean 'swiftpassConfig' with a different definition: replacing [Generic bean: class [com.yatang.xc.xcr.biz.pay.config.SwiftpassConfig]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\backend\trunk\xcr-pay\xcr-pay-dubbo\target\classes\com\yatang\xc\xcr\biz\pay\config\SwiftpassConfig.class]] with [Generic bean: class [com.yatang.xc.xcr.biz.pay.config.SwiftpassConfig]; scope=prototype; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\backend\trunk\xcr-pay\xcr-pay-dubbo\target\classes\spring\applicationContext-dubbo.xml]]
+2018-01-22 09:49:44,573 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from file [D:\workspace\backend\trunk\xcr-pay\xcr-pay-service\target\classes\spring\applicationContext-env.xml]
+2018-01-22 09:49:44,604 INFO [org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader] - Skipped XML bean definition file due to specified profiles [dev] not matching: file [D:\workspace\backend\trunk\xcr-pay\xcr-pay-service\target\classes\spring\applicationContext-env.xml]
+2018-01-22 09:49:44,605 INFO [org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader] - Skipped XML bean definition file due to specified profiles [sit] not matching: file [D:\workspace\backend\trunk\xcr-pay\xcr-pay-service\target\classes\spring\applicationContext-env.xml]
+2018-01-22 09:49:44,605 INFO [org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader] - Skipped XML bean definition file due to specified profiles [uat] not matching: file [D:\workspace\backend\trunk\xcr-pay\xcr-pay-service\target\classes\spring\applicationContext-env.xml]
+2018-01-22 09:49:44,605 INFO [org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader] - Skipped XML bean definition file due to specified profiles [stage] not matching: file [D:\workspace\backend\trunk\xcr-pay\xcr-pay-service\target\classes\spring\applicationContext-env.xml]
+2018-01-22 09:49:44,605 INFO [org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader] - Skipped XML bean definition file due to specified profiles [prd] not matching: file [D:\workspace\backend\trunk\xcr-pay\xcr-pay-service\target\classes\spring\applicationContext-env.xml]
+2018-01-22 09:49:44,606 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from file [D:\workspace\backend\trunk\xcr-pay\xcr-pay-service\target\classes\spring\applicationContext-redis.xml]
+2018-01-22 09:49:44,625 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from file [D:\workspace\backend\trunk\xcr-pay\xcr-pay-service\target\classes\spring\applicationContext.xml]
+2018-01-22 09:49:44,688 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [jar:file:/D:/maven/self_repository/com/busi/mongo/busi-mongo/dev-SNAPSHOT/busi-mongo-dev-20180108.043425-49.jar!/spring/applicationContext.xml]
+2018-01-22 09:49:44,714 INFO [org.springframework.context.support.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@7e060a88: startup date [Mon Jan 22 09:49:44 CST 2018]; root of context hierarchy
+2018-01-22 09:49:44,891 DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Identified candidate component class: file [D:\workspace\backend\trunk\xcr-pay\xcr-pay-service\target\classes\com\yatang\xc\xcr\biz\pay\dao\DepositPayRecordDao.class]
+2018-01-22 09:49:44,891 DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Creating MapperFactoryBean with name 'depositPayRecordDao' and 'com.yatang.xc.xcr.biz.pay.dao.DepositPayRecordDao' mapperInterface
+2018-01-22 09:49:45,519 ERROR [com.alibaba.druid.filter.FilterManager] - load filter error, filter not found : logback
+2018-01-22 09:49:45,795 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2018-01-22 09:49:45,817 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2018-01-22 09:49:45,934 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VFS
+2018-01-22 09:49:45,934 DEBUG [org.apache.ibatis.io.JBoss6VFS] - JBoss 6 VFS API is not available in this environment.
+2018-01-22 09:49:45,935 DEBUG [org.apache.ibatis.io.VFS] - Class not found: org.jboss.vfs.VirtualFile
+2018-01-22 09:49:45,935 DEBUG [org.apache.ibatis.io.VFS] - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2018-01-22 09:49:45,935 DEBUG [org.apache.ibatis.io.VFS] - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2018-01-22 09:49:45,938 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2018-01-22 09:49:45,940 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed configuration file: 'class path resource [mybatis/sqlMapConfig.xml]'
+2018-01-22 09:49:45,994 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed mapper file: 'file [D:\workspace\backend\trunk\xcr-pay\xcr-pay-service\target\classes\com\yatang\xc\xcr\biz\pay\domain\DepositPayRecord_Mapper.xml]'
+2018-01-22 09:49:46,007 WARN [org.springframework.context.support.GenericApplicationContext] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'swiftPassPayDubboService': Unsatisfied dependency expressed through field 'contractVerificationDubboService'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'contractVerificationDubboService': FactoryBean threw exception on object creation; nested exception is java.lang.IllegalStateException: No such application config! Please add <dubbo:application name="..." /> to your spring config.
+2018-01-22 09:49:46,010 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed
+2018-01-22 09:49:46,012 ERROR [org.springframework.test.context.TestContextManager] - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@6587f194] to prepare test instance [test.com.yatang.xc.xcr.biz.TestPayReturn@17c9e523]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:287)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:289)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:119)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:42)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:234)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'swiftPassPayDubboService': Unsatisfied dependency expressed through field 'contractVerificationDubboService'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'contractVerificationDubboService': FactoryBean threw exception on object creation; nested exception is java.lang.IllegalStateException: No such application config! Please add <dubbo:application name="..." /> to your spring config.
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:108)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:251)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 29 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'contractVerificationDubboService': FactoryBean threw exception on object creation; nested exception is java.lang.IllegalStateException: No such application config! Please add <dubbo:application name="..." /> to your spring config.
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:175)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getObjectFromFactoryBean(FactoryBeanRegistrySupport.java:103)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getObjectForBeanInstance(AbstractBeanFactory.java:1634)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:254)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1275)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1101)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 47 more
+Caused by: java.lang.IllegalStateException: No such application config! Please add <dubbo:application name="..." /> to your spring config.
+	at com.alibaba.dubbo.config.AbstractInterfaceConfig.checkApplication(AbstractInterfaceConfig.java:142)
+	at com.alibaba.dubbo.config.ReferenceConfig.init(ReferenceConfig.java:253)
+	at com.alibaba.dubbo.config.ReferenceConfig.get(ReferenceConfig.java:138)
+	at com.alibaba.dubbo.config.spring.ReferenceBean.getObject(ReferenceBean.java:65)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:168)
+	... 57 more
+2018-01-22 09:49:46,024 INFO [com.alibaba.dubbo.config.AbstractConfig] -  [DUBBO] Run shutdown hook now., dubbo version: 2.8.4, current host: 127.0.0.1
+2018-01-22 09:49:46,024 INFO [com.alibaba.dubbo.registry.support.AbstractRegistryFactory] -  [DUBBO] Close all registries [], dubbo version: 2.8.4, current host: 127.0.0.1

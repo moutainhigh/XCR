@@ -1,0 +1,22 @@
+
+
+DROP TABLE IF EXISTS YT_XCR_MSG_APUSH;
+
+create table YT_XCR_MSG_APUSH (
+	`ID` int (10) NOT NULL AUTO_INCREMENT,
+	`TITLE` varchar (765) COMMENT '消息标题',
+	`IMAGE_URL` varchar (765) COMMENT '消息地址',
+	`MSG_URL` varchar (1500),
+	`STATUS` varchar (6) COMMENT '消息状态0:未发布1:已发布',
+	`TYPE` varchar (6) COMMENT '消息类型0：通知1:警告',
+	`CREATE_UID` int (11) COMMENT '创建人id',
+	`CREATE_TIME` timestamp COMMENT '创建时间(时间戳)',
+	`MODIFY_UID` int (11) COMMENT '修改人id',
+	`MODIFY_TIME` timestamp COMMENT '最后修改时间(时间戳)',
+	`RELEASES_TIME` timestamp  COMMENT '发布时间',
+	 PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='消息推送';
+
+ALTER TABLE `YT_XCR_MSG_APUSH`
+ADD COLUMN `PUSH_TYPE` VARCHAR(2) DEFAULT '0' NULL COMMENT '推送类型0：所有，1：定向' AFTER `RELEASES_TIME`,
+ADD COLUMN `PUSH_TO` VARCHAR(100) DEFAULT '' NULL COMMENT '推送对象(后台定向推送为门店编号)' AFTER `PUSH_TYPE`;

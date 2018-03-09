@@ -1,0 +1,28 @@
+<div id="socketOutputTab" class="tab-pane">
+    <div class="table-responsive">
+        <div id="toolbar" class="btn-group" style="float: left">
+            <button id="btn_add" type="button" class="btn btn-success btn-xs rightSize"
+                    style="width: 100px;"
+                    onclick="relationMissionAdd();">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>创建任务组
+            </button>
+        </div>
+        <table id="sockctOutput-table"></table>
+    </div>
+</div>
+<script type="text/javascript">
+    //获取关联任务添加页面
+    function relationMissionAdd() {
+        window.customData = null;
+        $("#socketOutputTab").empty();
+        $.ajax({
+            url: "/xcr/missionRelAdd.htm",
+            type: "get",
+            success: function (data) {
+                $("#socketOutputTab").html(data);
+            }
+        });
+    }
+</script>
+<!-- 关联列表js -->
+<script type="text/javascript" src="/xcr/js/missionRelList.js"></script>

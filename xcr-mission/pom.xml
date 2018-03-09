@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.yatang.xc.xcr.mission</groupId>
+	<artifactId>xcr-mission</artifactId>
+	<version>dev-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<description>xcr mission</description>
+
+	<modules>
+		<module>xcr-mission-client</module>
+		<module>xcr-mission-dubbo</module>
+		<module>xcr-mission-service</module>
+	</modules>
+	
+	<properties>
+		<interface.version>1.0.0</interface.version>
+	</properties>
+	
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>https://solution.yatang.cn/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>https://solution.yatang.cn/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>

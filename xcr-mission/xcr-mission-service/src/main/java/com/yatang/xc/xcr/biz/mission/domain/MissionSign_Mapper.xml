@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yatang.xc.xcr.biz.mission.dao.MissionSignDAO">
+    <resultMap id="userSignInfoMap" type="com.yatang.xc.xcr.biz.mission.domain.UserSignPO">
+        <id column="ID" property="id"/>
+        <result column="USER_ID" property="userId" jdbcType="VARCHAR"/>
+        <result column="SHOP_CODE" property="shopCode" jdbcType="VARCHAR"/>
+        <result column="SCORE" property="score" jdbcType="VARCHAR"/>
+        <result column="CASH" property="cash" jdbcType="VARCHAR"/>
+        <result column="CONTINUE_DAY" property="continueDay" jdbcType="INTEGER"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="DATE"/>
+    </resultMap>
+
+    <select id="getSignPo" resultMap="userSignInfoMap">
+       SELECT ID,USER_ID,SHOP_CODE,SCORE,CASH,continue_DAY,CREATE_TIME FROM XCR_SIGN_INFO 
+       WHERE SHOP_CODE = #{0} AND CREATE_TIME &gt;= #{1} AND CREATE_TIME &lt;= #{2} 
+    </select>
+
+</mapper>

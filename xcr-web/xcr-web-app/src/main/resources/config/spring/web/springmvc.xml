@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:metrics="http://www.ryantenney.com/schema/metrics"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd 		
+		http://www.ryantenney.com/schema/metrics
+        http://www.ryantenney.com/schema/metrics/metrics.xsd">
+       
+	<context:component-scan base-package="com.yatang.xc.xcr.web" />
+	
+	<!-- 静态资源处理， css， js， imgs -->
+	<mvc:resources mapping="/xcr/**" location="/xcr/" />
+	<mvc:annotation-driven validator="validator" content-negotiation-manager="contentNegotiationManager">
+		<mvc:message-converters>
+			<ref bean="fack"/>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+		</mvc:message-converters>
+		<mvc:argument-resolvers>
+		 		<!--Request  arguments resolver  -->
+				<bean id="arguments" class="com.yatang.xc.xcr.web.handler.RequestBodyParamsArgumentResolver" />
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+	
+	<!-- 国际化的消息资源文件（本系统中主要用于显示/错误消息定制） -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<!-- 在web环境中一定要定位到classpath 否则默认到当前web应用下找 -->
+				<value>classpath:messages.properties</value>
+			</list>
+		</property>
+		<property name="useCodeAsDefaultMessage" value="false" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="cacheSeconds" value="60" />
+	</bean>
+	
+	<!-- 支持json -->
+	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="favorPathExtension" value="false" />
+		<property name="favorParameter" value="false" />
+		<property name="ignoreAcceptHeader" value="false" />
+		<property name="mediaTypes">
+			<value>
+				atom=application/atom+xml
+				html=text/html
+				json=application/json
+				*=*/*
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760" />
+	</bean>
+	
+    <!--spring mvc拦截器配置，对所有目录进行拦截-->
+    <mvc:interceptors>
+		<!-- 埋点拦截 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.yatang.xc.xcr.web.interceptor.BuryingPointInterceptor" init-method="init" >
+				<property name="host" value="${Influxdb.host}" />
+				<property name="port" value="${Influxdb.port}"/>
+				<property name="username" value="${Influxdb.username}"/>
+				<property name="password" value="${Influxdb.password}"/>
+				<property name="reporterMinutes" value="${Influxdb.reporterMinutes}"/>
+			</bean>
+		</mvc:interceptor>
+    </mvc:interceptors>
+
+	<import resource="classpath*:config/spring/handler.xml"/>
+	<import resource="classpath*:config/spring/applicationContext-env.xml"/>
+	<import resource="springmvc-proxy.xml"/>
+</beans>

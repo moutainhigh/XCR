@@ -1,0 +1,22 @@
+DROP TABLE IF EXISTS `XCR_DEPOSIT_PAY_RECORD`;
+
+CREATE TABLE `XCR_DEPOSIT_PAY_RECORD` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `MCH_ID` varchar(100) NOT NULL DEFAULT '' COMMENT '商户号',
+  `SHOP_NO` varchar(100) DEFAULT '' COMMENT '小超编号',
+  `PHONE` varchar(20) DEFAULT '' COMMENT '商户电话',
+  `OUT_TRADE_NO` varchar(100) NOT NULL DEFAULT '' COMMENT '预下单订单号（商户订单号），用"_"拼接合同编号及时间戳',
+  `CONTRACT_NO` varchar(100) DEFAULT NULL COMMENT '合同编号',
+  `BODY` varchar(300) DEFAULT '' COMMENT '商品描述',
+  `TOTAL_FEE` int(11) NOT NULL DEFAULT '0' COMMENT '总金额，以分为单位，不允许包含任何字、符号',
+  `MCH_CREATE_IP` varchar(50) DEFAULT '' COMMENT '终端IP,订单生成的机器 IP',
+  `NOTIFY_URL` varchar(100) NOT NULL DEFAULT '' COMMENT '通知地址,接收平台通知的URL',
+  `TOKEN_ID` varchar(100) NOT NULL DEFAULT '' COMMENT '支付授权码',
+  `STATE` int(2) NOT NULL DEFAULT '0' COMMENT '订单状态：0、预下单，1、待支付，2、预下单失败，3支付成功，4、支付失败',
+  `CREATE_TIME` datetime NOT NULL COMMENT '创建时间',
+  `UPDATE_TIME` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `UNIQUE_MCH_TNO` (`MCH_ID`,`OUT_TRADE_NO`),
+  KEY `IDX_MCH_ID` (`MCH_ID`),
+  KEY `IDX_TRADE_NO` (`OUT_TRADE_NO`)
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8;

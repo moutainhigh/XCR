@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.yatang.xc.xcr</groupId>
+	<artifactId>xcr-all</artifactId>
+	<version>dev-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<description>xcr</description>
+
+	<modules>
+		<module>xcr-parent</module>
+		<module>xcr-core</module>
+		<module>xcr-mission</module>
+		<module>xcr-train</module>
+		<module>xcr-web</module>
+		<module>xcr-message</module>		
+		<module>xcr-pay</module>		
+	</modules>
+	
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>https://solution.yatang.cn/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>https://solution.yatang.cn/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
+	<!-- 配置SVN服务器信息 -->
+	<scm>
+		<!-- 表示只读的svn地址 -->
+		<connection>scm:svn:https://solution.yatang.cn/svn/xcr_dev/backend/trunk</connection>
+		<!-- 表示写操作的svn地址 -->
+		<developerConnection>scm:svn:https://solution.yatang.cn/svn/xcr_dev/backend/trunk</developerConnection>
+		<url></url>
+	</scm>
+	
+	<build>
+		<plugins>
+			<!-- 配置通过Maven打tag和branch -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<tagBase>https://solution.yatang.cn/svn/xcr_dev/backend/tags/</tagBase>
+					<branchBase>https://solution.yatang.cn/svn/xcr_dev/backend/branches/</branchBase>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>

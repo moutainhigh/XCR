@@ -1,0 +1,153 @@
+<head>
+</head>
+<script type="text/javascript" src="/xcr/uploadify/notRefreshFilesUpload.js"></script>
+<link rel="stylesheet" type="text/css" href="/xcr/plugins/window/window.css">
+<script type="text/javascript" src="/xcr/plugins/window/window.js"></script>
+<style>
+    .form-control-reWrite {
+        width: 85%;
+        display: inline;
+        height: 28px;
+        border-radius: 3px;
+        padding: 2px 5px;
+        margin-left: 15px;
+    }
+</style>
+<div class="container" style="width: 100%;">
+    <div style="margin-top: 10px;width: 100%;background-color: white">
+        <div class="tab-content" style="margin-top: 10px;width: 100%;margin: 0 auto">
+            <div>
+                <div class="table-style" id="loginLogTab">
+					<h5>&nbsp;&nbsp;<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;<a href="#">首页</a>&nbsp;&nbsp;<i
+                        class="fa fa-chevron-right"></i>&nbsp;&nbsp;蜂鸟配送设置</h5>
+					<div  style="text-align:center;width:100%;">
+						<h2>蜂鸟配送费用设置</h2>
+                    </div>
+					<button id="edit" type="button" class="btn btn-vk"
+                                            onclick="isEdit(false)" data-style="contract-overlay" style="z-index: 10;margin-left: 50%;width: 80px;">编辑
+                   </button>
+                    <form class="demoform">
+                        <table class="table" style="margin-top: 20px;background-color: whitesmoke;" border="0">
+                            <tbody>
+                            <input type="hidden" id="type" class="form-control" value=""/>
+                            <tr>
+                                <td class="table-style-td">
+                                    <div style="width:160px;text-align:right"><span style="color:#f00;"></span></div>
+                                </td>
+                                <td>
+                                    <input type="hidden" id="advertiseId" class="form-control" type="text" value=""
+                                           maxlength="20" style="width:40%;"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-style-td">
+                                    <div style="width:200px;text-align:right">城市等级起始配送价:
+                                    </div>
+                                </td>                               
+                                <td>
+                                </td>
+                            </tr>
+
+
+                            <tr style="border-bottom:0.07cm dotted #000000;">
+                                <td class="table-style-td">
+                                   	<div id="priceByCityVip" style="text-align:center;width:30%; margin-left: 10%;">
+										<div class="form-group row">
+                                                <div class="col-md-3">等级</div>
+												<div class="col-md-3">配送费</div>
+												<div class="col-md-1" onclick="addDistributionPrice()"><img src="xcr/img/u165.png" width="20px" height="20px"/></div>
+												<div class="col-md-1" onclick="deleteDistributionPrice()"><img src="xcr/img/u166.png" width="20px" height="20px"/></div>
+										</div>
+									</div>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-style-td">
+									<div style="width:200px;text-align:right">距离加价:
+                                    </div>
+                                </td>
+                                <td class="table-style-td">
+                                </td>
+                            </tr>
+                            <tr style="border-bottom:0.07cm dotted #000000;">
+                                <td class="table-style-td">
+									<div id="priceByDistance" style="text-align:center;width:50%; margin-left: 9%;">
+										<div class="form-group row">
+                                                <div class="col-md-4">配送范围</div>
+												<div class="col-md-3">配送费</div>
+												<div class="col-md-1" onclick="addDistancePrice()"><img src="xcr/img/u165.png" width="20px" height="20px"/></div>
+												<div class="col-md-1" onclick="deleteDistancePrice()"><img src="xcr/img/u166.png" width="20px" height="20px"/></div>
+										</div>
+									</div>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr border="0">
+                                <td class="table-style-td">
+                                    <div style="width:200px;text-align:right">重量加价:
+                                    </div>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom:0.07cm dotted #000000;">
+                                <td class="table-style-td">
+									<div id="priceByWeight" style="text-align:center;width:50%; margin-left: 9%;">
+										<div class="form-group row">
+                                                <div class="col-md-4">重量范围</div>
+												<div class="col-md-5">配送费</div>
+												<div class="col-md-1" onclick="addWeightPrice()"><img src="xcr/img/u165.png" width="20px" height="20px"/></div>
+												<div class="col-md-1" onclick="deleteWeightPrice()"><img src="xcr/img/u166.png" width="20px" height="20px"/></div>
+										</div>
+									</div>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+							<tr border="0">
+                                <td class="table-style-td">
+                                    <div style="width:200px;text-align:right">时段加价:
+                                    </div>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom:0.07cm dotted #000000;">
+                                <td class="table-style-td">
+									<div id="priceByTime" style="text-align:center;width:50%; margin-left: 9%;">
+										<div class="form-group row">
+                                                <div class="col-md-4">时段范围</div>
+												<div class="col-md-3">配送费</div>
+												<div class="col-md-1" onclick="addTimePrice()"><img src="xcr/img/u165.png" width="20px" height="20px"/></div>
+												<div class="col-md-1" onclick="deleteTimePrice()"><img src="xcr/img/u166.png" width="20px" height="20px"/></div>
+										</div>
+									</div>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr id="operate" style="display:none;">
+                                <td></td>
+                                <td>
+                                    <button id="saveTask" type="button" class="ladda-button"
+                                            onclick="saveDistribution()" data-style="contract-overlay" style="z-index: 10; width: 80px;height: 70px;">保存
+                                    </button>
+                                    <button id="cancleTask" type="button" class="ladda-button"
+                                            onclick="skip2Distribution()" data-style="contract-overlay" style="z-index: 10;margin-left: 100px;width: 80px;height: 70px;">取消
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/xcr/js/toc/deliveryMng/distribution.js"></script>

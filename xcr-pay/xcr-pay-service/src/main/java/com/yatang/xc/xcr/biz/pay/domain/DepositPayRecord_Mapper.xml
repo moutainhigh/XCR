@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yatang.xc.xcr.biz.pay.dao.DepositPayRecordDao">
+    <resultMap id="PayRecordMap" type="com.yatang.xc.xcr.biz.pay.domain.DepositPayRecordPO">
+        <id column="ID" property="id" jdbcType="BIGINT"/>
+        <result column="MCH_ID" property="mchId" jdbcType="VARCHAR"/>
+        <result column="SHOP_NO" property="shopCode" jdbcType="VARCHAR"/>
+        <result column="PHONE" property="phone" jdbcType="VARCHAR"/>
+        <result column="OUT_TRADE_NO" property="outTradeNo" jdbcType="VARCHAR"/>
+        <result column="CONTRACT_NO" property="contractNo" jdbcType="VARCHAR"/>
+        <result column="BODY" property="body" jdbcType="VARCHAR"/>
+        <result column="TOTAL_FEE" property="totalFee" jdbcType="INTEGER"/>
+        <result column="MCH_CREATE_IP" property="mchCreateIp" jdbcType="VARCHAR"/>
+        <result column="NOTIFY_URL" property="notifyUrl" jdbcType="VARCHAR"/>
+        <result column="TOKEN_ID" property="tokenId" jdbcType="VARCHAR"/>
+        <result column="STATE" property="state" jdbcType="INTEGER"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.yatang.xc.xcr.biz.pay.domain.DepositPayRecordPO" useGeneratedKeys="true"
+            keyProperty="id">
+        insert ignore into XCR_DEPOSIT_PAY_RECORD
+        (MCH_ID,SHOP_NO,PHONE,OUT_TRADE_NO,CONTRACT_NO,BODY,TOTAL_FEE,MCH_CREATE_IP,NOTIFY_URL,TOKEN_ID,STATE,CREATE_TIME,UPDATE_TIME)
+        values (
+            #{mchId,jdbcType=VARCHAR},
+            #{shopCode,jdbcType=VARCHAR},
+            #{phone,jdbcType=VARCHAR},
+            #{outTradeNo,jdbcType=DOUBLE},
+            #{contractNo,jdbcType=DOUBLE},
+            #{body,jdbcType=DOUBLE},
+            #{totalFee,jdbcType=INTEGER},
+            #{mchCreateIp,jdbcType=DOUBLE},
+            #{notifyUrl,jdbcType=DOUBLE},
+            #{tokenId,jdbcType=DOUBLE},
+            #{state,jdbcType=INTEGER},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="updateState">
+        update XCR_DEPOSIT_PAY_RECORD
+        set STATE = #{payResult},UPDATE_TIME = NOW()
+        where OUT_TRADE_NO = #{outTradeNo} AND MCH_ID = #{mchId}
+    </update>
+
+    <select id="getStateByOutTradeNo" resultType="Integer" parameterType="String">
+        SELECT STATE FROM XCR_DEPOSIT_PAY_RECORD WHERE OUT_TRADE_NO = #{outTradeNo}
+    </select>
+
+    <select id="getSuccessIdBycontractId" resultType="Integer">
+        SELECT ID FROM XCR_DEPOSIT_PAY_RECORD WHERE MCH_ID = #{mchId} AND CONTRACT_NO = #{contractId} AND STATE = 3 LIMIT 1
+    </select>
+
+    <select id="getPayRecordByOutTradeNo" parameterType="String" resultMap="PayRecordMap">
+        select ID,MCH_ID,SHOP_NO,PHONE,OUT_TRADE_NO,CONTRACT_NO,BODY,TOTAL_FEE,MCH_CREATE_IP,NOTIFY_URL,TOKEN_ID,STATE,CREATE_TIME,UPDATE_TIME
+        from XCR_DEPOSIT_PAY_RECORD where OUT_TRADE_NO = #{outTradeNo}
+    </select>
+
+    <select id="getPayRecordByTokenId" resultMap="PayRecordMap" parameterType="String">
+        select ID,MCH_ID,SHOP_NO,PHONE,OUT_TRADE_NO,CONTRACT_NO,BODY,TOTAL_FEE,MCH_CREATE_IP,NOTIFY_URL,TOKEN_ID,STATE,CREATE_TIME,UPDATE_TIME
+        from XCR_DEPOSIT_PAY_RECORD where TOKEN_ID = #{tokenId}
+    </select>
+</mapper>

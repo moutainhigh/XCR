@@ -1,0 +1,184 @@
+@CHARSET "UTF-8";
+* {
+	padding: 0;
+	margin: 0;
+}
+
+ul{
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+.register-a{
+	height: 50px;
+	border-bottom: 1px solid #ddd;
+	line-height: 50px;
+	margin-left: 15px;
+	display: block;
+}
+.register-b{
+	width: 75%;
+}
+.register-c{
+	width: 85%;
+}
+.register-form{
+	background-color: #fff;
+}
+.register-success{
+	color: #888888;
+	font-size: 12px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+.register-text{
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 10px;
+}
+.register-img{
+	width: 10px;
+ 			vertical-align: middle;
+ 			margin-left: 5px;
+}
+.register-input-name{
+	height: 40px;
+	border: none;
+	outline:none;
+	text-align: right;
+}
+input::-webkit-input-placeholder {
+             text-align: right;
+  		}
+    .annual-submit{
+    	background-color: #da251d;
+    color: #fff;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    line-height: 40px;
+    height: 40px;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    }
+    .imgbox
+      {
+     		margin: 0 auto;
+          position: relative;
+          width: 182px;
+          height: 142px;
+          border: 4px solid #FFFFFF;
+          overflow: hidden;
+      }
+      .imgnum{
+          left: 0px;
+          top: 0px;
+          margin: 0px;
+          padding: 0px;
+         
+      }
+      .imgnum input{
+          position: absolute;
+          width: 182px;
+          height: 142px;
+          opacity: 0;
+      }
+      .register-success{
+      	text-align: center;
+      }
+      .img1{
+      	height: 142px;
+      	width: 182px;
+      }
+      .close{
+      	color: #FFFFFF;
+          position: absolute;
+    left: 30%;
+    width: 40%;
+    bottom: 10px;
+      }
+       .progress_box{
+        height: 10px;
+        width:200px;
+        border-radius: 5px;
+        background-color:#ececec;
+      }
+      .pgs {
+    width: 160px;
+    border: 1px solid #ccc;  
+    background-color:#ececec;
+    border-radius: 5px;
+    height: 10px;
+    border:none;
+    margin-left: -45px;
+}
+.pop-box {
+	/*弹出窗口后，弹出的DIV采用此CSS，保证置于最上层
+    z-index控制Z轴的坐标，数值越大，离用户越近
+   */
+	z-index: 9999999;
+	/*这个数值要足够大，才能够显示在最上层*/
+	margin-bottom: 3px;
+	display: none;
+	position: absolute;
+	background: #fff;
+	border: solid 1px #6e8bde;
+	border-radius: 15px;
+	width: 300px;
+}
+
+#bg {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	/*弹出窗口后，添加遮罩层，采用此CSS，将该层置于弹出DIV和页面层之间
+    z-index控制Z轴的坐标，数值越大，离用户越近 rgba(72, 74, 68, 0.46)
+   */
+	z-index: 1001;
+	background-color: #000;
+	-moz-opacity: 0.5;
+	opacity: .50;
+	filter: alpha(opacity=50);
+}
+#buttonPanel li{
+	display: inline-block;
+	padding-bottom:10px;
+}
+#buttonPanel{
+	font-size: 20px;
+	color: #db362f;
+	text-align:center;
+	}
+.pop-box-body{
+	text-align: center;
+	padding: 40px;
+	border-bottom: 1px solid gainsboro ;
+	font-size: 20px;
+}
+.bottom-sure{
+	border-right: 1px solid gainsboro;
+	width: 48%;
+	margin-top: 7px;
+}
+.bottom-cancel{
+	width: 48%;
+}
+progress::-webkit-progress-bar { 
+    background-color:#ececec;
+    border-radius: 5px;
+}
+progress::-webkit-progress-value{ 
+    background: #4fd0bc; 
+    border-radius: 5px;
+}
+      body{
+      	background-color: #efeff4;
+      	height: 100%;
+      }

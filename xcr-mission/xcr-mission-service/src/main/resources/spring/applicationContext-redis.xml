@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxIdle">
+            <value>${redis.maxIdle}</value>
+        </property>
+        <property name="maxTotal">
+            <value>${redis.maxActive}</value>
+        </property>
+        <property name="maxWaitMillis">
+            <value>${redis.maxWait}</value>
+        </property>
+        <property name="testOnBorrow">
+            <value>${redis.testOnBorrow}</value>
+        </property>
+    </bean>
+
+    <bean id="hostport1" class="redis.clients.jedis.HostAndPort">
+        <constructor-arg name="host">
+            <value>${redis.host1}</value>
+        </constructor-arg>
+        <constructor-arg name="port">
+            <value>${redis.port1}</value>
+        </constructor-arg>
+    </bean>
+
+    <bean id="hostport2" class="redis.clients.jedis.HostAndPort">
+        <constructor-arg name="host">
+            <value>${redis.host2}</value>
+        </constructor-arg>
+        <constructor-arg name="port">
+            <value>${redis.port2}</value>
+        </constructor-arg>
+    </bean>
+
+    <bean id="hostport3" class="redis.clients.jedis.HostAndPort">
+        <constructor-arg name="host">
+            <value>${redis.host3}</value>
+        </constructor-arg>
+        <constructor-arg name="port">
+            <value>${redis.port3}</value>
+        </constructor-arg>
+    </bean>
+
+    <bean id="jedisCluster" class="redis.clients.jedis.JedisCluster">
+        <constructor-arg name="jedisClusterNode">
+            <set>
+                <ref bean="hostport1"/>
+                <ref bean="hostport2"/>
+                <ref bean="hostport3"/>
+            </set>
+        </constructor-arg>
+        <constructor-arg name="connectionTimeout" value="6000"/>
+        <constructor-arg name="soTimeout" value="2000"/>
+        <constructor-arg name="maxAttempts" value="3"/>
+        <constructor-arg name="poolConfig">
+            <ref bean="jedisPoolConfig"/>
+        </constructor-arg>
+    </bean>
+
+    <!-- 使用中间类解决JedisPooly的静态注入，从而使MyBatis实现第三方缓存 -->
+    <bean id="redisCacheTransfer" class="com.yatang.xc.xcr.biz.mission.redis.MybatisRedisCacheTransfer">
+        <property name="jedisCluster" ref="jedisCluster"/>
+        <!--<property name="expireTime" value="3600"/>-->
+        <property name="expireTime" value="3600"/>
+        <property name="cluster" value="true"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,438 @@
+<link rel="stylesheet" href="http://xcdev.yatang.cn:8080/xcr/artDialog/skins/aero.css?4.1.6"
+      xmlns="http://www.w3.org/1999/html">
+<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+<link rel="stylesheet" type="text/css" href="/xcr/css/build.css">
+<link rel="stylesheet" type="text/css" href="/xcr/summernote/summernote.css"></link>
+<link rel="stylesheet" type="text/css"
+      href="/xcr/plugins/fontAwesome/css/font-awesome.min.css"></link>
+<script type="text/javascript" src="/xcr/artDialog/artDialog.js?skin=aero"></script>
+<script src="/xcr/summernote/summernote.js"></script><!-- 不用summernote.min.js,summernote.js针对插入图片慢改了源码-->
+<script src="/xcr/summernote/lang/summernote-zh-CN.js"></script>
+
+<style>
+    .note-editor {
+        width: 598px;
+    }
+
+    .note-editable {
+        height: 400px;
+    }
+</style>
+<div class="table-style" id="msgEdit">
+    <div style="width: 100%;height: 10px;"></div>
+    <div id="dateSearch" style="background-color: gainsboro;height: 30px;">
+        <span style="height: 30px;line-height: 30px;"><strong><h5 style="line-height: 30px;margin-left: 10px;"><i
+                class="fa fa-pencil"></i> <strong>发布消息</strong></h5></strong></span>
+    </div>
+    <table class="table" style="margin-top: 20px;background-color: whitesmoke;" border="0">
+        <tbody>
+        <tr>
+            <td><input id="id" class="form-control" type="hidden" name="id" value=""/></td>
+        </tr>
+        <tr>
+            <td class="table-style-td">
+                <div style="text-align:right;margin-top: 5px;"><strong>标题:</strong>
+                    <span style="color:#f00;">*</span>
+                </div>
+            </td>
+            <td><input id="title" class="form-control" type="text" name="title" value="" placeholder="最多输入16个字符"
+                       style="width: 300px;border:0;border-bottom:1px solid gainsboro;background:whitesmoke"
+                       maxlength="16"/>
+                <div style="margin-left: 525px;font-size: 12px;color:red;font-weight: 700;"
+                     id="wrongTip">
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="table-style-td">
+                <div style="text-align:right;margin-top: 5px;"><strong>图片:</strong>
+                    <span style="color:#f00;">*</span>
+                </div>
+            </td>
+            <td>
+                <div class="uploadImg_picker">
+                    <button id="Button1" type="button" value="" class="btn btn-warning btn-xs" style="width: 200px;">
+                        <li class="fa fa-picture-o"/>
+                        选择图标
+                    </button>
+                    <div id="fileList">
+                    </div>
+                </div>
+                <div class="icon">
+
+                </div>
+
+                <div id="iconDefaultText" style="color:grey;">
+                    <h6>建议图片尺寸：900*405像素,仅支持jpg、png、bmp，大小不超过2MB</h6>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="table-style-td">
+                <div style="text-align:right;margin-top: 5px;">
+                    <strong>内容形式:</strong><span
+                        style="color:#f00;">*</span>
+                </div>
+            </td>
+            <td>
+                <div class="radio radio-info radio-inline">
+                    <input type="radio" name="contentType" id="contentType_url" value="-1" checked>
+                    <label for="radio10"><strong>链接地址</strong></label>
+                </div>
+                <div class="radio radio-info radio-inline" style="margin-left: 60px;">
+                    <input type="radio" name="contentType" id="contentType_html" value="1">
+                    <label for="radio11"><strong>内容编辑</strong></label>
+                </div>
+            </td>
+        </tr>
+        <tr id="msg_contentUrl">
+
+            <td>
+                <div style="text-align:right;margin-top: 5px;"><strong>链接:</strong>
+                    <span style="color:#f00;">*</span>
+                </div>
+            </td>
+
+            <td><input id="msgUrl" class="form-control" type="text" name="msgUrl" value=""
+                       placeholder="请以http://或者https://开头"
+                       style="width: 300px;border:0;border-bottom:1px solid gainsboro;background:whitesmoke"/>
+                <div id="showURLWrongTip"
+                     style="color:red;float: right;margin-top: -25px;margin-right: 335px;font-size: 12px;font-weight: 700;"></div>
+            </td>
+        </tr>
+        <tr style="display: none" id="msg_contentHtml">
+
+            <td>
+                <div style="text-align:right;margin-top: 5px;"><strong>消息编辑:</strong>
+                    <span style="color:#f00;">*</span>
+                </div>
+            </td>
+            <td>
+                <div id="summernote"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="text-align:right;margin-top: 5px;"><strong>发送对象:</strong>
+                    <span style="color:#f00;">&nbsp;</span>
+                </div>
+            </td>
+            <td>
+                <select class="form-control" id="pushType" style="width:200px;">
+                    <option value="0">全部用户</option>
+                    <option value="1">按单个用户选择</option>
+                    <option value="2">区域选择</option>
+                </select>
+            </td>
+        </tr>
+        <tr id="shopNo" style="display: none">
+            <td>
+                <div style="text-align:right;margin-top: 5px;"><strong>门店编号:</strong>
+                    <span style="color:#f00;">&nbsp;</span>
+                </div>
+            </td>
+            <td>
+                <input id="shopId" class="form-control" type="text" name="msgUrl" value=""
+                       placeholder="如果要定向推送，请写入门店ID"
+                       style="width: 300px;border:0;border-bottom:1px solid gainsboro;background:whitesmoke"/>
+            </td>
+        </tr>
+        <tr id="areaPush" style="display: none">
+            <td>
+                <div style="text-align:right;margin-top: 5px;"><strong>推送区域:</strong>
+                    <span style="color:#f00;">&nbsp;</span>
+                </div>
+            </td>
+            <td style="width: 1370px;">
+                #foreach ( $regionDTO in  $regionDTOList)
+                    <div class="checkbox checkbox-success checkbox-inline"
+                         style="width: 10%; margin-top: 5px;margin-left: 5px;">
+                        <input id="$regionDTO.regionName" class="styled" type="checkbox" name="area"
+                               value="$regionDTO.code">
+                        <label for="$regionDTO.regionName">
+                            $regionDTO.regionName
+                        </label>
+                    </div>
+                #end
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div style="background-color: gainsboro;height: 50px;">
+        <button id="mR" class="btn btn-default btn-sm" type="button"
+                style="margin-left: 30%;margin-top: 10px;width: 150px;" onclick="_confirmSave();"><strong>
+            <li class="fa fa-send-o"></li>
+            发布</strong>
+        </button>
+        <button id="messageSave" class="btn btn-default btn-sm" type="button"
+                style="margin-left: 150px;margin-top: 10px;width: 150px;"><strong>
+            <li class="fa fa-save"></li>
+            保存</strong>
+        </button>
+    </div>
+    <div style="height: 100px;"></div>
+</div>
+<div class="modal fade" id="imgFileError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">不符合文件格式!请选择正确的文件 .jpg, .png, .bmp</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="uploadError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">上传失败!请重新上传</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="titleNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">标题不能为空</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="imgNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">图片不能为空</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="urlNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">链接不能为空</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="contentHtmlNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">消息内容不能为空</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="successModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">操作成功!</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="fail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">操作失败!</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="failMsgTitle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">已存在相同标题的消息，请修改！</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="urlHeadError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">链接应以http://或者https://开头</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="urlSpellError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">链接当中不能含有中文</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="areaArrNotNull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">请选择要推送的区域</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="areaArrOnlyOne" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">消息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 100%"><h5 style="text-align: center">目前只支持单个区域推送</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/xcr/js/pushEdit.js"></script>
+<script type="text/javascript">
+    //加载编辑器
+    $(document).ready(function () {
+        $('#summernote').summernote({
+            width: 600,
+            height: 300,
+            minHeight: 300,
+            maxHeight: 1000,
+            focus: true,
+            lang: 'zh-CN',
+            // 重写图片上传
+            callbacks: {
+                onImageUpload: function (files) {
+                    var editor =
+                            $(this);
+                    var data = new FormData();
+                    data.append('file', files[0]);
+                    $.ajax({
+                        url: '/xcr/fileupload/single.htm',
+                        method: 'POST',
+                        data: data,
+                        processData: false,
+                        contentType: false,
+                        success: function (url) {
+                            var srcUrl = url.substring(url.indexOf(':') + 1);
+                            console.log("url:" + url);
+                            editor.summernote('insertImage', srcUrl);
+                        }
+                    });
+                }
+            }
+        });
+    });
+</script>

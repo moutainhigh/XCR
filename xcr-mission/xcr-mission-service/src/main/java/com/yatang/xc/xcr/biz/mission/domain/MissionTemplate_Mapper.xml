@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yatang.xc.xcr.biz.mission.dao.MissionTemplateDAO" >
+<!--<cache type="com.yatang.xc.xcr.biz.mission.redis.MybatisRedisCache"/>-->
+  <resultMap id="BaseResultMap" type="com.yatang.xc.xcr.biz.mission.domain.MissionTemplatePO" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="mission_type" property="missionType" jdbcType="VARCHAR" />
+    <result column="special_award_remark" property="specialAwardRemark" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="template_code" property="templateCode" jdbcType="VARCHAR" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="need_manual_audit" property="isManualAudit" jdbcType="INTEGER" />
+    <result column="complete_Tips" property="completeTips" jdbcType="VARCHAR" />
+    <result column="trigger_Interface_Name" property="triggerInterfaceName" jdbcType="VARCHAR" />
+    <result column="is_Schedule" property="isSchedule" jdbcType="INTEGER" />
+    <result column="is_deleted" property="isDeleted" jdbcType="INTEGER" />
+    <result column="start_Hour" property="startHour" jdbcType="INTEGER" />
+    <result column="duration_Hours" property="durationHours" jdbcType="INTEGER" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yatang.xc.xcr.biz.mission.domain.MissionTemplatePO" extends="BaseResultMap" >
+    <result column="rule_template" property="ruleTemplate" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type,mission_type,special_award_remark,name,template_Code, link, need_Manual_Audit, complete_Tips, trigger_Interface_Name, 
+    is_Schedule, start_Hour, duration_Hours,sort,is_deleted
+  </sql>
+  <sql id="Blob_Column_List" >
+    rule_template
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from XCR_MISSION_TEMPLATE
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectTemplateByCode" resultMap="ResultMapWithBLOBs" parameterType="String" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from XCR_MISSION_TEMPLATE
+    where template_code = #{code,jdbcType=VARCHAR}
+  </select>
+
+
+  <select id="queryMissionTemplateByMissionType" resultMap="ResultMapWithBLOBs" parameterType="String" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from XCR_MISSION_TEMPLATE
+    where  (is_deleted = 0 or is_deleted is null) and
+    <if test="value != null" >
+    	mission_type = #{value,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from XCR_MISSION_TEMPLATE
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionTemplatePO" useGeneratedKeys="true" keyProperty="id">
+    insert into XCR_MISSION_TEMPLATE (type,mission_type,special_award_remark,name,template_Code, link, 
+      need_Manual_Audit, complete_Tips, trigger_Interface_Name, 
+      is_Schedule, start_Hour, duration_Hours, sort,is_deleted,
+      rule_template)
+    values (#{type,jdbcType=VARCHAR},#{missionType,jdbcType=VARCHAR},#{specialAwardRemark,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{templateCode,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, 
+      #{isManualAudit,jdbcType=INTEGER}, #{completeTips,jdbcType=VARCHAR}, #{triggerInterfaceName,jdbcType=VARCHAR}, 
+      #{isSchedule,jdbcType=INTEGER}, #{startHour,jdbcType=INTEGER}, #{durationHours,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER},#{isDeleted,jdbcType=INTEGER},  
+      #{ruleTemplate,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionTemplatePO" >
+    update XCR_MISSION_TEMPLATE
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="missionType != null" >
+        mission_type = #{missionType,jdbcType=VARCHAR},
+      </if>
+      <if test="specialAwardRemark != null" >
+        special_award_remark = #{specialAwardRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="templateCode != null" >
+        template_Code = #{templateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="isManualAudit != null" >
+        need_Manual_Audit = #{isManualAudit,jdbcType=INTEGER},
+      </if>
+      <if test="completeTips != null" >
+        complete_Tips = #{completeTips,jdbcType=VARCHAR},
+      </if>
+      <if test="triggerInterfaceName != null" >
+        trigger_Interface_Name = #{triggerInterfaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="isSchedule != null" >
+        is_Schedule = #{isSchedule,jdbcType=INTEGER},
+      </if>
+      <if test="startHour != null" >
+        start_Hour = #{startHour,jdbcType=INTEGER},
+      </if>
+      <if test="durationHours != null" >
+        duration_Hours = #{durationHours,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="ruleTemplate != null" >
+        rule_template = #{ruleTemplate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionTemplatePO" >
+    update XCR_MISSION_TEMPLATE
+    set type = #{type,jdbcType=VARCHAR},
+      mission_type = #{missionType,jdbcType=VARCHAR},
+      special_award_remark = #{specialAwardRemark,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      template_Code = #{templateCode,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      need_Manual_Audit = #{isManualAudit,jdbcType=INTEGER},
+      complete_Tips = #{completeTips,jdbcType=VARCHAR},
+      trigger_Interface_Name = #{triggerInterfaceName,jdbcType=VARCHAR},
+      is_Schedule = #{isSchedule,jdbcType=INTEGER},
+      start_Hour = #{startHour,jdbcType=INTEGER},
+      duration_Hours = #{durationHours,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=INTEGER},
+      rule_template = #{ruleTemplate,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yatang.xc.xcr.biz.mission.domain.MissionTemplatePO" >
+    update XCR_MISSION_TEMPLATE
+    set type = #{type,jdbcType=VARCHAR},
+      mission_type = #{missionType,jdbcType=VARCHAR},
+      special_award_remark = #{specialAwardRemark,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      template_Code = #{templateCode,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      need_Manual_Audit = #{isManualAudit,jdbcType=INTEGER},
+      complete_Tips = #{completeTips,jdbcType=VARCHAR},
+      trigger_Interface_Name = #{triggerInterfaceName,jdbcType=VARCHAR},
+      is_Schedule = #{isSchedule,jdbcType=INTEGER},
+      start_Hour = #{startHour,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=INTEGER},
+      duration_Hours = #{durationHours,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

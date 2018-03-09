@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yatang.xc.xcr.biz.core.dao.PermissionDAO">
+	
+	<resultMap id="permissionResultMap" type="PermissionPO">
+		<id column="ID" property="permissionId" />
+		<result column="PERMS_CODE" property="permissionCode" />
+		<result column="PERMS_NAME" property="permissionName" />
+		<result column="PERMS_URL" property="permissionUrl" />
+	</resultMap>
+	
+	<select id="findPermissionByRoles" parameterType="java.util.List" resultMap="permissionResultMap">
+			select DISTINCT c.* from XCR_ROLE a 
+				LEFT JOIN XCR_ROLE_PERMS b 
+				ON a.ID=b.ROLE_ID 
+				LEFT JOIN XCR_PERMS c 
+				ON b.PERMS_ID=c.ID
+			WHERE a.ROLE_CODE in
+		 <foreach item="item" index="index" collection="list"  open="(" separator="," close=")">  
+            #{item}  
+        </foreach> 
+	</select>
+	
+</mapper>
+

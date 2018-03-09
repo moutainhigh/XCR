@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <!-- gdw 图片放大 -->
+    <link rel="stylesheet" href="/xcr/css/common.css">
+    <link rel="stylesheet" href="/xcr/css/powerFloat.css">
+    <script src="/xcr/js/jquery-powerFloat.js"></script>
+    <!-- 普通列表js -->
+    <script type="text/javascript" src="/xcr/js/advertiseList.js"></script>
+    <style type="text/css">
+    	#advertiseList{
+    		border: 1px solid #dddddd;
+    		text-align:center;
+    		border-radius:5px;
+    	}
+    	#advertiseList thead tr{
+            font-weight: bold;
+    		border-bottom:2px solid #dddddd;
+    	}
+		#advertiseList thead tr td{
+			width:10%;
+		}
+		#advertiseList tbody tr td{
+			width:10%;
+		}
+    	.table{
+    		margin-bottom: 0px;
+    	}
+    	#fenye{
+    		font-family: '微软雅黑',Helvetica,Arial,sans-serif;
+    		font-weight: 400;
+    		font-size:   14px;
+    		margin: 14px;
+    	}
+    	#fenye tr td{
+    		border:none;
+    	}
+    	#barcon .input{
+    		font-family: '微软雅黑',Helvetica,Arial,sans-serif;
+    		font-weight: 400;
+    		font-size:   10px;
+    		width: 70px;
+            text-align: center;
+            margin-right: 5px;
+    		border: 2px solid #c1c1c1;
+    		border-radius: 4px;
+    		border-radius: 4px;
+    		background-color: #fafafa;
+    		color: #666666;
+    	}
+		a{
+			text-decoration: none;
+		}
+    </style>
+</head>
+<body>
+<div class="container" style="width:100%;min-width:1285px;">
+    <div id="AddTable" class="tab-pane" style="margin-left:10px;margin-right:10px;">
+        <div style="padding-top: 15px;">
+			<ul class="nav nav-tabs nav-mt" style="text-align:center">
+                <li id="missionList" class="active" style="width: 50%;">
+                    <a data-toggle="tab" href="#" onclick="adverList();">
+                        <h4><i class="fa fa-briefcase"></i> 轮播图配置</h4>
+                    </a>
+                </li>
+    
+                <li id="missionRelList" href="#" class="" style="width: 50%;course:pointer;">
+                    <a data-toggle="tab" onclick="adverGroupList();">
+                        <h4><i class=" fa fa-briefcase"></i> 广告组</h4>
+                    </a>
+                </li>
+            </ul>
+    		<button id="xcraddAdv" type="button" class="btn btn-vk btn-sm rightSize" style="width: 100px;margin-top:10px;" onclick="turnAdd();">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新建轮播图</button>
+			<div class="fixed-table-container" style="margin-top:10px;">
+            	<div class="fixed-table-header" style="margin-right: 0px;">
+            		<table class="table table-hover table-striped" border="0" id="advertiseList" ></table>
+            		<table id="fenye" alin="right">
+                		<tr>
+                			<td id="showbarcon" name="barcon">
+                			</td>
+                            <td id="barcon" style="width:340px;"></td>
+                		</tr>
+                	</table>
+            	</div>
+            </div>
+    	</div>
+    </div>
+	<div id="showEnlargeImg"></div>
+</div>
+</body>

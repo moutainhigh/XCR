@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <context:component-scan base-package="com.yatang.xc.xcr.biz.service,com.yatang.xc.oc.biz.adapter" />
+    
+    <context:property-placeholder location="classpath*:server.properties,classpath*:constant.properties"/>
+
+ 
+
+    <!-- Dubbo config -->
+    <!-- 应用配置，用于配置当前应用信息 -->
+    <dubbo:application name="xcr-web-app"/>
+    <!-- 注册中心配置，用于配置连接注册中心相关信息 -->
+    <dubbo:registry protocol="zookeeper" address="zookeeper://sit.zk.com:2181?backup=sit.zk.com:2182,sit.zk.com:2183"/>
+    <!-- 协议配置，用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受。 -->
+    <dubbo:protocol name="dubbo" port="-1"/>
+    <!-- 消费方缺省配置，当ReferenceConfig某属性没有配置时，采用此缺省值，可选。 -->
+    <dubbo:consumer check="false"/>
+
+    <!--  引入client工程中定义的 dubbo consumer配置  -->
+	<import resource="classpath*:spring/applicationContext.xml" />
+
+    
+    	<!--缓存服务-->
+	<import resource="classpath*:com/yatang/xc/oles/biz/**/dubbo-consumer.xml" />
+	<import resource="classpath*:com/yatang/xc/dc/biz/**/dubbo-consumer.xml" /> 
+	<import resource="classpath*:com/yatang/xc/mbd/biz/**/dubbo-consumer.xml" />
+	<import resource="classpath*:com/yatang/xc/xcr/biz/**/dubbo-consumer.xml" />
+	
+    <!--缓存服务-->
+    <dubbo:reference interface="com.yatang.xc.oc.biz.redis.dubboservice.RedisDubboServie" id="redisDubboServie" timeout="30000" version="1.0.0" group=""/>
+    
+</beans>

@@ -1,0 +1,3 @@
+#set($layout = "/layout/default.vm" )
+<div style="display:flex;align-items:center;justify-content: center;" id="xcrBody">
+</div>

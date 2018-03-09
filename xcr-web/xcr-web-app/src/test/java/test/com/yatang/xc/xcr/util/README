@@ -1,0 +1,4 @@
+1.准备好需要下载的图片链接，处理成一行的模式，每个链接用固定的符号分割，建议使用“;”;
+2.修改ThroughUrlDownloadImgUtil.java里面main方法的相关参数:
+	splitFile(";","路径");//第一个参数是分隔符，第二个参数是文件路径
+3.运行ThroughUrlDownloadImgUtil.java里面的main方法;okay

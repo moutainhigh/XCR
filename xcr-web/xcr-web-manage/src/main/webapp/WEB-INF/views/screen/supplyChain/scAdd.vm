@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+	<link rel="stylesheet" href="/xcr/css/clientCommon.css" />
+	<link rel="stylesheet" type="text/css" href="/xcr/plugins/window/window.css">
+	<script type="text/javascript" src="/xcr/plugins/window/window.js"></script>
+	<link rel="stylesheet" href="/xcr/css/powerFloat.css">
+    <script src="/xcr/js/jquery-powerFloat.js"></script>
+	<!-- 普通列表js -->
+    <script type="text/javascript" src="/xcr/js/supplyChain/supplyChain.js"></script>
+	<style type="text/css">
+		.imgURL{
+			width:80px;
+			height:60px;
+		}
+		.file {
+            position: relative;
+            display: inline-block;
+            background: #D0EEFF;
+            border: 1px solid #99D3F5;
+            border-radius: 4px;
+            padding: 4px 12px;
+            overflow: hidden;
+            color: #1E88C7;
+            text-decoration: none;
+            text-indent: 0;
+            line-height: 20px;
+			cursor:pointer;
+        }
+        .file input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+        }
+        .file:hover {
+            background: #AADFFD;
+            border-color: #78C3F3;
+            color: #004974;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div id="menu1">
+    <div style="width: 100%;min-width:1500px;">
+        <div style="padding: 10px;width: 100%;background-color: white">
+            <div style="width: 100%;height: 50px;margin-top: 10px;margin-bottom: 15px;">
+				<input type="hidden" id="method" value="${method}"/>
+                <h5>
+					<i class="fa fa-chevron-right" style="color:#3c8dbc;"></i>
+					<a href="javascript:loadHtml('xcr/sc/scGroup.htm')" style="mjargin-left:10px;cursor:pointer;"> 首页商品推荐管理</a>
+					<i class="fa fa-chevron-right" style="color:#3c8dbc;margin-left:10px;"></i>
+					<a href="#" style="mjargin-left:10px;cursor:pointer;"> 新增推荐商品</a>
+				</h5>
+            </div>
+			<div >
+				<label style="height: 40px;line-height: 35px;">
+					<span style="width: 70px;float: left;">推荐主题</span><input type="hidden" id="groupId" value="$!{groupId}"/><input type="text" id="groupName" class="form-control" style="border-radius:5px;width:300px;" value="$!{groupName}"/>
+                </label>
+            </div>
+            <div class="tab-content" style="margin-top: 10px;width: 100%;margin: 0 auto">
+                 <div>
+                    <div id="loginLogTab" class="tab-pane">
+						<div class="table-responsive">
+                            <div class="bootstrap-table">
+                    			<div class="fixed-table-container" style="height: 650px;">
+									<div class="fixed-table-body" style="">
+                    					<table id="loginLog-table" class="table table-hover table-striped">
+                    						<thead>
+                    							<tr>
+                    								<th style="text-align: center; width: 10%; " data-field="operationCenterName">
+                    									<div class="th-inner ">图片位置</div>
+                    									<div class="fht-cell"></div>
+                    								</th>
+                    								<th style="text-align: center; width: 20%; " data-field="o2oFlagDateTime">
+                    									<div class="th-inner ">最后更改时间</div>
+                    									<div class="fht-cell"></div>
+                    								</th>
+                    								<th style="text-align: center; width: 30%; " data-field="storeName">
+                    									<div class="th-inner ">跳转链接</div>
+                    									<div class="fht-cell"></div>
+                    								</th>
+                    								<th style="text-align: center; width: 10%; " data-field="storeName">
+                    									<div class="th-inner ">图片预览</div>
+                    									<div class="fht-cell"></div>
+                    								</th>
+                    								<th style="text-align: center; width: 10%; " data-field="deliveryMode">
+                    									<div class="th-inner ">建议图片像素大小</div>
+                    									<div class="fht-cell"></div>
+                    								</th>
+                    								<th style="text-align: center; vertical-align: middle; width: 20%; " data-field="operate">
+                    									<div class="th-inner ">操作</div>
+                    									<div class="fht-cell"></div>
+                    								</th>
+                    							</tr>
+                    						</thead>
+                    						<tbody id="tbody">
+												#foreach($obj in $list)
+                        							<tr>
+														<input type="hidden" class="index" value=""/>
+														<input type="hidden" class="adsId" value="$!{obj.id}">
+														<input type="hidden" class="skipURL" value="$!{obj.activityUrl}">
+                        								<td style="text-align: center; width: 10%;" class="position">$!{obj.sore}</td>
+                        								<td style="text-align: center; width: 20%;" class="modifyTime"> $!date.format('yyyy-MM-dd HH:mm:ss ',$!{obj.lastModifyTime})</td>
+                        								<td style="text-align: center; width: 30%;" class="skipURL2"> #if($!{obj.activityUrl.length()}>80)$!{obj.activityUrl.substring(0,72)}...#else$!{obj.activityUrl} #end</td>
+                        								<td style="text-align: center; width: 10%;">
+															<p class="triggerPicShowEnlarge"  rel="$!{obj.picUrl}" data-id="" onmouseover="showEnlargeImg(this);">
+																<img  class="imgURL" src="$!{obj.picUrl}">
+															</p>
+														</td>
+                        								<td style="text-align: center; width: 10%;" class="px">
+															#if($velocityCount==1)
+																575*575
+															#elseif($velocityCount==2 || $velocityCount==3)
+																486*278
+															#elseif($velocityCount==7)
+																1080*317
+															#else
+																348*200
+															#end
+														</td>
+                        								<td style="text-align: center; vertical-align: middle; width: 20%; ">
+                        									<div class="action" style="cursor:pointer;">
+                        										<a onclick="edit($velocityCount)">
+                        											<h4><i class="fa fa-pencil-square-o"></i> 修改</h4></a>
+                        									</div>
+                        								</td>
+                        							</tr>
+												#end
+                    						</tbody>
+                    					</table>
+                    				</div>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				 </div>
+				 <div style="margin-top:20px;">
+					<table style="width:100%">
+                        <tr>
+							<td style="text-align: right;">
+								<button class="btn btn-primary" style="width:120px;margin-right:20px" id="btn_add1" onclick="save()">保存</button>
+							</td>
+							<td>
+								<button class="btn btn-primary" style="width:120px;margin-left:20px" onclick="javascript:loadHtml('xcr/sc/scGroup.htm');">取消</button>
+							</td>
+						</tr>
+                    </table>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="margin-top: 200px;width: 500px;height: 390px;border-radius: 10px;">
+            <div class="modal-header" style="padding:10px;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+				<input type="hidden" id="index" value="">
+				<h5 class="modal-title" id="myModalTitle"></h5>
+            </div>
+            <div class="modal-body" style="height:290px">
+                <div style="width: 100%;text-align:center;" id="myModalContent"></div>
+            </div>
+            <div class="modal-footer" style="padding: 10px;padding-right: 20px;">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary" onclick="sure();">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

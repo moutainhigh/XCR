@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="/xcr/plugins/jedate/skin/icon.css" />
+	<link rel="stylesheet" type="text/css" href="/xcr/plugins/window/window.css">
+    <script type="text/javascript" src="/xcr/plugins/window/window.js"></script>
+	<script type="text/javascript" src="/xcr/plugins/jedate/jedate.js"></script>
+	<script type="text/javascript" src="/xcr/js/toc/fullSendDate2.js"></script>
+	<style >
+		#trainAdd ul li{
+			dispaly:block;
+			margin:20px 0;
+		}
+    </style>
+</head>
+<div class="table-style" id="trainAdd">
+     <div style="padding:8px 0;">&nbsp;&nbsp;
+		<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;
+		<span>活动管理</span>&nbsp;&nbsp;
+		<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;
+		<a href="javascript:loadHtml('/xcr/fullS/fullSList.htm')">满送红包活动列表</a>&nbsp;&nbsp;
+		<i class="fa fa-chevron-right"></i>&nbsp;&nbsp;
+		<a href="#">新增满送红包活动</a>
+	</div>
+
+    <ul style="background-color: whitesmoke;margin-bottom: 20px;padding-top:20px;">
+		<input id="redpacketActivityCode"  name="redpacketActivityCode" type="hidden" value="$!{fullSendVO.redpacketActivityCode}" style="width: 200px;"/>
+        <li class="input-group ">
+            <span style="width:200px; float: left; text-align:right;margin-right:10px;">
+				<span>活动名称:</span>
+                <span style="color:#f00;">*</span>
+			</span>
+			<input id="redpacketActivityName"  name="redpacketActivityName" type="text" value="$!{fullSendVO.redpacketActivityName}" style="width: 179px;height:28px;"/>
+        </li>
+        <li class="input-group">
+            <span style="width:200px; float: left; text-align:right;margin-right:10px;">
+				<span>活动时间:</span>
+                <span style="color:#f00;">*</span></span>
+    		<input class="datainp wicon" id="activityStartDay" type="text" placeholder="请选择" value="$!{fullSendVO.activityStartDay}"
+    				style="width: 180px;float: left;border:1px solid #d2d6de;padding-left: 10px;"  readonly>
+                    <label style="float: left;margin: 5px;"> - </label>
+    		<input class="datainp wicon" id="activityEndDay" type="text" placeholder="请选择" value="$!{fullSendVO.activityEndDay}"
+    				style="width: 180px;float: left;border:1px solid #d2d6de;padding-left: 10px;" readonly>
+        </li>
+        <li class="input-group">
+			<span style="width:200px; float: left; text-align:right;margin-right:10px;">
+				<span>满送红包起始金额:</span>
+                <span style="color:#f00;">*</span>
+			</span>
+            <input id="startAmount"  name="startAmount" type="text" value="$!{fullSendVO.startAmount}"  style="width: 179px;height:28px;"/>元
+        </li>
+
+        <li class="input-group">
+			<span style="width:200px; float: left; text-align:right;margin-right:10px;">
+				<span>中奖名额:</span>
+                <span style="color:#f00;">*</span>
+			</span>
+            <span><input id="drawNumber" name="drawNumber"  type="text" value="$!{fullSendVO.drawNumber}"  style="width: 179px;height:28px;"/>名</span>
+        </li>
+		<li class="input-group">
+            <span style="width:200px; float: left; text-align:right;margin-right:10px;">
+				<span>每天抽奖次数:</span>
+                <span style="color:#f00;">*</span></span>
+            <span  >下单<input id="orderNumber"  name="orderNumber" type="text" value="$!{fullSendVO.orderNumber}" style="width: 64px;height:28px;"/>次
+			</span>
+            <span >分享<input id="shareNumber" name="shareNumber" value="$!{fullSendVO.shareNumber}" type="text"  style="width: 64px;height:28px;" />次
+			</span>
+        </li>
+		<li class="input-group">
+            <span style="width:200px; float: left; text-align:right;margin-right:10px;">
+				<span>抽奖送券:</span>
+                <span style="color:#f00;">*</span></span>
+            <span>
+				<select  id="winningCoupon" name="winningCoupon" style="width: 179px;height:28px;" onclick = "chk();" >
+				#if(${fullSendVO.sendCoupon})<option value="$!{fullSendVO.sendCoupon}">$!{fullSendVO.sendCoupon}</option>#end
+                </select>
+			</span>
+        </li>
+        <li class="input-group">
+			<button id="saveActivity" class="btn btn-primary" type="button" style="padding:5px 20px;margin-left:119px;"
+                    onclick="saveActivity(this);">保存
+            </button>
+			<button id="saveActivity" class="btn btn-primary" type="button" style="padding:5px 20px;margin-left:119px;"
+                    onclick="cancel();">取消
+            </button>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+function saveActivity(event) {
+	//alert("2222");
+	if(!chkinput()){
+		return false;
+	};
+	var redpacketActivityCode = $("#redpacketActivityCode").val();
+    var redpacketActivityName = $("#redpacketActivityName").val();
+    var activityStartDay = $("#activityStartDay").val();
+    var activityEndDay = $("#activityEndDay").val();
+    var startAmount = $("#startAmount").val();
+    var drawNumber = $("#drawNumber").val();
+    var shareNumber = $("#shareNumber").val();
+    var orderNumber = $("#orderNumber").val();
+	var sendCoupon = $("#winningCoupon").val();
+	//alert("redpacketActivityName:"+redpacketActivityName+"activityStartDay:"+activityStartDay+"activityEndDay:"+activityEndDay+"startAmount:"+startAmount+"drawNumber"+drawNumber+"shareNumber:"+shareNumber);
+	//alert("sendCoupon:"+sendCoupon);
+	//alert("orderNumber"+orderNumber);
+	$.ajax({
+        url: "/xcr/addActivity.htm",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: JSON.stringify({
+			redpacketActivityCode:redpacketActivityCode,
+			redpacketActivityName:redpacketActivityName,
+			activityStartDay:activityStartDay,
+			activityEndDay:activityEndDay,
+			startAmount:startAmount,
+			drawNumber:drawNumber,
+			shareNumber:shareNumber,
+			sendCoupon:sendCoupon,
+			orderNumber:orderNumber
+        }),
+        success: function (data) {
+            var flag = data.flag;
+			var errorM = data.errorMessage;
+            if (flag == true) {
+				javascript:loadHtml('/xcr/fullS/fullSList.htm');
+				return;
+            } else {
+				win.alert("发生错误",errorM,null);
+				return ;
+            }
+        }
+    });
+}
+function findActivity(start,end) {
+	var activityStartDay = start;
+    var activityEndDay = end;
+	
+	if(activityStartDay!=""&&activityEndDay!=""){
+    	$.ajax({
+            url: "/xcr/selectAList.htm",
+            type: "post",
+			data:{
+    			activityStartDay: activityStartDay,
+    			activityEndDay: activityEndDay
+			},
+            success: function (obj) {
+            	var flag = obj.flag;
+            	if(flag==true){
+					$("#winningCoupon").val("");
+            		var data = obj.errorMessage;
+            		var subdata = data.substring(0,data.length-1);
+            		var d = subdata.split(",");
+            		var html='<option value="">-请选择-</option>';
+            		for(var i=0;i<d.length;i++){
+            			html+='<option value="'+d[i]+'">'+d[i]+'</option>';
+            		}
+            		$("#winningCoupon").append(html);
+            		if(data==""){
+            			$("#winningCoupon").val("");
+            		}
+            		return ;
+            	}else{
+            		
+            	}
+            }
+        });
+	}else{
+		alert("请先选择活动时间");
+		return false;
+	}
+}
+function chkinput(){
+	if($('#redpacketActivityName').val().trim()==""){
+		alert("活动名称不能为空");
+    	return false;
+    }else if ($('#redpacketActivityName').val().trim().length<=2||$('#redpacketActivityName').val().trim().length>=16){
+		//userLoginNameResult.innerHTML = "长度为3-20";
+		alert("长度为3-16");
+		return false;
+	}
+	if($('#activityStartDay').val().trim()==""){
+		alert("活动开始时间不能为空");
+		return false;
+	}
+	if($('#activityEndDay').val().trim()==""){
+		alert("活动结束时间不能为空");
+		return false;
+	}
+	var regTel = /^[1-9]\d*$/;
+	if($('#startAmount').val().trim()==""){
+		alert("活动起始金额不能为空");
+		return false;
+	}else if (!(regTel.test($('#startAmount').val().trim()))){
+		alert("起始金额为正整数");
+		return false;
+	}
+	var regTel2 = /^[1-9]\d*$/;
+	if($('#drawNumber').val().trim()==""){
+		alert("中奖金额不能为空");
+		return false;
+	}else if (!(regTel2.test($('#drawNumber').val().trim()))){
+		alert("中奖金额为正整数");
+		return false;
+	}
+	var regTel3 = /^[1-9]\d*$/;
+	if($('#orderNumber').val().trim()==""){
+		alert("下单次数不能为空");
+		return false;
+	}else if (!(regTel3.test($('#orderNumber').val().trim()))){
+		alert("下单次数为正整数");
+		return false;
+	}
+	var regTel4 = /^[1-9]\d*$/;
+	if($('#shareNumber').val().trim()==""){
+		alert("分享次数不能为空");
+		return false;
+	}else if (!(regTel4.test($('#shareNumber').val().trim()))){
+		alert("分享次数为正整数");
+		return false;
+	}
+	if($('#winningCoupon').val().trim()==""){
+		alert("抽奖送券不能为空");
+		return false;
+	}
+	return true;
+}
+function onPreTime(){
+	$("#winningCoupon").html("");
+	onTime();
+}
+
+function onTime(){
+	
+	var start=$("#activityStartDay").val();
+	var end=$("#activityEndDay").val();
+	var startTime = new Date(start);
+	var endTime = new Date(end);
+	if(startTime>endTime){
+		alert("开始时间不能大于结束时间");
+		return false;
+	}
+	if(start!=null&&start!=""&&end!=null&&end!=""){
+		findActivity(start,end);
+	}
+}
+function chk(){
+	var activityStartDay = $("#activityStartDay").val();
+	var activityEndDay = $("#activityEndDay").val();
+	if(activityStartDay==null||activityStartDay==""||activityEndDay==null||activityEndDay==""){
+		alert("请先选择开始时间和结束时间");
+	}
+}
+function cancel(){
+	javascript:loadHtml('/xcr/fullS/fullSList.htm');
+}
+</script>
